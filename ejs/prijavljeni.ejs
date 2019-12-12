@@ -105,46 +105,6 @@
 
 		<div id="data"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script>
-        const socket = io();
-        socket.on("connect", s => {
-            socket.emit("refreshqueue", data => {
-                refresh(data);
-            });
-            socket.on("refreshqueue", function(data) {
-                refresh(data);
-            });
-        });
-
-        function refresh(data) {
-            console.log(data);
-            document.getElementById("data").innerHTML = "";
-            data.forEach(data => {
-                var el = document.createElement("P");
-                el.innerHTML = `User: ${data.submittedBy},
-             submitted: <a href="https://www.youtube.com/watch?v=${data.url}">${data.url}</a> and got ${data.votes} votes!",`;
-                document.getElementById("data").appendChild(el);
-
-                let btn = document.createElement("BUTTON");
-                btn.innerHTML = "Vote";
-
-                btn.setAttribute(`onclick`, `vote("${data.id}");`);
-                document.getElementById("data").appendChild(btn);
-                document
-                    .getElementById("data")
-                    .appendChild(document.createElement("HR"));
-            });
-        }
-
-        function vote(id) {
-            socket.emit("voteinqueue", id, ac => {
-                console.log(ac);
-            });
-        }
-    </script>
-		
-	
-
 
 	</span>
 

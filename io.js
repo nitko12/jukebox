@@ -70,7 +70,10 @@ module.exports = function(io, db) {
                 return fn(data);
             });
         });
-        socket.on("app", data => {});
+        socket.on("add", (link, fn) => {
+            console.log(link); // todo
+            fn({ accepted: true });
+        });
         socket.on("del", data => {});
     });
 

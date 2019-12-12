@@ -34,12 +34,7 @@
             <span class="close">&times;</span>
 
             <!-- MODAL CONTENT -->
-            <form action="/login" method="post">
-                <input type="text" placeholder="Enter Username" name="username" required /><br>
-                <input type="password" placeholder="Enter Password" name="password" required /><br><br>
-                <button type="submit">Login</button>
-                <button type="button" class="cancelbtn">Cancel</button>
-            </form>
+            aaa
 
         </div>
     </div>
@@ -75,7 +70,10 @@
 
     <!-- MAIN CONTENT -->
     <span id="sadrzaj">
-		
+		<div style="display: block; margin: auto; width:70%; text-align: center;">
+            Youtube link: <input id="link" type="text">
+            <button onclick="submit()">Pošalji!</button>
+        </div>
 
 	</span>
 
@@ -109,7 +107,8 @@
             <p id="designer"></p>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="/user/recommend.js"></script>
 </body>
 
 </html>

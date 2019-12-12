@@ -102,6 +102,7 @@ module.exports = function(express, app, passport) {
             res.status(403).end();
         }
     });
+
     // restricted js
     app.get("/restricted/admin.js", (req, res) => {
         if (
@@ -134,6 +135,15 @@ module.exports = function(express, app, passport) {
             req.user.password == consts.admin.password
         ) {
             res.sendFile(__dirname + "/restricted/adduser.js");
+        } else {
+            res.status(403).end();
+        }
+    });
+
+    // user js
+    app.get("/user/recommend.js", (req, res) => {
+        if (req.isAuthenticated()) {
+            res.sendFile(__dirname + "/user/recommend.js");
         } else {
             res.status(403).end();
         }
