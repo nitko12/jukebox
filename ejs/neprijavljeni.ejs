@@ -1,0 +1,194 @@
+<!-- NEPRIJAVLJENI -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Izbor za pjesmu odmora</title>
+    <!-- NASLOV KARTICE -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- IKONA KARTICE -->
+
+    <link rel="stylesheet" type="text/css" href="/public/new.css">
+    <script type="text/javascript" src="/public/new.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <meta name="theme-color" content="#0099e5">
+    <!--BOJA ZAGLAVLJA U CHROMU-->
+</head>
+
+<body>
+    <div class="zaglavlje" id="#top">
+        <div class="naslov">
+            <h2 class="dio-naslov"><a href="/">Izbor Za Pjesmu</h2><h1 class="kljucna-rijec">ODMORA</a></h1>
+        </div>
+        <div class="korisnik">
+            <i class="material-icons user" style="font-size:45px;" title="Prijavi se" id="myBtn">person</i>
+        </div>
+    </div>
+
+    <div style="height: 50px; width: 100%;">
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <!-- MODAL CONTENT -->
+            <form action="/login" method="post">
+                <input id="login username" type="text" placeholder="Unesi korisničko ime" name="username" required /><br>
+                <input id="login password" type="password" placeholder="Unesi lozinku" name="password" required /><br><br>
+                <button id="btn-log in" type="submit">Login</button>
+                <button id="btn-log out" type="button" class="cancelbtn">Cancel</button>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        document.addEventListener('keyup', function(e) {
+            if (e.keyCode == 27 || e.keyCode == 13) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+    <div class="icon-bar">
+        <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku" target="_blank"><img src="/slike/fb_bijeli.png" width="35"></a>
+        <a href="https://www.instagram.com/iii.gimnazija.osijek/" class="instagram" title="III. gimnazija na Instagramu" target="_blank"><img src="/slike/ig_bijeli.png" width="35"></a>
+        <a href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1" class="youtube" title="III. gimnazija na YouTubeu" target="_blank"><img src="/slike/yt_bijeli.png" width="35"></a>
+    </div>
+
+
+
+    <!-- MAIN CONTENT -->
+    <span id="sadrzaj">
+
+		<div style="width: 100%;" id="poruka-admina" style="text-align: center;">
+			<p id="poruka-administratora" style="text-align: center;">Tema tjedna su BOŽIĆNE PJESME!</p>
+		</div>
+
+		<div style="height: 50px; width: 100%;">
+		</div>
+
+		<div style="width: 15%;">
+		</div>
+
+		<div class="trending">
+			<!--<div class="trend-song" id="br1">
+				<p class="trend-broj">#1</p>
+				<div id="trend-br1"><iframe src="https://www.youtube-nocookie.com/embed/tIUjOTdzHaU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="trend1"></iframe></div>
+				<h4 class="naziv-pjesme" id="naziv-pjesme">Lijepa naša domovino</h4>
+				<!<hr class="trend-crta">>
+
+			</div>-->
+
+
+				<table class="trend-no1">
+					<tr>
+						<td class="trend-br1"><iframe src="https://www.youtube-nocookie.com/embed/tIUjOTdzHaU" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="trend1"></iframe></td>
+						<td class="trend-broj-1"><p class="trend-broj">#1</p></td>
+						<td class="naziv-pjesme"><h4 id="naziv-pjesme">Lijepa naša domovino</h4></td>
+					</tr>
+				</table>
+
+
+
+
+
+			<div style="width: 100%; height: 45px;"></div>
+
+			<!--<table class="trend-ostale">
+				<tr>
+					<td><iframe src="" id="trend2"></iframe></td>
+					<td><iframe src="" id="trend3"></iframe></td>
+				</tr>
+				<tr>
+					<td><iframe src="" id="trend4"></iframe></td>
+					<td><iframe src="" id="trend5"></iframe></td>
+				</tr>
+			</table>-->
+
+			<div class="trend-songs" id="trend-songs">
+				<div class="trend-ostale">
+
+					<span style="cursor:default;"><a class= "column col-xs-6" id = "caption"><span class="text"><h1>#2</h1></span><iframe src="https://www.youtube-nocookie.com/embed/tIUjOTdzHaU" id="trend2" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe></a>
+    </span>
+
+    <div style="width: 45px;"></div>
+
+    <span style="cursor:default;"><a class= "column col-xs-6" id = "caption"><span class="text"><h1>#3</h1></span><iframe src="" id="trend3" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></a>
+    </span>
+
+    <div style="width: 100%; height: 45px;"></div>
+
+    </div>
+    <div class="trend-ostale">
+
+        <span style="cursor:default;"><a class= "column col-xs-6" id = "caption"><span class="text"><h1>#4</h1></span><iframe src="" id="trend4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></a>
+        </span>
+
+        <div style="width: 45px;"></div>
+
+        <span style="cursor:default;"><a class= "column col-xs-6" id = "caption"><span class="text"><h1>#5</h1></span><iframe src="" id="trend5" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></a>
+        </span>
+
+        <div style="width: 100%; height: 45px;"></div>
+    </div>
+    </div>
+    </div>
+
+    </span>
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="vrh">
+            <a href="#top">
+                <p class="na-vrh-tekst">
+                    <i class="material-icons strelica" style="float: left;">keyboard_arrow_up</i> Povratak na vrh
+                    <i class="material-icons strelica" style="float: right;">keyboard_arrow_up</i>
+                </p>
+            </a>
+        </div>
+
+        <p id="vlasnik" style="text-align: center;"><br><a href="http://www.gimnazija-treca-os.skole.hr">III. GIMNAZIJA OSIJEK</a></p><br>
+        <div id="kontakt-podaci">
+            <p id="adresa"><br>Kamila Firingera 14,<br>31 000 Osijek, HR</p>
+            <p id="e-posta">
+                <a href="mailto:ured@gimnazija-treca-os.skole.hr"><br>ured@gimnazija-treca-os.skole.hr</a><br><a href="mailto:pjesma@mail.com">pjesma@mail.com</a></p>
+        </div>
+
+        <div style="height: 150px; width: 100%;"></div>
+
+        <div class="footer-end">
+            <p id="copyright">Copyright: <a href="http://www.gimnazija-treca-os.skole.hr">III. gimnazija Osijek</a> &copy;
+                <script>
+                    var d = new Date();
+                    document.write(d.getFullYear() + ".");
+                </script><br> Sva prava pridržana.
+            </p>
+            <p id="designer"></p>
+        </div>
+    </div>
+
+    <script type="text/javascript" id="cookieinfo" src="http://cookieinfoscript.com/js/cookieinfo.min.js" data-font-size="18px" data-font-family="sans-serif" data-text-align="left" data-height="50px" data-fg="#FFFFFF" data-bg="#222222" data-link="" data-divlink="#FFFFFF"
+        data-divlinkbg="#0099e5" data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na" data-linkmsg="ovom linku." data-moreinfo="/cookies"
+        data-close-text="Prihvaćam" data-cookie="prvi-kolacic">
+    </script>
+
+
+</body>
+
+</html>
