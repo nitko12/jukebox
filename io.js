@@ -86,7 +86,7 @@ module.exports = function(io, db) {
             if (link.indexOf("?v=") != -1)
                 q = link.substr(link.indexOf("?v=") + 3, 11);
             else if (link.indexOf("youtu.be/") != -1)
-                q = link.substr(link.indexOf("youtu.be/") + 8, 11);
+                q = link.substr(link.indexOf("youtu.be/") + 9, 11);
             else
                 fn({ accepted: false });
             console.log(socket.request.user);
