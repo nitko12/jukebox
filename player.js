@@ -2,6 +2,7 @@ const fs = require("fs");
 const ytdl = require("ytdl-core");
 const ffmpeg = require("fluent-ffmpeg");
 const wavplayer = require("node-wav-player");
+const consts = require("./consts.js");
 
 module.exports = function(db) {
     class Player {

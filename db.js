@@ -246,16 +246,18 @@ class Recs {
             }
         });
     }
+
     remove(id, fn) {
         this.db.run(`DELETE FROM "recommendations" WHERE id = ?`, id, fn);
     }
+
     get(id, fn) {
         this.db.get(
             `SELECT * FROM "recommendations" WHERE id = ?`,
             id,
             (err, row) => {
                 if (err) return fn(err);
-
+                if (!row) return fn(true);
                 this.findUserById(row.userid, (err, user) => {
                     let data = {
                         id: row.id,
@@ -335,7 +337,7 @@ class Queue {
         this.db = db;
     }
 
-    get(fn) {
+    getAll(fn) {
         this.db.all(`SELECT * FROM "queue"`, (err, rows) => {
             if (err) return fn(err);
             return fn(null, rows);
