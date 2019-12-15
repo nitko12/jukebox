@@ -20,3 +20,8 @@ queue.on("connect", function(socket) {
         refreshQueue(data);
     });
 });
+
+var url = new URL(window.location.href);
+var c = url.searchParams.get("login");
+if (c == "0")
+    alert("Prijava neuspjesna!");

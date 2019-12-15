@@ -3,8 +3,8 @@ const changepass = io("/changepass")
 function changePass() {
     changepass.emit("change", { lastpass: document.getElementById("lastpass").value, newpass: document.getElementById("newpass").value }, data => {
         if (data.accepted)
-            alert("Success");
+            alert("Uspješno promjenjena šifra!");
         else
-            alert("Something went wrong")
+            alert("Neštp je pošlo po zlu")
     })
 }

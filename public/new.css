@@ -408,3 +408,8 @@ input:focus:-ms-input-placeholder {
 .column#caption:hover .text {
     opacity: 1;
 }
+
+.glasaj-icon {
+    color: black;
+    font-size: 70px;
+}

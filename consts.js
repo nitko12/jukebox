@@ -18,6 +18,6 @@ module.exports = {
     sessionSecret: "yep8hLJP2Z",
     refreshRate: 1000, // ms
     maxYtVideoSize: 50 * 1024 * 1024, // bytes
-    recCooldown: 1000, // ms
-    voteCooldown: 1000 // ms
+    recCooldown: 1000 * 10, // ms
+    voteCooldown: 1000 * 10 // ms
 };

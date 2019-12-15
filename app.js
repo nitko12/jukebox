@@ -43,7 +43,7 @@ module.exports = function(express, app, passport) {
 
         passport.authenticate("local", (err, user, info) => {
             if (err) return console.log(err);
-            if (!user) return res.send("Couldn't log in!\n");
+            if (!user) return res.redirect("/?login=0");
             req.login(user, err => {
                 return res.redirect("/");
             });
