@@ -8,7 +8,7 @@ module.exports = function(db) {
     class Player {
         constructor() {}
         async play(num) {
-            db.queue.get((err, data) => {
+            db.queue.getAll((err, data) => {
                 if (err) return console.log(err);
                 if (num >= data.length) return;
                 data.sort((a, b) => a.votes - b.votes);

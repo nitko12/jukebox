@@ -35,19 +35,27 @@ module.exports = function(db) {
 
                     return [start, end];
                 });
+
                 let shouldPlay = false;
+
                 plays.forEach(el => {
-                    if (el[0] < now && now < el[1]) shouldPlay = true;
+                    if (
+                        el[0].getTime() < now.getTime() &&
+                        now.getTime() < el[1].getTime()
+                    )
+                        shouldPlay = true;
                 });
 
                 if (!playing && shouldPlay) {
                     playing = true;
                     player.play(0);
+                    console.log("play");
                 }
 
                 if (playing && !shouldPlay) {
                     playing = false;
                     player.stop();
+                    console.log("stop");
                 }
             } catch (err) {
                 console.log("parsing failed:", err);
