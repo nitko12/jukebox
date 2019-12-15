@@ -5,6 +5,7 @@ const recs = io("/recs");
 
 function refreshRecs(data) {
     let str = "";
+    console.log(data)
     data.sort((a, b) => parseInt(b.date) - parseInt(a.date));
     for (let i of data) {
         str += `<iframe src="https://www.youtube-nocookie.com/embed/${i.url}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="trend1"></iframe>`;

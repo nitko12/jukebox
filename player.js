@@ -11,7 +11,7 @@ module.exports = function(db) {
             db.queue.getAll((err, data) => {
                 if (err) return console.log(err);
                 if (num >= data.length) return;
-                data.sort((a, b) => a.votes - b.votes);
+                data.sort((a, b) => b.votes - a.votes);
                 let t = data[num].url;
                 console.log("Downloading: ", t);
                 ffmpeg(
