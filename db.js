@@ -196,6 +196,19 @@ class User {
             }
         );
     }
+
+    changePass(id, password, fn) {
+        bcrypt.genSalt(10, (err, salt) => {
+            if (err) return console.log(err);
+            bcrypt.hash(password, salt, (err, hash) => {
+                if (err) return console.log(err);
+                this.db.run(
+                    `UPDATE "users" SET password = ? WHERE id = ?`,
+                    hash, id, fn
+                );
+            });
+        });
+    }
 }
 
 class Recs {

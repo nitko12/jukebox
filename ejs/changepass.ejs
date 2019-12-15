@@ -102,11 +102,11 @@
 
     <!-- MAIN CONTENT -->
     <span id="sadrzaj">
-
-        <div id="data" style="margin: auto;display: block; width: 70%;"></div>
-        
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-
+        <div style="display: block; margin: auto; width: 70%;">
+            <input id="lastpass">
+            <input id="newpass">
+            <button onclick="changePass()">Promjeni</button>
+        </div>
 	</span>
 
     <!-- FOOTER -->
@@ -144,8 +144,8 @@
         data-divlinkbg="#0099e5" data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na" data-linkmsg="ovom linku." data-moreinfo="/cookies"
         data-close-text="Prihvaćam" data-cookie="prvi-kolacic">
     </script>
-
-    <script src="/user/loggedin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="/user/changepass.js"></script>
 </body>
 
 </html>

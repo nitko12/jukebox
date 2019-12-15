@@ -1,9 +1,34 @@
 const consts = require("./consts.js");
 const tester = require("./link-tester.js");
+const bcrypt = require("bcryptjs");
 
 module.exports = function(io, db) {
     io.on("connection", socket => {});
 
+    io.of("/changepass").on("connection", socket => {
+        socket.on("change", (data, fn) => {
+            console.log(data)
+            if (!socket.request.user)
+                return fn("lol no");
+            if (!socket.request.user.logged_in ||
+                socket.request.user.username == consts.admin.username
+            )
+                return fn("lol no");
+            if (!data.lastpass || !data.newpass)
+                return fn({ accepted: false });
+            db.user.findById(socket.request.user.id, (err, row) => {
+                if (err)
+                    return console.log(err);
+                bcrypt.compare(data.lastpass, row.password, (err, res) => {
+                    if (err || !res) return fn({ accepted: false });
+                    db.user.changePass(socket.request.user.id, data.newpass, (err) => {
+                        if (err) return fn({ accepted: false });
+                        return fn({ accepted: true });
+                    });
+                });
+            })
+        });
+    });
     io.of("/user").on("connection", socket => {
         socket.on("stepYear", fn => {
             if (
@@ -87,27 +112,32 @@ module.exports = function(io, db) {
                 q = link.substr(link.indexOf("?v=") + 3, 11);
             else if (link.indexOf("youtu.be/") != -1)
                 q = link.substr(link.indexOf("youtu.be/") + 9, 11);
-            else
-                fn({ accepted: false });
+            else fn({ accepted: false });
             console.log(socket.request.user);
             db.user.lastRecommend(socket.request.user.id, (err, data) => {
-                if (data == "never" || new Date().getTime() - new Date(parseInt(data)).getTime() >= consts.recCooldown) {
+                if (
+                    data == "never" ||
+                    new Date().getTime() - new Date(parseInt(data)).getTime() >=
+                    consts.recCooldown
+                ) {
                     tester(q, db, (err, data) => {
-                        if (err)
-                            return fn({ accepted: false });
-                        db.recs.add(socket.request.user.id, q, new Date().getTime(), (err, data) => {
-                            if (err) {
-                                console.log(err);
-                                return fn({ accepted: false });
-                            }
-                            db.recs.getAll((err, data) => {
-                                if (err)
+                        if (err) return fn({ accepted: false });
+                        db.recs.add(
+                            socket.request.user.id,
+                            q,
+                            new Date().getTime(),
+                            (err, data) => {
+                                if (err) {
                                     console.log(err);
-                                io.of("/recs").emit("refresh", data);
-                            });
-                            fn({ accepted: true });
-                        })
-
+                                    return fn({ accepted: false });
+                                }
+                                db.recs.getAll((err, data) => {
+                                    if (err) console.log(err);
+                                    io.of("/recs").emit("refresh", data);
+                                });
+                                fn({ accepted: true });
+                            }
+                        );
                     });
                 } else {
                     return fn({ accepted: false });
@@ -116,48 +146,41 @@ module.exports = function(io, db) {
         });
 
         socket.on("approve", id => {
-            if (socket.request.user.username != consts.admin.username ||
+            if (
+                socket.request.user.username != consts.admin.username ||
                 socket.request.user.password != consts.admin.password
             )
                 return fn("lol no");
             db.recs.get(id, (err, data) => {
-                if (err)
-                    return console.log(err);
-                if (!data)
-                    return console.log("Error while approving...");
+                if (err) return console.log(err);
+                if (!data) return console.log("Error while approving...");
                 db.queue.push(data.url, data.username, err => {
-                    if (err)
-                        return console.log(err);
+                    if (err) return console.log(err);
                     db.recs.remove(id, err => {
-                        if (err)
-                            console.log(err);
+                        if (err) console.log(err);
                         db.recs.getAll((err, data) => {
-                            if (err)
-                                console.log(err);
+                            if (err) console.log(err);
                             io.of("/recs").emit("refresh", data);
                             db.queue.getAll((err, data) => {
-                                if (err)
-                                    return console.log(err);
+                                if (err) return console.log(err);
                                 io.of("/queue").emit("refresh", data);
                             });
                         });
                     });
                 });
-
-            })
+            });
         });
 
         socket.on("delete", id => {
-            if (socket.request.user.username != consts.admin.username ||
+            if (
+                socket.request.user.username != consts.admin.username ||
                 socket.request.user.password != consts.admin.password
             )
                 return fn("lol no");
             db.recs.remove(id, err => {
-                if (err)
-                    console.log(err);
+                if (err) console.log(err);
                 db.recs.getAll((err, data) => {
-                    if (err)
-                        console.log(err);
+                    if (err) console.log(err);
                     io.of("/recs").emit("refresh", data);
                 });
             });
@@ -194,24 +217,58 @@ module.exports = function(io, db) {
 
     io.of("/queue").on("connection", socket => {
         socket.on("get", (data, fn) => {
+            if (!socket.request.user.logged_in) return fn("lol no");
             db.queue.getAll((err, data) => {
-                if (err)
-                    return console.log(err);
+                if (err) return console.log(err);
                 fn(data);
             });
         });
 
         socket.on("delete", (id, fn) => {
-            if (!id)
-                return fn(true);
-            db.queue.remove(id, (err) => {
-                if (err)
-                    console.log(err)
+            if (!id) return fn(true);
+            if (!socket.request.user.logged_in) return fn("lol no");
+            db.queue.remove(id, err => {
+                if (err) return console.log(err);
                 db.queue.getAll((err, data) => {
-                    if (err)
-                        return console.log(err);
+                    if (err) return console.log(err);
                     io.of("/queue").emit("refresh", data);
                 });
+            });
+        });
+
+        socket.on("vote", (id, fn) => {
+            if (!id) return fn(true);
+            if (!socket.request.user.logged_in) return fn("lol no");
+            db.user.lastVote(socket.request.user.id, (err, data) => {
+                if (err) {
+                    fn({ accepted: false });
+                    return console.log(err);
+                }
+                if (
+                    data == "never" ||
+                    new Date().getTime() - new Date(parseInt(data)).getTime() >=
+                    consts.voteCooldown
+                ) {
+                    db.queue.vote(
+                        id,
+                        socket.request.user.id,
+                        new Date().getTime(),
+                        (data, err) => {
+                            if (err) {
+                                fn({ accepted: false });
+                                return console.log(err);
+                            }
+                            fn({ accepted: true });
+                            db.queue.getAll((err, data) => {
+                                if (err) return console.log(err);
+                                io.of("/queue").emit("refresh", data);
+                            });
+                        }
+                    );
+                } else {
+                    fn({ accepted: false });
+                    return console.log(err);
+                }
             });
         });
     });
@@ -219,8 +276,7 @@ module.exports = function(io, db) {
     io.of("/publicqueue").on("connection", socket => {
         socket.on("get", (data, fn) => {
             db.queue.getAll((err, data) => {
-                if (err)
-                    return console.log(err);
+                if (err) return console.log(err);
                 data.sort((a, b) => parseInt(b.votes) - parseInt(a.votes));
                 fn(data.splice(0, 5));
             });

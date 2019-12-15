@@ -103,6 +103,19 @@ module.exports = function(express, app, passport) {
         }
     });
 
+    app.get("/promjenipass", (req, res) => {
+        if (req.isAuthenticated()) {
+            let data = [],
+                options = [];
+            ejs.renderFile("./ejs/changepass.ejs", data, options, (err, str) => {
+                if (err) return console.log(err);
+                res.send(str);
+            });
+        } else {
+            res.status(403).end();
+        }
+    });
+
     // restricted js
     app.get("/restricted/admin.js", (req, res) => {
         if (
@@ -144,6 +157,22 @@ module.exports = function(express, app, passport) {
     app.get("/user/recommend.js", (req, res) => {
         if (req.isAuthenticated()) {
             res.sendFile(__dirname + "/user/recommend.js");
+        } else {
+            res.status(403).end();
+        }
+    });
+
+    app.get("/user/loggedin.js", (req, res) => {
+        if (req.isAuthenticated()) {
+            res.sendFile(__dirname + "/user/loggedin.js");
+        } else {
+            res.status(403).end();
+        }
+    });
+
+    app.get("/user/changepass.js", (req, res) => {
+        if (req.isAuthenticated()) {
+            res.sendFile(__dirname + "/user/changepass.js");
         } else {
             res.status(403).end();
         }

@@ -1,6 +1,17 @@
 const consts = require("./consts.js");
 module.exports = function(io, passportSocketIo, sessionStore) {
     io.origins("*:*");
+    io.of("/changepass").use(
+        passportSocketIo.authorize({
+            cookieParser: require("cookie-parser"),
+            key: consts.sessionKey,
+            secret: consts.sessionSecret,
+            store: sessionStore,
+            success: onAuthorizeSuccess,
+            fail: onAuthorizeFail
+        })
+    );
+
     io.of("/queue").use(
         passportSocketIo.authorize({
             cookieParser: require("cookie-parser"),
