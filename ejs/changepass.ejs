@@ -47,14 +47,15 @@
 
             <!-- MODAL CONTENT -->
             <p>Pozdrav,
-                <!--username-->
+                <%= user %>
             </p>
             <!-- DODATI KORISNIČKO IME-->
             <ul style="list-style: none; float: left; text-align: left;">
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Moji podaci</a></li>
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Predloži pjesmu</a></li><br>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/promjenisifru" style="color: #0099e5;">Promijeni lozinku</a></li>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/predlozi" style="color: #0099e5;">Predloži pjesmu</a></li><br>
                 <li></li>
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>
+                <li>
+                    <!--<i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>-->
                     <a href="#" style="color: #0099e5;">
                         <form action="/logout" method="post">
                             <input type="submit" value="Odjavi se">

@@ -25,4 +25,4 @@ require("./app.js")(express, app, passport); // add all paths to app
 require("./ioauth.js")(io, passportSocketIo, sessionStore);
 require("./io.js")(io, db);
 
-const clock = require("./clock.js")(db);
+const clock = require("./clock.js")(db, io);

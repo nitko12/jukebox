@@ -1,4 +1,4 @@
-<!-- NEPRIJAVLJENI -->
+<!-- ADMIN - RASPORED -->
 <!DOCTYPE html>
 <html>
 
@@ -15,6 +15,13 @@
 
     <meta name="theme-color" content="#0099e5">
     <!--BOJA ZAGLAVLJA U CHROMU-->
+    <!-- LINK NA DRUŠTVENIM MREŽAMA -->
+    <meta property="og:image" content="/slike/og_image.jpg" />
+    <meta property="og:url" content="/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Izbor za pjesmu odmora" />
+    <meta property="og:description" content="Prijavi se i daj svoj glas za pjesmu koja će svirati idući odmor." />
+
 
 
     <!-- IZ ZVONIMIROVOG KODA -->
@@ -34,7 +41,7 @@
 <body>
     <div class="zaglavlje" id="#top">
         <div class="korisnik" style="float: left;">
-            <i class="material-icons user" style="font-size:45px;" title="Prijedlozi korisnika" id="times">check_circle</i>
+            <a href="/"><i class="material-icons user" style="font-size:45px;" title="Prijedlozi korisnika" id="times">check_circle</i></a>
         </div>
         <div class="naslov" style="width: 80%;">
             <h2 class="dio-naslov"><a href="/">Izbor Za Pjesmu</h2><h1 class="kljucna-rijec">ODMORA</a></h1>
@@ -55,11 +62,19 @@
             <p>Pozdrav, admin</p>
             <ul style="list-style: none; float: left; text-align: left;">
                 <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Moji podaci</a></li>-->
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Dodaj korisnika</a></li>
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Očisti server</a></li>
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Uredi raspored</a></li>
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Upravljaj korisnicima</a></li><br>
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Odjavi se</a></li>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/" style="color: #0099e5;">Odobavanje pjesama & red sviranja</a></li>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/dodajkorisnika" style="color: #0099e5;">Dodaj korisnika</a></li>
+                <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/pospremi" style="color: #0099e5;">Očisti server</a></li>-->
+                <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/raspored" style="color: #0099e5;">Uredi raspored</a></li>-->
+                <li>
+                    <!--<i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>-->
+                    <a href="#" style="color: #0099e5;">
+                        <form action="/logout" method="post">
+                            <input type="submit" value="Odjavi se">
+                        </form>
+
+                    </a>
+                </li>
             </ul>
 
 
@@ -101,7 +116,7 @@
     <!-- MAIN CONTENT -->
     <span id="sadrzaj">
 
-	<div style="width: 15%;">
+	<div style="width: 5%;">
 	</div>
 
 	<div style="width: 70%;">
@@ -111,7 +126,8 @@
     <button onclick="set(1)">Utorak</button>
     <button onclick="set(2)">Srijeda</button>
     <button onclick="set(3)">Četvrtak</button>
-    <button onclick="set(4)">Petak</button>
+    <button onclick="set(4)">Petak</button><br>
+    <button onclick="set(5)">Standardni<br>raspored</button>
 
     <div style="width: 100%; height: 15px;">
 	</div>

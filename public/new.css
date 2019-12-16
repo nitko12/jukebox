@@ -17,7 +17,7 @@ img {
 }
 
 a {
-    color: white;
+    color: gray;
     text-decoration: none;
 }
 
@@ -71,6 +71,7 @@ input[type="text"]:focus,
 input[type="password"]:focus {
     border: 0px;
     background-color: #0099e5;
+    color: white;
 }
 
 input::-webkit-input-placeholder {
@@ -94,6 +95,7 @@ input:focus:-moz-placeholder {
 
 button[type="button"],
 button[type="submit"],
+input[type="submit"],
 button {
     background-color: #0099e5;
     border: none;
@@ -106,7 +108,8 @@ button {
 
 button[type="button"]:focus,
 button[type="submit"]:focus,
-button:focus {
+button:focus,
+input[type="submit"]:focus {
     background-color: #df6d46;
 }
 
@@ -407,9 +410,4 @@ input:focus:-ms-input-placeholder {
 
 .column#caption:hover .text {
     opacity: 1;
-}
-
-.glasaj-icon {
-    color: black;
-    font-size: 70px;
 }

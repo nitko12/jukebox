@@ -22,7 +22,7 @@ module.exports = function(express, app, passport) {
                 res.send(str);
             });
         } else if (req.isAuthenticated()) {
-            let data = [],
+            let data = { user: req.user.username },
                 options = [];
             ejs.renderFile("./ejs/prijavljeni.ejs", data, options, (err, str) => {
                 if (err) return console.log(err);
@@ -92,7 +92,7 @@ module.exports = function(express, app, passport) {
 
     app.get("/predlozi", (req, res) => {
         if (req.isAuthenticated()) {
-            let data = [],
+            let data = { user: req.user.username },
                 options = [];
             ejs.renderFile("./ejs/predlozi.ejs", data, options, (err, str) => {
                 if (err) return console.log(err);
@@ -103,9 +103,9 @@ module.exports = function(express, app, passport) {
         }
     });
 
-    app.get("/promjenipass", (req, res) => {
+    app.get("/promjenisifru", (req, res) => {
         if (req.isAuthenticated()) {
-            let data = [],
+            let data = { user: req.user.username },
                 options = [];
             ejs.renderFile("./ejs/changepass.ejs", data, options, (err, str) => {
                 if (err) return console.log(err);

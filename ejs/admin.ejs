@@ -1,9 +1,9 @@
-<!-- NEPRIJAVLJENI -->
+<!-- ADMIN -->
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Izbor za pjesmu odmora | Prijedlozi korisnika</title>
+    <title>Izbor za pjesmu odmora | Administrator</title>
     <!-- NASLOV KARTICE -->
     <link rel="shortcut icon" href="favicon.ico">
     <!-- IKONA KARTICE -->
@@ -14,6 +14,13 @@
 
     <meta name="theme-color" content="#0099e5">
     <!--BOJA ZAGLAVLJA U CHROMU-->
+
+    <!-- LINK NA DRUŠTVENIM MREŽAMA -->
+    <meta property="og:image" content="/slike/og_image.jpg" />
+    <meta property="og:url" content="/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Izbor za pjesmu odmora" />
+    <meta property="og:description" content="Prijavi se i daj svoj glas za pjesmu koja će svirati idući odmor." />
 
 
     <!-- IZ ZVONIMIROVOG KODA -->
@@ -49,11 +56,13 @@
                 <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/dodajkorisnika" style="color: #0099e5;">Dodaj korisnika</a></li>
                 <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/pospremi" style="color: #0099e5;">Očisti server</a></li>-->
                 <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/raspored" style="color: #0099e5;">Uredi raspored</a></li>
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>
+                <li>
+                    <!--<i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>-->
                     <a href="#" style="color: #0099e5;">
                         <form action="/logout" method="post">
                             <input type="submit" value="Odjavi se">
                         </form>
+
                     </a>
                 </li>
             </ul>
@@ -84,7 +93,7 @@
         });
     </script>
 
-    <h2 style="text-align: center;">Imate novu pjesmu za provjeru:</h2>
+    <h2 style="text-align: center;"></h2>
 
     <div class="icon-bar">
         <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku" target="_blank"><img src="/slike/fb_bijeli.png" width="35"></a>
@@ -95,14 +104,15 @@
 
 
     <!-- MAIN CONTENT -->
-    <div style="display: block; width: 95%; margin-left: 100px;">
-        <div style="width:49%; height: 100%;">
+    <div style="display: block; width: 100%; height: 150%;">
+        <div style="width: 5%;"></div>
+        <div style="width: 42%; height: 100%;">
             <h2>Preporuke:</h2>
-            <div id="preporuke" style="width:100%">a</div>
+            <div id="preporuke" style="overflow-x: hidden;overflow-y: scroll; width:100%; height:500px;"></div>
         </div>
-        <div style="width:49%; height: 100%;">
+        <div style="width:42%; height: 100%;">
             <h2>Red sviranja:</h2>
-            <div id="red" style="width:100%">b</div>
+            <div id="red" style="overflow-x: hidden;overflow-y: scroll; width:100%; height: 500px;"></div>
         </div>
     </div>
 
@@ -141,9 +151,11 @@
         data-divlinkbg="#0099e5" data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na" data-linkmsg="ovom linku." data-moreinfo="/cookies"
         data-close-text="Prihvaćam" data-cookie="prvi-kolacic">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="/restricted/admin.js"></script>
+
+
 </body>
 
 </html>

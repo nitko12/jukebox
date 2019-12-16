@@ -14,6 +14,7 @@ module.exports = function(db) {
                 data.sort((a, b) => b.votes - a.votes);
                 let t = data[num].url;
                 console.log("Downloading: ", t);
+                db.queue.half(data[num].id);
                 ffmpeg(
                         ytdl(`https://www.youtube.com/watch?v=${t}`).on("error", err => {
                             console.log(err);
