@@ -2,6 +2,11 @@ const consts = require("./consts.js");
 const db = require("./db.js");
 
 const express = require("express");
+const fs = require("fs");
+
+if (!fs.existsSync("./temp")) {
+    fs.mkdirSync("./temp");
+}
 
 const app = express();
 const http = require("http").createServer(app);
