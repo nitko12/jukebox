@@ -1,9 +1,9 @@
 const consts = require("./consts.js");
 
-module.exports = function(db) {
+module.exports = function(db, onplay) {
     let playing = false;
     // passing over db
-    const player = require("./player.js")(db);
+    const player = require("./player.js")(db, onplay);
 
     function tick() {
         db.schedule.get((err, data) => {

@@ -25,3 +25,21 @@ var url = new URL(window.location.href);
 var c = url.searchParams.get("login");
 if (c == "0")
     alert("Prijava neuspjesna!");
+
+
+document.getElementById("poruka-administratora").innerHTML = "Učitavanje...";
+
+const usertext = io("/usertextpublic");
+
+function refreshUserText(data) {
+    document.getElementById("poruka-administratora").innerHTML = data;
+}
+
+usertext.on("connect", function(socket) {
+    usertext.emit("get", null, data => {
+        refreshUserText(data);
+    });
+    usertext.on("refresh", data => {
+        refreshUserText(data);
+    });
+});

@@ -282,4 +282,42 @@ module.exports = function(io, db) {
             });
         });
     });
+
+    io.of("/usertext").on("connection", socket => {
+        socket.on("get", (data, fn) => {
+            db.usertext.get((err, data) => {
+                if (err) return console.log(err);
+                fn(data.data);
+            });
+        });
+
+        socket.on("set", (data, fn) => {
+            if (
+                socket.request.user.username != consts.admin.username ||
+                socket.request.user.password != consts.admin.password
+            )
+                return fn("lol no");
+
+            db.usertext.set(data, (err, data) => {
+                if (err) return console.log(err);
+                db.usertext.get((err, data) => {
+                    if (err) return console.log(err);
+                    io.of("/usertext").emit("refresh", data.data);
+                    io.of("/usertextpublic").emit("refresh", data.data);
+                    fn(data.data);
+                });
+            });
+        });
+    });
+
+    io.of("/usertextpublic").on("connection", socket => {
+        socket.on("get", (data, fn) => {
+            db.usertext.get((err, data) => {
+                if (err) return console.log(err);
+                io.of("/usertext").emit("refresh", data.data);
+                io.of("/usertextpublic").emit("refresh", data.data);
+                fn(data.data);
+            });
+        });
+    });
 };

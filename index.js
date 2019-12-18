@@ -25,4 +25,17 @@ require("./app.js")(express, app, passport); // add all paths to app
 require("./ioauth.js")(io, passportSocketIo, sessionStore);
 require("./io.js")(io, db);
 
-const clock = require("./clock.js")(db, io);
+let onplay = (id) => {
+    db.queue.half(id, err => {
+        if (err)
+            return console.log(err);
+        db.queue.getAll((err, data) => {
+            if (err) return console.log(err);
+            io.of("/queue").emit("refresh", data);
+            io.of("/publicqueue").emit("refresh", data);
+        });
+
+    })
+};
+
+const clock = require("./clock.js")(db, onplay);

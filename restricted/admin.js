@@ -60,3 +60,26 @@ queue.on("connect", function(socket) {
         refreshQueue(data);
     });
 });
+
+const usertext = io("/usertext");
+
+function refreshUserText(data) {
+    document.getElementById("usertext").value = data;
+}
+
+function updateText() {
+    let v = document.getElementById("usertext").value;
+    usertext.emit("set", v, data => {
+        document.getElementById("usertext").value = data;
+    });
+}
+
+usertext.on("connect", function(socket) {
+    usertext.emit("get", null, data => {
+        console.log(data)
+        refreshUserText(data);
+    });
+    usertext.on("refresh", data => {
+        refreshUserText(data);
+    });
+});

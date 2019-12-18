@@ -115,31 +115,20 @@
 
     <!-- MAIN CONTENT -->
     <span id="sadrzaj">
-
-	<div style="width: 5%;">
+	<div style="width: 5%;"></div>
+	<div style="width: 85%; text-align: center;">
+	    Zadani raspored (slobodne aktivnosti):
+        <button onclick="set(0)">Ponedjeljak</button>
+        <button onclick="set(1)">Utorak</button>
+        <button onclick="set(2)">Srijeda</button>
+        <button onclick="set(3)">Četvrtak</button>
+        <button onclick="set(4)">Petak</button>
+        <button style="width: 30%;" onclick="set(5)">Standardni<br>raspored</button>
+        <div style="width: 100%; height: 15px;"></div>
+        <textarea rows="8" cols="100" id="main" style="font-size: 16px;"></textarea><br>
+        <button onclick="submit()" style="width: 70%;">Pošalji</button>
 	</div>
-
-	<div style="width: 70%;">
-
-	Zadani raspored (slobodne aktivnosti):
-    <button onclick="set(0)">Ponedjeljak</button>
-    <button onclick="set(1)">Utorak</button>
-    <button onclick="set(2)">Srijeda</button>
-    <button onclick="set(3)">Četvrtak</button>
-    <button onclick="set(4)">Petak</button><br>
-    <button onclick="set(5)">Standardni<br>raspored</button>
-
-    <div style="width: 100%; height: 15px;">
-	</div>
-    
-    <textarea rows="6" cols="100" id="main" style="font-size: 16px;"></textarea><br>
-    <button onclick="submit()">Pošalji</button>
-
-
-
-	</div>
-	<div style="width: 100%; height: 45px;">
-	</div>
+	<div style="width: 100%; height: 45px;"></div>
 
 
 	</span>

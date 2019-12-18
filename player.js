@@ -4,7 +4,7 @@ const ffmpeg = require("fluent-ffmpeg");
 const wavplayer = require("node-wav-player");
 const consts = require("./consts.js");
 
-module.exports = function(db) {
+module.exports = function(db, onplay) {
     class Player {
         constructor() {}
         async play(num) {
@@ -14,7 +14,7 @@ module.exports = function(db) {
                 data.sort((a, b) => b.votes - a.votes);
                 let t = data[num].url;
                 console.log("Downloading: ", t);
-                db.queue.half(data[num].id);
+                onplay(data[num].id);
                 ffmpeg(
                         ytdl(`https://www.youtube.com/watch?v=${t}`).on("error", err => {
                             console.log(err);

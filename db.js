@@ -393,6 +393,17 @@ class Queue {
     }
 }
 
+class Usertext {
+    constructor(db) { this.db = db; }
+    set(data, fn) {
+        console.log(data)
+        this.db.run(`UPDATE "usertext" SET data = ? WHERE id = "1"`, data, fn);
+    }
+    get(fn) {
+        this.db.get(`SELECT * FROM "usertext"`, fn);
+    }
+}
+
 class Db {
     constructor() {
         this.db = new sqlite3.Database("./db.sqlite3");
@@ -418,8 +429,36 @@ class Db {
                                                 this.db.run(
                                                     `INSERT INTO "schedule" VALUES (?, ?)`,
                                                     uuid(),
-                                                    consts.defaultSchedule
+                                                    consts.defaultSchedule, (err) => {
+                                                        if (err) return console.log(err);
+                                                        this.db.run(
+                                                            `CREATE TABLE IF NOT EXISTS "usertext" (id TEXT, data TEXT)`, err => {
+                                                                if (err) return console.log(err);
+                                                                this.db.get(`SELECT 1 FROM "usertext"`, (err, row) => {
+                                                                    if (err)
+                                                                        console.log(err);
+                                                                    if (!row)
+                                                                        this.db.run(`INSERT INTO "usertext" VALUES ("1", ?)`, "Default text", err => {
+                                                                            if (err) return console.log(err);
+                                                                        });
+                                                                });
+                                                            }
+                                                        );
+                                                    }
                                                 );
+                                            else this.db.run(
+                                                `CREATE TABLE IF NOT EXISTS "usertext" (id TEXT, data TEXT)`, err => {
+                                                    if (err) return console.log(err);
+                                                    this.db.get(`SELECT 1 FROM "usertext"`, (err, row) => {
+                                                        if (err)
+                                                            console.log(err);
+                                                        if (!row)
+                                                            this.db.run(`INSERT INTO "usertext" VALUES ("1", ?)`, "Default text", err => {
+                                                                if (err) return console.log(err);
+                                                            });
+                                                    });
+                                                }
+                                            );
                                         });
                                     }
                                 );
@@ -433,6 +472,7 @@ class Db {
         this.recs = new Recs(this.db, this.user.findById);
         this.schedule = new Schedule(this.db);
         this.queue = new Queue(this.db);
+        this.usertext = new Usertext(this.db);
     }
 }
 
