@@ -50,12 +50,12 @@
                 <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Moji podaci</a></li>-->
                 <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/" style="color: #0099e5;">Odobavanje pjesama & red sviranja</a></li>
                 <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/pospremi" style="color: #0099e5;">Očisti server</a></li>-->
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/raspored" style="color: #0099e5;">Uredi raspored</a></li>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/raspored" style="color: #0099e5;">Uredi raspored</a></li><br>
                 <li>
                     <!--<i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>-->
                     <a href="#" style="color: #0099e5;">
                         <form action="/logout" method="post">
-                            <input type="submit" value="Odjavi se">
+                            <input type="submit" value="Odjavi se" id="odustani">
                         </form>
 
                     </a>
@@ -97,40 +97,58 @@
 
 
     <!-- MAIN CONTENT -->
-    <span id="sadrzaj">
+    <span id="sadrzaj" style="width: 100%;">
+        <div style="width: 15%;"></div>
+        <div style="width: 84%;">
 
-        <div style="width: 5%;"></div>
-        <div style="width:85%">
-            <div id="table" style="width:100%"></div> <!-- dinamicki stvoreno-->
-            <button style="margin-left: auto;margin-right: auto;width:90%;display: block;" onclick="adduser()">Dodaj korisnika</button><br><hr><br>
-            <div style="width:20%">AUTOPOPUNJAVANJE:</div>
-            | lozinka:
-            <input type='text' name='password' style="width:25.3%" id="passwordauto"><div style="width: 3%;"></div><button onclick="fill(0)">POPUNI</button><div style="width: 3%;"></div>
-            | razred:  <select id='godauto'>
-                <option value="1">1.</option>
-                <option value="2">2.</option>
-                <option value="3">3.</option>
-                <option value="4">4.</option>
-            </select>
-            <select id='razauto'>
-                <option value="a">a</option>
-                <option value="b">b</option>
-                <option value="c">c</option>
-                <option value="d">d</option>
-                <option value="e">e</option>
-                <option value="f">f</option>
-                <option value="g">g</option>
-            </select>
-            <div style="width: 3%;"></div>
-            <button onclick="fill(1)">POPUNI</button><br>
-            <div style="text-align: center; width: 100%;">
-                <br>
-                <button onclick="submit()" style="width: 50%;">UNESI<br>KORISNIKE</button>
-            </div>
-            <hr>
-            <br>
-            <div id="users" style="width:100%"></div> <!-- dinamicki stvoreno-->
-            <div style="width:100%;"><button onclick="stepAll()" style="width:40%;margin: auto; display: block;margin-bottom:10px;margin-top:10px"><h3>Pomakni sve za jednu godinu</h3></button></div>
+            <div style="width: 5%;"></div>
+            <div style="width:85%">
+                <div style="width: 100%;">
+                    <div id="table" style="width:100%"></div> <!-- dinamicki stvoreno-->
+                    <center><button style="margin-left: auto;margin-right: auto;width:80%;display: inline-block; overflow: hidden; border: 2px solid #0083c4;" onclick="adduser()">Dodaj korisnika</button></center>
+                </div>
+                        <br><br>
+                            <hr>
+                        <br><br>
+                <div style="width: 100%;">
+                    <div style="width:45%">SAMOISPUNA:</div>
+                    <div style="width: 45%;">
+                        <div style="width: 20%;">|  Lozinka:</div>&nbsp;<input type='text' name='password' style="width:50%" id="passwordauto">&nbsp;<button onclick="fill(0)">POPUNI</button>
+                        <br>
+                        <div style="width: 20%;">|  Razred:</div>&nbsp;<div style="width: 50.7%;">
+                            <select id='godauto'>
+                                <option value="1">1.</option>
+                                <option value="2">2.</option>
+                                <option value="3">3.</option>
+                                <option value="4">4.</option>
+                            </select>
+                            <select id='razauto'>
+                                <option value="a">a</option>
+                                <option value="b">b</option>
+                                <option value="c">c</option>
+                                <option value="d">d</option>
+                                <option value="e">e</option>
+                                <option value="f">f</option>
+                                <option value="g">g</option>
+                            </select>
+                        </div><button onclick="fill(1)">POPUNI</button>
+                    </div>
+
+                    <div style="text-align: center; width: 100%;">
+                        <br><br><br>
+                        <button onclick="submit()" style="width: 80%; border: 4px solid #0083c4;"><b><br>UNESI KORISNIKE<br></b></button>
+                        <br><br><br>
+                    </div>
+
+                </div>
+                        <br><br>
+                            <hr>
+                        <br><br>
+                <div id="users" style="width:100%"></div> <!-- dinamicki stvoreno-->
+                        <br><br>
+                <div style="width:100%;">
+                    <button onclick="stepAll()" style="width:80%;margin: auto; display: block;margin-bottom:10px;margin-top:10px;border: 2px solid #0083c4;"><h3>Pomakni sve za jednu godinu</h3></button>
+                </div>
         </div>
         
         <!--
@@ -167,7 +185,7 @@
     -->
 
 
-
+        </div>
 	</span>
     <!-- FOOTER -->
     <div class="footer">

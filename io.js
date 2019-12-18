@@ -7,26 +7,22 @@ module.exports = function(io, db) {
 
     io.of("/changepass").on("connection", socket => {
         socket.on("change", (data, fn) => {
-            console.log(data)
-            if (!socket.request.user)
-                return fn("lol no");
+            if (!socket.request.user) return fn("lol no");
             if (!socket.request.user.logged_in ||
                 socket.request.user.username == consts.admin.username
             )
                 return fn("lol no");
-            if (!data.lastpass || !data.newpass)
-                return fn({ accepted: false });
+            if (!data.lastpass || !data.newpass) return fn({ accepted: false });
             db.user.findById(socket.request.user.id, (err, row) => {
-                if (err)
-                    return console.log(err);
+                if (err) return console.log(err);
                 bcrypt.compare(data.lastpass, row.password, (err, res) => {
                     if (err || !res) return fn({ accepted: false });
-                    db.user.changePass(socket.request.user.id, data.newpass, (err) => {
+                    db.user.changePass(socket.request.user.id, data.newpass, err => {
                         if (err) return fn({ accepted: false });
                         return fn({ accepted: true });
                     });
                 });
-            })
+            });
         });
     });
     io.of("/user").on("connection", socket => {
@@ -41,7 +37,6 @@ module.exports = function(io, db) {
                     console.log(err);
                     return fn({ accepted: false });
                 }
-                console.log(data);
                 fn({ accepted: true, data: data });
             });
         });
@@ -82,7 +77,6 @@ module.exports = function(io, db) {
                     return fn({ accepted: false });
                 }
                 let userData = {};
-                console.log(users);
                 for (let i = 0; i < users.length; ++i)
                     userData[i.toString()] = users[i];
                 fn({ accepted: true, data: users }, data);
@@ -113,7 +107,6 @@ module.exports = function(io, db) {
             else if (link.indexOf("youtu.be/") != -1)
                 q = link.substr(link.indexOf("youtu.be/") + 9, 11);
             else fn({ accepted: false });
-            console.log(socket.request.user);
             db.user.lastRecommend(socket.request.user.id, (err, data) => {
                 if (
                     data == "never" ||

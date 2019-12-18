@@ -1,9 +1,9 @@
-<!-- NEPRIJAVLJENI -->
+<!-- PROMJENI SIFRU -->
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Izbor za pjesmu odmora | Glasaj!</title>
+    <title>Izbor za pjesmu odmora | Promjeni lozinku</title>
     <!-- NASLOV KARTICE -->
     <link rel="shortcut icon" href="favicon.ico">
     <!-- IKONA KARTICE -->
@@ -51,14 +51,14 @@
             </p>
             <!-- DODATI KORISNIČKO IME-->
             <ul style="list-style: none; float: left; text-align: left;">
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/promjenisifru" style="color: #0099e5;">Promijeni lozinku</a></li>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/" style="color: #0099e5;">Glasaj</a></li>
                 <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/predlozi" style="color: #0099e5;">Predloži pjesmu</a></li><br>
                 <li></li>
                 <li>
                     <!--<i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>-->
                     <a href="#" style="color: #0099e5;">
                         <form action="/logout" method="post">
-                            <input type="submit" value="Odjavi se">
+                            <input type="submit" value="Odjavi se" id="odustani">
                         </form>
 
                     </a>
@@ -91,7 +91,7 @@
         });
     </script>
 
-    <h1 style="text-align: center;">GLASAJ!</h1>
+    <h1 style="text-align: center;">Promijeni lozinku</h1>
 
     <div class="icon-bar">
         <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku" target="_blank"><img src="/slike/fb_bijeli.png" width="35"></a>
@@ -103,17 +103,22 @@
 
     <!-- MAIN CONTENT -->
     <span id="sadrzaj">
-        <div style="height: 50px;"></div>
-        <div style="display: block; margin: auto; width: 70%; text-align: center;">
+        <div style="height: 50px; width: 100%;"></div>
+        <div style="width: 15%;"></div>
+        <div style="display: block; margin: auto; width: 85%; text-align: center;">
             <div>
-                <p>Dosadašnja šifra</p>
-            <input type="text" id="lastpass"></div>
+                <p>Dosadašnja lozinka</p><br>
+                <input type="text" id="lastpass" placeholder="Unesi trenutnu lozinku">
+            </div>
+            <br><br>
             <div>
-                <p>Nova šifra</p>
-            <input type="text" id="newpass"></div>
-            <button onclick="changePass()">Promjeni</button>
+                <p>Nova lozinka</p><br>
+                <input type="text" id="newpass" placeholder="Unesi novu lozinku">
+            </div>
+            <br><br><br><br>
+            <button onclick="changePass()">Promjeni lozinku</button>
         </div>
-        <div style="height: 50px;"></div>
+        <div style="height: 50px; width: 100%:"></div>
 	</span>
 
     <!-- FOOTER -->

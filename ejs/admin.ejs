@@ -55,12 +55,12 @@
                 <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Moji podaci</a></li>-->
                 <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/dodajkorisnika" style="color: #0099e5;">Dodaj korisnika</a></li>
                 <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/pospremi" style="color: #0099e5;">Očisti server</a></li>-->
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/raspored" style="color: #0099e5;">Uredi raspored</a></li>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/raspored" style="color: #0099e5;">Uredi raspored</a></li><br>
                 <li>
                     <!--<i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>-->
                     <a href="#" style="color: #0099e5;">
                         <form action="/logout" method="post">
-                            <input type="submit" value="Odjavi se">
+                            <input type="submit" value="Odjavi se" id="odustani">
                         </form>
 
                     </a>
@@ -104,24 +104,26 @@
 
 
     <!-- MAIN CONTENT -->
-    <div style="display: block; width: 100%; height: 150%;">
-        <div style="width: 5%;"></div>
-        <div style="width: 84%; text-align: center;">
-            <h3>Izmjeni natpis svim korisnicima</h3>
-            <input type="text" style="width: 30%;" id="usertext">
-            <button onclick="updateText()">Pošalji</button>
+    <div style="display: block; width: 100%;">
+        <div style="width: 15%;"></div>
+        <div style="width: 84%">
+            <div style="width: 100%; text-align: center;">
+                <h2>Poruka administratora na naslovnici</h2>
+                <input type="text" style="width: 50%;" id="usertext" placeholder="Ovdje utipkaj tekst koji će se prikazati na početnoj stranici"><br>
+                <center><button onclick="updateText()" style="width: 25%;">Pošalji</button></center>
+            </div>
+            <br><br><br>
+            <div style="width: 45%; height: 100%;">
+                <h2>Preporuke korisnika:</h2>
+                <div id="preporuke" style="overflow-x: hidden;overflow-y: scroll; width:100%; height:500px;"></div>
+            </div>
+            <div style="width: 8%;"></div>
+            <div style="width:45%; height: 100%;">
+                <h2>Redoslijed sviranja:</h2>
+                <div id="red" style="overflow-x: hidden;overflow-y: scroll; width:100%; height: 500px;"></div>
+            </div>
         </div>
-        <br>
-        <div style="width: 5%;"></div>
-        <div style="width: 42%; height: 100%;">
-            <h2>Preporuke:</h2>
-            <div id="preporuke" style="overflow-x: hidden;overflow-y: scroll; width:100%; height:500px;"></div>
-        </div>
-        <div style="width:42%; height: 100%;">
-            <h2>Red sviranja:</h2>
-            <div id="red" style="overflow-x: hidden;overflow-y: scroll; width:100%; height: 500px;"></div>
-        </div>
-    </div>
+    </div><br><br>
 
     <!-- FOOTER -->
     <div class="footer">

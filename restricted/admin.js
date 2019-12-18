@@ -17,12 +17,10 @@ function refreshRecs(data) {
 }
 
 function approveRec(id) {
-    console.log(id);
     recs.emit("approve", id);
 }
 
 function deleteRec(id) {
-    console.log(id);
     recs.emit("delete", id);
 }
 
@@ -76,7 +74,6 @@ function updateText() {
 
 usertext.on("connect", function(socket) {
     usertext.emit("get", null, data => {
-        console.log(data)
         refreshUserText(data);
     });
     usertext.on("refresh", data => {

@@ -3,5 +3,6 @@ build
 npm-debug.log
 .env
 .DS_Store
-sessions
+sessions/*
+temp/*
 db.sqlite3

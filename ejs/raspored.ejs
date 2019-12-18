@@ -65,12 +65,12 @@
                 <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/" style="color: #0099e5;">Odobavanje pjesama & red sviranja</a></li>
                 <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/dodajkorisnika" style="color: #0099e5;">Dodaj korisnika</a></li>
                 <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/pospremi" style="color: #0099e5;">Očisti server</a></li>-->
-                <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/raspored" style="color: #0099e5;">Uredi raspored</a></li>-->
+                <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/raspored" style="color: #0099e5;">Uredi raspored</a></li>--><br>
                 <li>
                     <!--<i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>-->
                     <a href="#" style="color: #0099e5;">
                         <form action="/logout" method="post">
-                            <input type="submit" value="Odjavi se">
+                            <input type="submit" value="Odjavi se" id="odustani">
                         </form>
 
                     </a>
@@ -114,20 +114,27 @@
 
 
     <!-- MAIN CONTENT -->
-    <span id="sadrzaj">
-	<div style="width: 5%;"></div>
-	<div style="width: 85%; text-align: center;">
-	    Zadani raspored (slobodne aktivnosti):
-        <button onclick="set(0)">Ponedjeljak</button>
-        <button onclick="set(1)">Utorak</button>
-        <button onclick="set(2)">Srijeda</button>
-        <button onclick="set(3)">Četvrtak</button>
-        <button onclick="set(4)">Petak</button>
-        <button style="width: 30%;" onclick="set(5)">Standardni<br>raspored</button>
-        <div style="width: 100%; height: 15px;"></div>
-        <textarea rows="8" cols="100" id="main" style="font-size: 16px;"></textarea><br>
-        <button onclick="submit()" style="width: 70%;">Pošalji</button>
-	</div>
+    <span id="sadrzaj" style="width: 100%;">
+    <div style="width: 100%;">
+	   <div style="width: 15%;"></div>
+	   <div style="width: 85%; text-align: center;">
+	       Zadani raspored (slobodne aktivnosti):
+            <button onclick="set(0)">Ponedjeljak</button>
+            <button onclick="set(1)">Utorak</button>
+            <button onclick="set(2)">Srijeda</button>
+            <button onclick="set(3)">Četvrtak</button>
+            <button onclick="set(4)">Petak</button>
+
+            <br><br>
+
+            <button style="width: 70%;" onclick="set(5)">Standardni raspored</button>
+
+            <div style="width: 100%; height: 15px;"></div>
+
+            <textarea rows="8" cols="100" id="main" style="font-size: 16px; width: 70%;"></textarea><br>
+            <button onclick="submit()" style="width: 70%;">Pošalji</button>
+	   </div>
+    </div>
 	<div style="width: 100%; height: 45px;"></div>
 
 

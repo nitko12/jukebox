@@ -15,7 +15,6 @@ class User {
             (err, row) => {
                 if (err) return fn(err);
                 if (!row) return fn(null, false);
-                console.log(args.password, row.password);
                 bcrypt.compare(args.password, row.password, (err, res) => {
                     if (err) return fn(err);
                     if (res) return fn(null, row);
@@ -85,7 +84,6 @@ class User {
         };
 
         for (let i in data) {
-            console.log(i);
             set.add(data[i].username);
             this.db.get(
                 `SELECT * FROM "users" WHERE username = ?`,
@@ -204,7 +202,9 @@ class User {
                 if (err) return console.log(err);
                 this.db.run(
                     `UPDATE "users" SET password = ? WHERE id = ?`,
-                    hash, id, fn
+                    hash,
+                    id,
+                    fn
                 );
             });
         });
@@ -335,7 +335,6 @@ class Schedule {
     }
 
     set(obj, fn) {
-        console.log(obj);
         if (!this.test(obj)) return fn("Wrong formatting");
         this.db.run(`UPDATE "schedule" SET json = ? WHERE 1`, obj, fn);
     }
@@ -394,9 +393,10 @@ class Queue {
 }
 
 class Usertext {
-    constructor(db) { this.db = db; }
+    constructor(db) {
+        this.db = db;
+    }
     set(data, fn) {
-        console.log(data)
         this.db.run(`UPDATE "usertext" SET data = ? WHERE id = "1"`, data, fn);
     }
     get(fn) {
@@ -407,67 +407,61 @@ class Usertext {
 class Db {
     constructor() {
         this.db = new sqlite3.Database("./db.sqlite3");
-        this.db.run(
-            `CREATE TABLE IF NOT EXISTS "users" (id TEXT, username TEXT UNIQUE, password TEXT, lastrecommend TEXT, lastvote TEXT, class TEXT)`,
-            err => {
+        this.db.serialize(() => {
+            this.db.run(
+                `CREATE TABLE IF NOT EXISTS "users" (id TEXT, username TEXT UNIQUE, password TEXT, lastrecommend TEXT, lastvote TEXT, class TEXT)`,
+                err => {
+                    if (err) return console.log(err);
+                }
+            );
+            this.db.run(
+                `CREATE TABLE IF NOT EXISTS "recommendations" (id TEXT, userid TEXT, url TEXT, date TEXT)`,
+                err => {
+                    if (err) return console.log(err);
+                }
+            );
+            this.db.run(
+                `CREATE TABLE IF NOT EXISTS "schedule" (id TEXT, json TEXT)`,
+                err => {
+                    if (err) return console.log(err);
+                }
+            );
+            this.db.run(
+                `CREATE TABLE IF NOT EXISTS "queue" (id TEXT, url TEXT, submittedBy TEXT, votes INTEGER)`,
+                err => {
+                    if (err) return console.log(err);
+                }
+            );
+            this.db.run(
+                `CREATE TABLE IF NOT EXISTS "usertext" (id TEXT, data TEXT)`,
+                err => {
+                    if (err) return console.log(err);
+                }
+            );
+            this.db.get(`SELECT 1 FROM "schedule"`, (err, row) => {
                 if (err) return console.log(err);
-                this.db.run(
-                    `CREATE TABLE IF NOT EXISTS "recommendations" (id TEXT, userid TEXT, url TEXT, date TEXT)`,
-                    err => {
-                        if (err) return console.log(err);
-                        this.db.run(
-                            `CREATE TABLE IF NOT EXISTS "schedule" (id TEXT, json TEXT)`,
-                            err => {
-                                if (err) return console.log(err);
-                                this.db.run(
-                                    `CREATE TABLE IF NOT EXISTS "queue" (id TEXT, url TEXT, submittedBy TEXT, votes INTEGER)`,
-                                    err => {
-                                        if (err) return console.log(err);
-                                        this.db.get(`SELECT 1 FROM "schedule"`, (err, row) => {
-                                            if (err) return console.log(err);
-                                            if (!row)
-                                                this.db.run(
-                                                    `INSERT INTO "schedule" VALUES (?, ?)`,
-                                                    uuid(),
-                                                    consts.defaultSchedule, (err) => {
-                                                        if (err) return console.log(err);
-                                                        this.db.run(
-                                                            `CREATE TABLE IF NOT EXISTS "usertext" (id TEXT, data TEXT)`, err => {
-                                                                if (err) return console.log(err);
-                                                                this.db.get(`SELECT 1 FROM "usertext"`, (err, row) => {
-                                                                    if (err)
-                                                                        console.log(err);
-                                                                    if (!row)
-                                                                        this.db.run(`INSERT INTO "usertext" VALUES ("1", ?)`, "Default text", err => {
-                                                                            if (err) return console.log(err);
-                                                                        });
-                                                                });
-                                                            }
-                                                        );
-                                                    }
-                                                );
-                                            else this.db.run(
-                                                `CREATE TABLE IF NOT EXISTS "usertext" (id TEXT, data TEXT)`, err => {
-                                                    if (err) return console.log(err);
-                                                    this.db.get(`SELECT 1 FROM "usertext"`, (err, row) => {
-                                                        if (err)
-                                                            console.log(err);
-                                                        if (!row)
-                                                            this.db.run(`INSERT INTO "usertext" VALUES ("1", ?)`, "Default text", err => {
-                                                                if (err) return console.log(err);
-                                                            });
-                                                    });
-                                                }
-                                            );
-                                        });
-                                    }
-                                );
-                            }
-                        );
-                    }
-                );
-            }
-        );
+                if (!row)
+                    this.db.run(
+                        `INSERT INTO "schedule" VALUES (?, ?)`,
+                        uuid(),
+                        consts.defaultSchedule,
+                        err => {
+                            if (err) return console.log(err);
+                        }
+                    );
+            });
+            this.db.get(`SELECT 1 FROM "usertext"`, (err, row) => {
+                if (err) return console.log(err);
+                if (!row)
+                    this.db.run(
+                        `INSERT INTO "usertext" VALUES ("1", ?)`,
+                        "Default text",
+                        err => {
+                            if (err) return console.log(err);
+                        }
+                    );
+            });
+        });
         this.user = new User(this.db);
         this.recs = new Recs(this.db, this.user.findById);
         this.schedule = new Schedule(this.db);

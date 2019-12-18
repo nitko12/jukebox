@@ -69,11 +69,9 @@ module.exports = function(io, passportSocketIo, sessionStore) {
 };
 
 function onAuthorizeSuccess(data, accept) {
-    console.log("successful connection to socket.io");
     accept();
 }
 
 function onAuthorizeFail(data, message, error, accept) {
-    console.log("a")
     if (error) accept(new Error(message));
 }

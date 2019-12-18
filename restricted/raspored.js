@@ -12,7 +12,6 @@ function set(id) {
 
 function submit() {
     sch.emit("set", { json: document.getElementById("main").value }, data => {
-        console.log(data);
         if (data.accepted) alert("Succesfully set");
         else alert("Something went wrong, check formatting");
     });

@@ -26,11 +26,16 @@
 
 <body>
     <div class="zaglavlje" id="#top">
-        <div class="naslov">
+        <div class="korisnik" style="float: left;">
+            <a href="/">
+                <i class="material-icons user" style="font-size:45px;" title="Glasaj" id="glasaj">thumbs_up_down</i>
+            </a>
+        </div>
+        <div class="naslov" style="width: 80%;">
             <h2 class="dio-naslov"><a href="/">Izbor Za Pjesmu</h2><h1 class="kljucna-rijec">ODMORA</a></h1>
         </div>
         <div class="korisnik">
-            <i class="material-icons user" style="font-size:45px;" title="Prijavi se" id="myBtn">person</i>
+            <i class="material-icons user" style="font-size:45px;" title="Bok" id="myBtn">person</i>
         </div>
     </div>
 
@@ -48,13 +53,13 @@
             <!-- DODATI KORISNIČKO IME-->
             <ul style="list-style: none; float: left; text-align: left;">
                 <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/promjenisifru" style="color: #0099e5;">Promijeni lozinku</a></li>
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/predlozi" style="color: #0099e5;">Predloži pjesmu</a></li><br>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/" style="color: #0099e5;">Glasaj</a></li><br>
                 <li></li>
                 <li>
                     <!--<i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>-->
                     <a href="#" style="color: #0099e5;">
                         <form action="/logout" method="post">
-                            <input type="submit" value="Odjavi se">
+                            <input type="submit" value="Odjavi se" id="odustani">
                         </form>
 
                     </a>
@@ -95,15 +100,31 @@
 
 
     <!-- MAIN CONTENT -->
-    <span id="sadrzaj">
-        <div style="height: 50px;"></div>
-		<div style="display: block; margin: auto; width:70%; text-align: center;">
-            <h1>Youtube link:</h1>
-             <input id="link" type="text">
-            <button onclick="submit()">Pošalji!</button>
-            <p id="status">Not yet submitted</p>
+    <span id="sadrzaj" style="width: 100%;">
+        <div style="height: 50px; width: 100%;"></div>
+
+        <div style="width: 100%;">
+        
+        <div style="width: 100%;">
+            
+
+		    <div style="display: block; margin: auto; width:100%; text-align: center;">
+                <h1>Youtube link pjesme:</h1>
+                <input id="link" type="text" style="width: 80%;" placeholder="Zalijepi link pjesme s YouTubea"><br>
+                <button onclick="submit()" style="width: 80%;">Pošalji</button>
+
+                <div style="height: 50px; width: 100%;"></div>
+
+                <div style="width:78%; border: 2px solid #0083c4; padding: 8px;">
+                    <center><p id="status">Ništa još nije predloženo</p></center>
+                </div>
+
+                
+            </div>
+
         </div>
-        <div style="height: 50px;"></div>
+        </div>
+        <div style="height: 50px; width: 100%"></div>            
 	</span>
 
     <!-- FOOTER -->

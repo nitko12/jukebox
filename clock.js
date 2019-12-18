@@ -37,6 +37,7 @@ module.exports = function(db, onplay) {
                 });
 
                 let shouldPlay = false;
+                //let currplay = player.isplaying();
 
                 plays.forEach(el => {
                     if (
@@ -49,16 +50,14 @@ module.exports = function(db, onplay) {
                 if (!playing && shouldPlay) {
                     playing = true;
                     player.play(0);
-                    console.log("play");
                 }
 
                 if (playing && !shouldPlay) {
                     playing = false;
                     player.stop();
-                    console.log("stop");
                 }
             } catch (err) {
-                console.log("parsing failed:", err);
+                return console.log("parsing failed:", err);
             }
         });
     }

@@ -8,13 +8,11 @@ module.exports = function(express, app, passport) {
     app.use(cors());
 
     app.get("/", (req, res) => {
-        console.log(req.user);
         if (
             req.isAuthenticated() &&
             req.user.username == consts.admin.username &&
             req.user.password == consts.admin.password
         ) {
-            console.log("serving admin");
             let data = [],
                 options = [];
             ejs.renderFile("./ejs/admin.ejs", data, options, (err, str) => {

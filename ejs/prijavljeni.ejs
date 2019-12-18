@@ -40,8 +40,7 @@
             <h2 class="dio-naslov"><a href="/">Izbor Za Pjesmu</h2><h1 class="kljucna-rijec">ODMORA</a></h1>
         </div>
         <div class="korisnik">
-            <i class="material-icons user" style="font-size:45px;" title="Bok, " id="myBtn">person</i>
-            <!-- DODATI KORISNIČKO IME -->
+            <i class="material-icons user" style="font-size:45px;" title="Bok" id="myBtn">person</i>
         </div>
     </div>
 
@@ -56,7 +55,7 @@
             <p>Pozdrav,
                 <%= user %>
             </p>
-            <!-- DODATI KORISNIČKO IME-->
+
             <ul style="list-style: none; float: left; text-align: left;">
                 <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/promjenisifru" style="color: #0099e5;">Promijeni lozinku</a></li>
                 <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/predlozi" style="color: #0099e5;">Predloži pjesmu</a></li><br>
@@ -65,7 +64,7 @@
                     <!--<i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>-->
                     <a href="#" style="color: #0099e5;">
                         <form action="/logout" method="post">
-                            <input type="submit" value="Odjavi se">
+                            <input type="submit" value="Odjavi se" id="odustani">
                         </form>
 
                     </a>
