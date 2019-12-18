@@ -92,9 +92,11 @@ input:-moz-placeholder {
 input:focus:-moz-placeholder {
     color: white;
 }
-#odustani{
+
+#odustani {
     background-color: red;
 }
+
 button[type="button"],
 button[type="submit"],
 input[type="submit"],
@@ -115,16 +117,17 @@ input[type="submit"]:focus {
     background-color: #df6d46;
 }
 
-.odustani button[type="button"]{
-    background-color: red;
-}
-.odustani button[type="submit"]{
-    background-color: red;
-}
-.odustani input[type="submit"]{
+.odustani button[type="button"] {
     background-color: red;
 }
 
+.odustani button[type="submit"] {
+    background-color: red;
+}
+
+.odustani input[type="submit"] {
+    background-color: red;
+}
 
 
 /* Firefox > 19 */
@@ -148,26 +151,34 @@ input:focus:-ms-input-placeholder {
     color: white;
 }
 
+
 /* width */
+
 ::-webkit-scrollbar {
-  width: 8px;
+    width: 8px;
 }
+
 
 /* Track */
+
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 0px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: black; 
-  border-radius: 0px;
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 0px;
 }
 
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 0px;
+}
+
+
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #0099e5; 
+    background: #0099e5;
 }
 
 .naslov {

@@ -59,15 +59,11 @@ module.exports = function(db, onplay) {
             console.log("Stopping..");
             if (this.command) this.command.kill();
             if (this.yt) this.yt.destroy();
-
+            if (!this.command && !this.yt) wavplayer.stop();
             fs.unlink("./temp/temp.wav", err => {
                 if (err) console.log(err);
             });
         }
-
-        //isplaying() {
-        //    return null != wavplayer._proc;
-        //}
     }
 
     return new Player();

@@ -50,7 +50,7 @@ function draw() {
                 <option value="g" ${
                   data[i].raz == "g" ? "selected" : ""
                 }>g</option>
-               </select> | <button onclick="deleteId(${i})">Delete</button>
+               </select> | <button onclick="deleteId(${i})" style='background-color:red;'>Delete</button>
                <hr>`;
     }
     document.getElementById("table").innerHTML = element;
@@ -135,7 +135,7 @@ function refreshAll() {
         <option value="g">g</option></select>|
         <button onclick='select()'>Auto Fill</button>|
         <button onclick='unselect()'>Uncheck All</button>
-        <button onclick='submitDel()'>Delete</button><hr>`;
+        <button onclick='submitDel()' style='background-color: red;'>Delete</button><hr>`;
     for (let i in data) {
         str += "<div style='width:30%'>Username: " + data[i].username + "</div> | ";
         str += "<div style='width:30%'>Class: " + data[i].class + "</div> | ";
