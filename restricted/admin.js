@@ -8,10 +8,10 @@ function refreshRecs(data) {
     data.sort((a, b) => parseInt(a.date) - parseInt(b.date));
     for (let i of data) {
         str += `<iframe src="https://www.youtube-nocookie.com/embed/${i.url}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="trend1"></iframe>`;
-        str += ` submitted by: ${i.username} on ${moment(
+        str += ` poslano od: ${i.username} u ${moment(
       new Date(parseInt(i.date))
     ).format("MM/DD/YYYY h:mm a")}`;
-        str += `<br><button onclick="approveRec('${i.id}')">Approve</button><button onclick="deleteRec('${i.id}')">Delete</button><hr>`;
+        str += `<br><button onclick="approveRec('${i.id}')">Approve</button><button onclick="deleteRec('${i.id}')">Obriši</button><hr>`;
     }
     document.getElementById("preporuke").innerHTML = str;
 }
@@ -40,8 +40,8 @@ function refreshQueue(data) {
     data.sort((a, b) => parseInt(b.votes) - parseInt(a.votes));
     for (let i of data) {
         str += `<iframe src="https://www.youtube-nocookie.com/embed/${i.url}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="trend1"></iframe>`;
-        str += ` submitted by: ${i.submittedBy}`;
-        str += ` and has ${i.votes} votes<button onclick="deleteQueue('${i.id}')">Delete</button><hr>`;
+        str += ` poslano od: ${i.submittedBy}`;
+        str += ` i ima ${i.votes} votes<button onclick="deleteQueue('${i.id}')">Obriši</button><hr>`;
     }
     document.getElementById("red").innerHTML = str;
 }

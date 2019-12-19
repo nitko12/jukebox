@@ -462,3 +462,118 @@ input:focus:-ms-input-placeholder {
     color: black;
     font-size: 70px;
 }
+
+
+/* NEPRIJAVLJENI */
+
+.trending {
+    width: 80%;
+}
+
+
+/*ADMIN*/
+
+#usertext {
+    width: 50%;
+}
+
+#gumb-admin {
+    width: 25%;
+}
+
+#divvid {
+    width: 84%;
+}
+
+#w45 {
+    width: 45%;
+}
+
+
+/*DODAJ KORISNIKA*/
+
+#w85 {
+    width: 85%;
+}
+
+#w20 {
+    width: 20%;
+}
+
+#w50_7 {
+    width: 50.7%;
+}
+
+#w50 {
+    width: 50%;
+}
+
+
+/*PRIJAVLJENI*/
+
+.w70 {
+    width: 70%;
+}
+
+
+/*PREDLOZI*/
+
+.w80 {
+    width: 80%;
+}
+
+.w78 {
+    width: 78%;
+}
+
+#link {
+    width: 80%;
+}
+
+@media only screen and (max-width: 767px) {
+    div {
+        display: block;
+        width: 100%;
+    }
+    .icon-bar,
+    .space {
+        visibility: hidden;
+    }
+    .obrisi,
+    .trend-broj-1,
+    .trend-broj,
+    .naziv-pjesme {
+        display: none;
+    }
+    .trending,
+    .trend-songs,
+    .trend-no1,
+    #e-posta,
+    #adresa,
+    #usertext,
+    #divvid,
+    #w45,
+    #w85,
+    .w70,
+    #link {
+        width: 100%;
+        text-align: center;
+    }
+    #gumb-admin {
+        width: 99%;
+    }
+    #w20,
+    #w50_7,
+    #w50 {
+        width: 100%;
+    }
+    .w80 {
+        width: 98%;
+    }
+    .w78 {
+        width: 85%;
+    }
+    #designer {
+        text-align: center;
+    }
+}

@@ -7,13 +7,13 @@ function draw() {
     let i = 0,
         element = "";
     for (let i in data) {
-        element += `username: <input type='text' name='username' style="width:30%" id="username${i}" value='${
+        element += `korisničko ime: <input type='text' name='username' style="width:30%" id="username${i}" value='${
       data[i].username
     }' onkeyup="refresh(${i})"> 
-        | password: <input type='text' name='password' style="width:30%" id="password${i}" value='${
+        | lozinka: <input type='text' name='password' style="width:30%" id="password${i}" value='${
       data[i].password
     }' onkeyup="refresh(${i})"> 
-        |class:  <select id='god${i}' oninput="refresh(${i})">
+        |razred:  <select id='god${i}' oninput="refresh(${i})">
                 <option value="1" ${
                   data[i].god == "1" ? "selected" : ""
                 }>1.</option>
@@ -50,7 +50,7 @@ function draw() {
                 <option value="g" ${
                   data[i].raz == "g" ? "selected" : ""
                 }>g</option>
-               </select> | <button onclick="deleteId(${i})" style='background-color:red;'>Delete</button>
+               </select> | <button onclick="deleteId(${i})" style='background-color:red;'>Obriši</button>
                <hr>`;
     }
     document.getElementById("table").innerHTML = element;
@@ -91,8 +91,8 @@ const users = io("/user");
 
 function submit() {
     users.emit("set", data, data => {
-        if (data.accepted) alert("Sucess!");
-        else alert("Something went wrong, check formatting!");
+        if (data.accepted) alert("Uspjeh!");
+        else alert("Nešto je pošlo po zlu, pokušaj kasnije...");
 
         users.emit("reqrefresh", data => {
             users.emit("reqrefresh", data => {
@@ -133,13 +133,14 @@ function refreshAll() {
         <option value="e">e</option>
         <option value="f">f</option>
         <option value="g">g</option></select>|
-        <button onclick='select()'>Auto Fill</button>|
-        <button onclick='unselect()'>Uncheck All</button>
-        <button onclick='submitDel()' style='background-color: red;'>Delete</button><hr>`;
+        <button onclick='select()'>Automatski ispuni</button>|
+        <button onclick='unselect()'>Odoznači sve</button>
+        <button onclick='submitDel()' style='background-color: red;'>Obriši</button><hr>`;
     for (let i in data) {
-        str += "<div style='width:30%'>Username: " + data[i].username + "</div> | ";
-        str += "<div style='width:30%'>Class: " + data[i].class + "</div> | ";
-        str += `Delete: <input type="checkbox" id="ch${i}">`;
+        str +=
+            "<div style='width:30%'>Koriničko ime: " + data[i].username + "</div> | ";
+        str += "<div style='width:30%'>Razred: " + data[i].class + "</div> | ";
+        str += `Obriši: <input type="checkbox" id="ch${i}">`;
         str += `<hr>`;
     }
     document.getElementById("users").innerHTML = str;
@@ -155,8 +156,8 @@ function submitDel() {
         if (data.accepted == true) {
             allUsers = data.data;
             refreshAll();
-            alert("Succes!");
-        } else alert("Error while parsing delete request!");
+            alert("Uspjeh!");
+        } else alert("Greška pri obradi zahtjeva!");
     });
 }
 
@@ -185,9 +186,9 @@ function stepAll() {
             if (data.accepted == true) {
                 allUsers = data.data;
                 refreshAll();
-                alert("Succes!");
+                alert("Uspjeh!");
             } else {
-                alert("Fail! Try again later");
+                alert("Neuspijeh, pokušaj malo kasnije");
             }
         });
     }
