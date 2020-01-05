@@ -38,7 +38,6 @@ module.exports = function(express, app, passport) {
 
   app.post("/login", (req, res, next) => {
     if (req.isAuthenticated()) return res.send("Already logged in!");
-
     passport.authenticate("local", (err, user, info) => {
       if (err) return console.log(err);
       if (!user) return res.redirect("/?login=0");
