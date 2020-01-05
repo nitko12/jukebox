@@ -2,13 +2,14 @@ const uuid = require("uuid/v4");
 const bodyParser = require("body-parser");
 const LocalStrategy = require("passport-local").Strategy;
 const consts = require("./consts.js");
+const safeCompare = require("safe-compare");
 
 module.exports = function(app, passport, session, sessionStore, db) {
   passport.use(
     new LocalStrategy((username, password, done) => {
       if (
-        username === consts.admin.username &&
-        password === consts.admin.password
+        safeCompare(username, consts.admin.username) &&
+        safeCompare(password, consts.admin.password)
       ) {
         return done(null, consts.admin);
       }

@@ -1,6 +1,7 @@
 const ejs = require("ejs");
 const consts = require("./consts.js");
 const cors = require("cors");
+const safeCompare = require("safe-compare");
 
 module.exports = function(express, app, passport) {
   app.use("/public", express.static("./public"));
@@ -10,8 +11,8 @@ module.exports = function(express, app, passport) {
   app.get("/", (req, res) => {
     if (
       req.isAuthenticated() &&
-      req.user.username == consts.admin.username &&
-      req.user.password == consts.admin.password
+      safeCompare(req.user.username, consts.admin.username) &&
+      safeCompare(req.user.password, consts.admin.password)
     ) {
       let data = [],
         options = [];
@@ -56,8 +57,8 @@ module.exports = function(express, app, passport) {
   app.get("/raspored", (req, res) => {
     if (
       req.isAuthenticated() &&
-      req.user.username == consts.admin.username &&
-      req.user.password == consts.admin.password
+      safeCompare(req.user.username, consts.admin.username) &&
+      safeCompare(req.user.password, consts.admin.password)
     ) {
       let data = [],
         options = [];
@@ -73,8 +74,8 @@ module.exports = function(express, app, passport) {
   app.get("/dodajkorisnika", (req, res) => {
     if (
       req.isAuthenticated() &&
-      req.user.username == consts.admin.username &&
-      req.user.password == consts.admin.password
+      safeCompare(req.user.username, consts.admin.username) &&
+      safeCompare(req.user.password, consts.admin.password)
     ) {
       let data = [],
         options = [];
@@ -117,8 +118,8 @@ module.exports = function(express, app, passport) {
   app.get("/restricted/admin.js", (req, res) => {
     if (
       req.isAuthenticated() &&
-      req.user.username == consts.admin.username &&
-      req.user.password == consts.admin.password
+      safeCompare(req.user.username, consts.admin.username) &&
+      safeCompare(req.user.password, consts.admin.password)
     ) {
       res.sendFile(__dirname + "/restricted/admin.js");
     } else {
@@ -129,8 +130,8 @@ module.exports = function(express, app, passport) {
   app.get("/restricted/raspored.js", (req, res) => {
     if (
       req.isAuthenticated() &&
-      req.user.username == consts.admin.username &&
-      req.user.password == consts.admin.password
+      safeCompare(req.user.username, consts.admin.username) &&
+      safeCompare(req.user.password, consts.admin.password)
     ) {
       res.sendFile(__dirname + "/restricted/raspored.js");
     } else {
@@ -141,8 +142,8 @@ module.exports = function(express, app, passport) {
   app.get("/restricted/adduser.js", (req, res) => {
     if (
       req.isAuthenticated() &&
-      req.user.username == consts.admin.username &&
-      req.user.password == consts.admin.password
+      safeCompare(req.user.username, consts.admin.username) &&
+      safeCompare(req.user.password, consts.admin.password)
     ) {
       res.sendFile(__dirname + "/restricted/adduser.js");
     } else {
