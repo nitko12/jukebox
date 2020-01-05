@@ -4,10 +4,10 @@ draw();
 let cnt = 0;
 
 function draw() {
-    let i = 0,
-        element = "";
-    for (let i in data) {
-        element += `korisničko ime: <input type='text' name='username' style="width:30%" id="username${i}" value='${
+  let i = 0,
+    element = "";
+  for (let i in data) {
+    element += `korisničko ime: <input type='text' name='username' style="width:30%" id="username${i}" value='${
       data[i].username
     }' onkeyup="refresh(${i})"> 
         | lozinka: <input type='text' name='password' style="width:30%" id="password${i}" value='${
@@ -52,55 +52,55 @@ function draw() {
                 }>g</option>
                </select> | <button onclick="deleteId(${i})" style='background-color:red;'>Obriši</button>
                <hr>`;
-    }
-    document.getElementById("table").innerHTML = element;
+  }
+  document.getElementById("table").innerHTML = element;
 }
 
 function fill(id) {
-    if (id == 0) {
-        for (let key in data) {
-            data[key].password = document.getElementById("passwordauto").value;
-        }
-    } else {
-        for (let key in data) {
-            data[key].god = document.getElementById("godauto").value;
-            data[key].raz = document.getElementById("razauto").value;
-        }
+  if (id == 0) {
+    for (let key in data) {
+      data[key].password = document.getElementById("passwordauto").value;
     }
-    draw();
+  } else {
+    for (let key in data) {
+      data[key].god = document.getElementById("godauto").value;
+      data[key].raz = document.getElementById("razauto").value;
+    }
+  }
+  draw();
 }
 
 function adduser() {
-    data[cnt++] = { username: "", password: "", god: "1", raz: "a" };
-    draw();
+  data[cnt++] = { username: "", password: "", god: "1", raz: "a" };
+  draw();
 }
 
 function refresh(id) {
-    data[id].username = document.getElementById("username" + id).value;
-    data[id].password = document.getElementById("password" + id).value;
-    data[id].god = document.getElementById("god" + id).value;
-    data[id].raz = document.getElementById("raz" + id).value;
+  data[id].username = document.getElementById("username" + id).value;
+  data[id].password = document.getElementById("password" + id).value;
+  data[id].god = document.getElementById("god" + id).value;
+  data[id].raz = document.getElementById("raz" + id).value;
 }
 
 function deleteId(id) {
-    delete data[id];
-    draw();
+  delete data[id];
+  draw();
 }
 
 const users = io("/user");
 
 function submit() {
-    users.emit("set", data, data => {
-        if (data.accepted) alert("Uspjeh!");
-        else alert("Nešto je pošlo po zlu, pokušaj kasnije...");
+  users.emit("set", data, data => {
+    if (data.accepted) alert("Uspjeh!");
+    else alert("Nešto je pošlo po zlu, pokušaj kasnije...");
 
-        users.emit("reqrefresh", data => {
-            users.emit("reqrefresh", data => {
-                allUsers = data;
-                refreshAll();
-            });
-        });
+    users.emit("reqrefresh", data => {
+      users.emit("reqrefresh", data => {
+        allUsers = data;
+        refreshAll();
+      });
     });
+  });
 }
 
 let allUsers = {};
@@ -108,16 +108,16 @@ let allUsers = {};
 // svi korisnici
 
 users.on("connect", socket => {
-    users.emit("reqrefresh", data => {
-        allUsers = data;
-        refreshAll();
-    });
+  users.emit("reqrefresh", data => {
+    allUsers = data;
+    refreshAll();
+  });
 });
 
 function refreshAll() {
-    let data = allUsers;
-    let str = "ALL USERS<div style='width:60%'></div>";
-    str += `<select id='godDel'>
+  let data = allUsers;
+  let str = "ALL USERS<div style='width:60%'></div>";
+  str += `<select id='godDel'>
         <option value=" "> </option>
         <option value="1">1.</option>
         <option value="2">2.</option>
@@ -136,60 +136,60 @@ function refreshAll() {
         <button onclick='select()'>Automatski ispuni</button>|
         <button onclick='unselect()'>Odoznači sve</button>
         <button onclick='submitDel()' style='background-color: red;'>Obriši</button><hr>`;
-    for (let i in data) {
-        str +=
-            "<div style='width:30%'>Koriničko ime: " + data[i].username + "</div> | ";
-        str += "<div style='width:30%'>Razred: " + data[i].class + "</div> | ";
-        str += `Obriši: <input type="checkbox" id="ch${i}">`;
-        str += `<hr>`;
-    }
-    document.getElementById("users").innerHTML = str;
+  for (let i in data) {
+    str +=
+      "<div style='width:30%'>Koriničko ime: " + data[i].username + "</div> | ";
+    str += "<div style='width:30%'>Razred: " + data[i].class + "</div> | ";
+    str += `Obriši: <input type="checkbox" id="ch${i}">`;
+    str += `<hr>`;
+  }
+  document.getElementById("users").innerHTML = str;
 }
 
 function submitDel() {
-    let data = allUsers,
-        sData = { ids: [] };
-    for (let i in data) {
-        if (document.getElementById("ch" + i).checked) sData.ids.push(data[i]);
-    }
-    users.emit("deletefromdb", sData, data => {
-        if (data.accepted == true) {
-            allUsers = data.data;
-            refreshAll();
-            alert("Uspjeh!");
-        } else alert("Greška pri obradi zahtjeva!");
-    });
+  let data = allUsers,
+    sData = { ids: [] };
+  for (let i in data) {
+    if (document.getElementById("ch" + i).checked) sData.ids.push(data[i]);
+  }
+  users.emit("deletefromdb", sData, data => {
+    if (data.accepted == true) {
+      allUsers = data.data;
+      refreshAll();
+      alert("Uspjeh!");
+    } else alert("Greška pri obradi zahtjeva!");
+  });
 }
 
 function select() {
-    let data = allUsers;
-    for (let i in data) {
-        if (
-            data[i].class ==
-            document.getElementById("godDel").value +
-            document.getElementById("razDel").value
-        )
-            document.getElementById("ch" + i).checked = true;
-    }
+  let data = allUsers;
+  for (let i in data) {
+    if (
+      data[i].class ==
+      document.getElementById("godDel").value +
+        document.getElementById("razDel").value
+    )
+      document.getElementById("ch" + i).checked = true;
+  }
 }
 
 function unselect() {
-    let data = allUsers;
-    for (let i in data) {
-        document.getElementById("ch" + i).checked = false;
-    }
+  let data = allUsers;
+  for (let i in data) {
+    document.getElementById("ch" + i).checked = false;
+  }
 }
 
 function stepAll() {
-    if (confirm("Jesi li siguran?")) {
-        users.emit("stepYear", data => {
-            if (data.accepted == true) {
-                allUsers = data.data;
-                refreshAll();
-                alert("Uspjeh!");
-            } else {
-                alert("Neuspijeh, pokušaj malo kasnije");
-            }
-        });
-    }
+  if (confirm("Jesi li siguran?")) {
+    users.emit("stepYear", data => {
+      if (data.accepted == true) {
+        allUsers = data.data;
+        refreshAll();
+        alert("Uspjeh!");
+      } else {
+        alert("Neuspijeh, pokušaj malo kasnije");
+      }
+    });
+  }
 }
