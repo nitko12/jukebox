@@ -11,7 +11,7 @@ function refreshRecs(data) {
     str += ` poslano od: ${i.username} u ${moment(
       new Date(parseInt(i.date))
     ).format("MM/DD/YYYY h:mm a")}`;
-    str += `<br><button onclick="approveRec('${i.id}')">Approve</button><button onclick="deleteRec('${i.id}')">Obriši</button><hr>`;
+    str += `<br><button onclick="approveRec('${i.id}')">Odobri</button><button onclick="deleteRec('${i.id}')">Obriši</button><hr>`;
   }
   document.getElementById("preporuke").innerHTML = str;
 }

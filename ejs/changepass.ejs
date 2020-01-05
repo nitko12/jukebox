@@ -26,17 +26,59 @@
     <div class="zaglavlje" id="#top">
         <div class="korisnik" style="float: left;">
             <a href="/predlozi">
-                <i class="material-icons user" style="font-size:45px;" title="Predloži pjesmu" id="predlozi">file_upload</i>
+                <i class="material-icons user" style="font-size:45px;" title="Predloži pjesmu"
+                    id="predlozi">file_upload</i>
             </a>
         </div>
         <div class="naslov" style="width: 80%;">
-            <h2 class="dio-naslov"><a href="/">Izbor Za Pjesmu</h2><h1 class="kljucna-rijec">ODMORA</a></h1>
+            <h2 class="dio-naslov"><a href="/">Izbor Za Pjesmu</h2>
+            <h1 class="kljucna-rijec">ODMORA</a></h1>
         </div>
         <div class="korisnik">
             <i class="material-icons user" style="font-size:45px;" title="Bok, " id="myBtn">person</i>
-            <!-- DODATI KORISNIČKO IME -->
         </div>
     </div>
+
+
+    <nav id="page-nav-wrap">
+        <label for="hamburger">&#9776;</label>
+        <!--logo ovdje-->
+        <input type="checkbox" id="hamburger" />
+        <div id="page-nav">
+            <a>
+                <p>Pozdrav,
+                    <%= user %>
+                </p>
+            </a>
+            <hr id="nav-crta">
+            <a href="/">
+                Glasaj
+            </a>
+            <hr id="nav-crta">
+            <a href="/predlozi">
+                Predloži pjesmu
+            </a>
+            <a href="#" style="color: #0099e5;">
+                <form action="/logout" method="post">
+                    <input type="submit" value="Odjavi se" id="odustani">
+                </form>
+
+            </a>
+            <a id="social">
+                <!--Društvene mreže-->
+                <span>
+                    <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku"
+                        target="_blank" id="social_networks"><img src="/slike/fb_bijeli.png" width="35"></a>
+                    <a href="https://www.instagram.com/iii.gimnazija.osijek/" class="instagram"
+                        title="III. gimnazija na Instagramu" target="_blank" id="social_networks"><img
+                            src="/slike/ig_bijeli.png" width="35"></a>
+                    <a href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1"
+                        class="youtube" title="III. gimnazija na YouTubeu" target="_blank" id="social_networks"><img
+                            src="/slike/yt_bijeli.png" width="35"></a>
+                </span>
+            </a>
+        </div>
+    </nav>
 
     <div style="height: 50px; width: 100%;">
     </div>
@@ -51,8 +93,10 @@
             </p>
             <!-- DODATI KORISNIČKO IME-->
             <ul style="list-style: none; float: left; text-align: left;">
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/" style="color: #0099e5;">Glasaj</a></li>
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/predlozi" style="color: #0099e5;">Predloži pjesmu</a></li><br>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a
+                        href="/" style="color: #0099e5;">Glasaj</a></li>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a
+                        href="/predlozi" style="color: #0099e5;">Predloži pjesmu</a></li><br>
                 <li></li>
                 <li>
                     <!--<i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i>-->
@@ -73,18 +117,18 @@
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("myBtn");
         var span = document.getElementsByClassName("close")[0];
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = "block";
         }
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
         }
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
-        document.addEventListener('keyup', function(e) {
+        document.addEventListener('keyup', function (e) {
             if (e.keyCode == 27 || e.keyCode == 13) {
                 modal.style.display = "none";
             }
@@ -94,9 +138,12 @@
     <h1 style="text-align: center;">Promijeni lozinku</h1>
 
     <div class="icon-bar">
-        <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku" target="_blank"><img src="/slike/fb_bijeli.png" width="35"></a>
-        <a href="https://www.instagram.com/iii.gimnazija.osijek/" class="instagram" title="III. gimnazija na Instagramu" target="_blank"><img src="/slike/ig_bijeli.png" width="35"></a>
-        <a href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1" class="youtube" title="III. gimnazija na YouTubeu" target="_blank"><img src="/slike/yt_bijeli.png" width="35"></a>
+        <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku"
+            target="_blank"><img src="/slike/fb_bijeli.png" width="35"></a>
+        <a href="https://www.instagram.com/iii.gimnazija.osijek/" class="instagram" title="III. gimnazija na Instagramu"
+            target="_blank"><img src="/slike/ig_bijeli.png" width="35"></a>
+        <a href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1" class="youtube"
+            title="III. gimnazija na YouTubeu" target="_blank"><img src="/slike/yt_bijeli.png" width="35"></a>
     </div>
 
 
@@ -119,7 +166,7 @@
             <button onclick="changePass()">Promjeni lozinku</button>
         </div>
         <div style="height: 50px; width: 100%:"></div>
-	</span>
+    </span>
 
     <!-- FOOTER -->
     <div class="footer">
@@ -132,17 +179,20 @@
             </a>
         </div>
 
-        <p id="vlasnik" style="text-align: center;"><br><a href="http://www.gimnazija-treca-os.skole.hr">III. GIMNAZIJA OSIJEK</a></p><br>
+        <p id="vlasnik" style="text-align: center;"><br><a href="http://www.gimnazija-treca-os.skole.hr">III. GIMNAZIJA
+                OSIJEK</a></p><br>
         <div id="kontakt-podaci">
             <p id="adresa"><br>Kamila Firingera 14,<br>31 000 Osijek, HR</p>
             <p id="e-posta">
-                <a href="mailto:ured@gimnazija-treca-os.skole.hr"><br>ured@gimnazija-treca-os.skole.hr</a><br><a href="mailto:pjesma@mail.com">pjesma@mail.com</a></p>
+                <a href="mailto:ured@gimnazija-treca-os.skole.hr"><br>ured@gimnazija-treca-os.skole.hr</a><br><a
+                    href="mailto:pjesma@mail.com">pjesma@mail.com</a></p>
         </div>
 
         <div style="height: 150px; width: 100%;"></div>
 
         <div class="footer-end">
-            <p id="copyright">Copyright: <a href="http://www.gimnazija-treca-os.skole.hr">III. gimnazija Osijek</a> &copy;
+            <p id="copyright">Copyright: <a href="http://www.gimnazija-treca-os.skole.hr">III. gimnazija Osijek</a>
+                &copy;
                 <script>
                     var d = new Date();
                     document.write(d.getFullYear() + ".");
@@ -152,10 +202,12 @@
         </div>
     </div>
 
-    <script type="text/javascript" id="cookieinfo" src="http://cookieinfoscript.com/js/cookieinfo.min.js" data-font-size="18px" data-font-family="sans-serif" data-text-align="left" data-height="50px" data-fg="#FFFFFF" data-bg="#222222" data-link="" data-divlink="#FFFFFF"
-        data-divlinkbg="#0099e5" data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na" data-linkmsg="ovom linku." data-moreinfo="/cookies"
-        data-close-text="Prihvaćam" data-cookie="prvi-kolacic">
-    </script>
+    <script type="text/javascript" id="cookieinfo" src="http://cookieinfoscript.com/js/cookieinfo.min.js"
+        data-font-size="18px" data-font-family="sans-serif" data-text-align="left" data-height="50px" data-fg="#FFFFFF"
+        data-bg="#222222" data-link="" data-divlink="#FFFFFF" data-divlinkbg="#0099e5"
+        data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na"
+        data-linkmsg="ovom linku." data-moreinfo="/cookies" data-close-text="Prihvaćam" data-cookie="prvi-kolacic">
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="/user/changepass.js"></script>
 </body>

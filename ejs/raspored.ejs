@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="favicon.ico">
     <!-- IKONA KARTICE -->
 
-    <link rel="stylesheet" type="text/css" href="/public/new.css">
+    <link rel="stylesheet" type="text/css" href="../public/new.css">
     <script type="text/javascript" src="/public/new.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -31,7 +31,7 @@
         td {
             border: 1px solid black;
         }
-        
+
         textarea {
             resize: none;
         }
@@ -41,15 +41,55 @@
 <body>
     <div class="zaglavlje" id="#top">
         <div class="korisnik" style="float: left;">
-            <a href="/"><i class="material-icons user" style="font-size:45px;" title="Prijedlozi korisnika" id="times">check_circle</i></a>
+            <a href="/"><i class="material-icons user" style="font-size:45px;" title="Prijedlozi korisnika"
+                    id="times">check_circle</i></a>
         </div>
         <div class="naslov" style="width: 80%;">
-            <h2 class="dio-naslov"><a href="/">Izbor Za Pjesmu</h2><h1 class="kljucna-rijec">ODMORA</a></h1>
+            <h2 class="dio-naslov"><a href="/">Izbor Za Pjesmu</h2>
+            <h1 class="kljucna-rijec">ODMORA</a></h1>
         </div>
         <div class="korisnik">
             <i class="material-icons user" style="font-size:45px;" title="Bok, admin" id="myBtn">person</i>
         </div>
     </div>
+
+    <nav id="page-nav-wrap">
+        <label for="hamburger">&#9776;</label>
+        <input type="checkbox" id="hamburger" />
+        <div id="page-nav">
+            <a>
+                <p>Pozdrav, admin
+                </p>
+            </a>
+            <hr id="nav-crta">
+            <a href="/">
+                Odobravanje pjesama & red sviranja
+            </a>
+            <hr id="nav-crta">
+            <a href="/dodajkorisnika">
+                Dodaj korisnika
+            </a>
+            <a href="#" style="color: #0099e5;">
+                <form action="/logout" method="post">
+                    <input type="submit" value="Odjavi se" id="odustani">
+                </form>
+
+            </a>
+            <a id="social">
+                <!--Društvene mreže-->
+                <span>
+                    <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku"
+                        target="_blank" id="social_networks"><img src="/slike/fb_bijeli.png" width="35"></a>
+                    <a href="https://www.instagram.com/iii.gimnazija.osijek/" class="instagram"
+                        title="III. gimnazija na Instagramu" target="_blank" id="social_networks"><img
+                            src="/slike/ig_bijeli.png" width="35"></a>
+                    <a href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1"
+                        class="youtube" title="III. gimnazija na YouTubeu" target="_blank" id="social_networks"><img
+                            src="/slike/yt_bijeli.png" width="35"></a>
+                </span>
+            </a>
+        </div>
+    </nav>
 
     <div style="height: 50px; width: 100%;">
     </div>
@@ -62,8 +102,10 @@
             <p>Pozdrav, admin</p>
             <ul style="list-style: none; float: left; text-align: left;">
                 <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="#" style="color: #0099e5;">Moji podaci</a></li>-->
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/" style="color: #0099e5;">Odobavanje pjesama & red sviranja</a></li>
-                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/dodajkorisnika" style="color: #0099e5;">Dodaj korisnika</a></li>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a
+                        href="/" style="color: #0099e5;">Odobavanje pjesama & red sviranja</a></li>
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a
+                        href="/dodajkorisnika" style="color: #0099e5;">Dodaj korisnika</a></li>
                 <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/pospremi" style="color: #0099e5;">Očisti server</a></li>-->
                 <!--<li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a href="/raspored" style="color: #0099e5;">Uredi raspored</a></li>--><br>
                 <li>
@@ -85,18 +127,18 @@
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("myBtn");
         var span = document.getElementsByClassName("close")[0];
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = "block";
         }
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
         }
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
-        document.addEventListener('keyup', function(e) {
+        document.addEventListener('keyup', function (e) {
             if (e.keyCode == 27 || e.keyCode == 13) {
                 modal.style.display = "none";
             }
@@ -106,39 +148,42 @@
     <h2 style="text-align: center;">Uredite raspored sviranja pjesme:</h2>
 
     <div class="icon-bar">
-        <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku" target="_blank"><img src="/slike/fb_bijeli.png" width="35"></a>
-        <a href="https://www.instagram.com/iii.gimnazija.osijek/" class="instagram" title="III. gimnazija na Instagramu" target="_blank"><img src="/slike/ig_bijeli.png" width="35"></a>
-        <a href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1" class="youtube" title="III. gimnazija na YouTubeu" target="_blank"><img src="/slike/yt_bijeli.png" width="35"></a>
+        <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku"
+            target="_blank"><img src="/slike/fb_bijeli.png" width="35"></a>
+        <a href="https://www.instagram.com/iii.gimnazija.osijek/" class="instagram" title="III. gimnazija na Instagramu"
+            target="_blank"><img src="/slike/ig_bijeli.png" width="35"></a>
+        <a href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1" class="youtube"
+            title="III. gimnazija na YouTubeu" target="_blank"><img src="/slike/yt_bijeli.png" width="35"></a>
     </div>
 
 
 
     <!-- MAIN CONTENT -->
     <span id="sadrzaj" style="width: 100%;">
-    <div style="width: 100%;">
-	   <div style="width: 15%;"></div>
-	   <div style="width: 85%; text-align: center;">
-	       Zadani raspored (slobodne aktivnosti):
-            <button onclick="set(0)">Ponedjeljak</button>
-            <button onclick="set(1)">Utorak</button>
-            <button onclick="set(2)">Srijeda</button>
-            <button onclick="set(3)">Četvrtak</button>
-            <button onclick="set(4)">Petak</button>
+        <div style="width: 100%;">
+            <div style="width: 15%;"></div>
+            <div style="width: 85%; text-align: center;">
+                Zadani raspored (slobodne aktivnosti):
+                <button onclick="set(0)">Ponedjeljak</button>
+                <button onclick="set(1)">Utorak</button>
+                <button onclick="set(2)">Srijeda</button>
+                <button onclick="set(3)">Četvrtak</button>
+                <button onclick="set(4)">Petak</button>
 
-            <br><br>
+                <br><br>
 
-            <button style="width: 70%;" onclick="set(5)">Standardni raspored</button>
+                <button style="width: 70%;" onclick="set(5)">Standardni raspored</button>
 
-            <div style="width: 100%; height: 15px;"></div>
+                <div style="width: 100%; height: 15px;"></div>
 
-            <textarea rows="8" cols="100" id="main" style="font-size: 16px; width: 70%;"></textarea><br>
-            <button onclick="submit()" style="width: 70%;">Pošalji</button>
-	   </div>
-    </div>
-	<div style="width: 100%; height: 45px;"></div>
+                <textarea rows="8" cols="100" id="main" style="font-size: 16px; width: 70%;"></textarea><br>
+                <button onclick="submit()" style="width: 70%;">Pošalji</button>
+            </div>
+        </div>
+        <div style="width: 100%; height: 45px;"></div>
 
 
-	</span>
+    </span>
 
     <!-- FOOTER -->
     <div class="footer">
@@ -151,17 +196,20 @@
             </a>
         </div>
 
-        <p id="vlasnik" style="text-align: center;"><br><a href="http://www.gimnazija-treca-os.skole.hr">III. GIMNAZIJA OSIJEK</a></p><br>
+        <p id="vlasnik" style="text-align: center;"><br><a href="http://www.gimnazija-treca-os.skole.hr">III. GIMNAZIJA
+                OSIJEK</a></p><br>
         <div id="kontakt-podaci">
             <p id="adresa"><br>Kamila Firingera 14,<br>31 000 Osijek, HR</p>
             <p id="e-posta">
-                <a href="mailto:ured@gimnazija-treca-os.skole.hr"><br>ured@gimnazija-treca-os.skole.hr</a><br><a href="mailto:pjesma@mail.com">pjesma@mail.com</a></p>
+                <a href="mailto:ured@gimnazija-treca-os.skole.hr"><br>ured@gimnazija-treca-os.skole.hr</a><br><a
+                    href="mailto:pjesma@mail.com">pjesma@mail.com</a></p>
         </div>
 
         <div style="height: 150px; width: 100%;"></div>
 
         <div class="footer-end">
-            <p id="copyright">Copyright: <a href="http://www.gimnazija-treca-os.skole.hr">III. gimnazija Osijek</a> &copy;
+            <p id="copyright">Copyright: <a href="http://www.gimnazija-treca-os.skole.hr">III. gimnazija Osijek</a>
+                &copy;
                 <script>
                     var d = new Date();
                     document.write(d.getFullYear() + ".");
@@ -171,10 +219,12 @@
         </div>
     </div>
 
-    <script type="text/javascript" id="cookieinfo" src="http://cookieinfoscript.com/js/cookieinfo.min.js" data-font-size="18px" data-font-family="sans-serif" data-text-align="left" data-height="50px" data-fg="#FFFFFF" data-bg="#222222" data-link="" data-divlink="#FFFFFF"
-        data-divlinkbg="#0099e5" data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na" data-linkmsg="ovom linku." data-moreinfo="/cookies"
-        data-close-text="Prihvaćam" data-cookie="prvi-kolacic">
-    </script>
+    <script type="text/javascript" id="cookieinfo" src="http://cookieinfoscript.com/js/cookieinfo.min.js"
+        data-font-size="18px" data-font-family="sans-serif" data-text-align="left" data-height="50px" data-fg="#FFFFFF"
+        data-bg="#222222" data-link="" data-divlink="#FFFFFF" data-divlinkbg="#0099e5"
+        data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na"
+        data-linkmsg="ovom linku." data-moreinfo="/cookies" data-close-text="Prihvaćam" data-cookie="prvi-kolacic">
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="/restricted/raspored.js">
     </script>

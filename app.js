@@ -37,6 +37,15 @@ module.exports = function(express, app, passport) {
     }
   });
 
+  app.get("/loginsite", (req, res) => {
+    let data = [],
+      options = [];
+    ejs.renderFile("./ejs/loginsite.ejs", data, options, (err, str) => {
+      if (err) return console.log(err);
+      res.send(str);
+    });
+  });
+
   app.post("/login", (req, res, next) => {
     if (req.isAuthenticated()) return res.send("Already logged in!");
     passport.authenticate("local", (err, user, info) => {

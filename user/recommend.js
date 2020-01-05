@@ -8,6 +8,6 @@ function submit() {
         "Prihvaćeno, čeka odobrenje admina...";
     else
       document.getElementById("status").innerHTML =
-        "Odbijeno, pokušaj ponovno kasnije...";
+        "Odbijeno, provjerite upisani link ili pokušajte ponovo kasnije...";
   });
 }
