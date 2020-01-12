@@ -116,7 +116,7 @@ users.on("connect", socket => {
 
 function refreshAll() {
   let data = allUsers;
-  let str = "ALL USERS<div style='width:60%'></div>";
+  let str = "Svi korisnici<div style='width:60%'></div>";
   str += `<select id='godDel'>
         <option value=" "> </option>
         <option value="1">1.</option>
