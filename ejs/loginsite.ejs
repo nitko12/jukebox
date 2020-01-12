@@ -1,15 +1,26 @@
+<!-- LOGIN SITE -->
 <!DOCTYPE html>
-<html>
+<html xml:lang="hr" lang="hr">
 
 <head>
-    <title>Izbor za pjesmu odmora</title>
-    <!-- NASLOV KARTICE -->
-    <link rel="shortcut icon" href="favicon.ico">
-    <!-- IKONA KARTICE -->
+    <base href="#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="../public/new.css">
-    <script type="text/javascript" src="/public/new.js"></script>
+    <title>Izbor za pjesmu odmora | Prijavi se</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" type="image/gif" href="favicon.ico" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../public/new.css" type="text/css" media="all">
+    <script type="text/javascript" src="../public/new.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <meta name="theme-color" content="#0099e5">
 
     <!-- LINK NA DRUŠTVENIM MREŽAMA -->
     <meta property="og:image" content="/slike/og_image.jpg" />
@@ -17,12 +28,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Izbor za pjesmu odmora" />
     <meta property="og:description" content="Prijavi se i daj svoj glas za pjesmu koja će svirati idući odmor." />
-
-    <meta charset="UTF-8" />
-
-
-    <meta name="theme-color" content="#0099e5">
-    <!--BOJA ZAGLAVLJA U CHROMU-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 </head>
 
 <body>
@@ -37,7 +43,7 @@
     </div>
 
     <nav id="page-nav-wrap">
-        <label for="hamburger">&#9776;</label>
+        <label for="hamburger"><i class="material-icons" style="font-size:37px;color:white;">menu</i></label>
         <input type="checkbox" id="hamburger" />
         <div id="page-nav">
             <a href="/">
@@ -47,13 +53,13 @@
                 <!--Društvene mreže-->
                 <span>
                     <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku"
-                        target="_blank" id="social_networks"><img src="/slike/fb_bijeli.png" width="35"></a>
+                        target="_blank" id="social_networks"><img src="../slike/fb_bijeli.png" width="35"></a>
                     <a href="https://www.instagram.com/iii.gimnazija.osijek/" class="instagram"
                         title="III. gimnazija na Instagramu" target="_blank" id="social_networks"><img
-                            src="/slike/ig_bijeli.png" width="35"></a>
+                            src="../slike/ig_bijeli.png" width="35"></a>
                     <a href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1"
                         class="youtube" title="III. gimnazija na YouTubeu" target="_blank" id="social_networks"><img
-                            src="/slike/yt_bijeli.png" width="35"></a>
+                            src="../slike/yt_bijeli.png" width="35"></a>
                 </span>
             </a>
         </div>
@@ -67,14 +73,11 @@
             <span class="close">&times;</span>
 
             <!-- MODAL CONTENT -->
-            <form action="/login" method="post">
-                <input id="login username" type="text" placeholder="Unesi korisničko ime" name="username"
-                    required /><br>
-                <input id="login password" type="password" placeholder="Unesi lozinku" name="password"
-                    required /><br><br>
-                <button id="btn-log in" type="submit">Prijavi se</button>
-                <button id="btn-log out" type="button" class="cancelbtn">Odustani</button>
-            </form>
+            <ul style="list-style: none; float: left; text-align: left;">
+                <li><i class="material-icons" style="font-size: 14px; color: #0099e5;">keyboard_arrow_right</i><a
+                        href="/" style="color: #0099e5;">Naslovnica</a></li>
+            </ul>
+
 
         </div>
     </div>
@@ -102,11 +105,11 @@
     </script>
     <div class="icon-bar">
         <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku"
-            target="_blank"><img src="/slike/fb_bijeli.png" width="35"></a>
+            target="_blank"><img src="../slike/fb_bijeli.png" width="35"></a>
         <a href="https://www.instagram.com/iii.gimnazija.osijek/" class="instagram" title="III. gimnazija na Instagramu"
-            target="_blank"><img src="/slike/ig_bijeli.png" width="35"></a>
+            target="_blank"><img src="../slike/ig_bijeli.png" width="35"></a>
         <a href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1" class="youtube"
-            title="III. gimnazija na YouTubeu" target="_blank"><img src="/slike/yt_bijeli.png" width="35"></a>
+            title="III. gimnazija na YouTubeu" target="_blank"><img src="../slike/yt_bijeli.png" width="35"></a>
     </div>
 
 

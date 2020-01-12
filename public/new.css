@@ -599,7 +599,7 @@ input:focus:-ms-input-placeholder {
   color: #fff;
   background: #0099e5;
   padding: 10px;
-  font-size: 24px;
+  font-size: 38px;
   cursor: pointer;
 }
 #page-nav-wrap label:active {
@@ -621,7 +621,7 @@ input:focus:-ms-input-placeholder {
 #page-nav a {
   color: #fff;
   padding: 20px;
-  font-size: 22px;
+  font-size: 23px;
   text-decoration: none;
   text-align: center;
   /* Flex grow and basis will auto adjust the width */
