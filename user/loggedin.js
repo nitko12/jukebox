@@ -18,9 +18,9 @@ async function refreshQueue(data) {
             }</h4></td>
                     <td class="trend-broj-${
                       el.votes
-                    }"><p class="trend-broj"><i class="material-icons glasaj-icon" style="font-size:70px;" title="Daj glas ovoj pjesmi" id="glasaj" onclick="vote('${
+                    }"><p class="lajk"><i class="material-icons glasaj-icon" style="font-size:70px;" title="Daj glas ovoj pjesmi" id="glasaj" onclick="vote('${
       el.id
-    }')">thumb_up</i></p></td>
+    }')">thumb_up</i><div class="inace_skriveno">${el.votes}</div></p></td>
         </tr>
     </table>`;
 

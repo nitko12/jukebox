@@ -228,6 +228,11 @@ input:focus:-ms-input-placeholder {
   font-family: cursive;
 }
 
+.lajk {
+  font-size: 70px;
+  font-family: cursive;
+}
+
 .naziv-pjesme {
   font-family: sans-serif;
   font-size: 27px;
@@ -376,6 +381,10 @@ input:focus:-ms-input-placeholder {
   );
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
   color: white;
+}
+
+.inace_skriveno {
+  font-size: 35px;
 }
 
 .youtube {
@@ -528,6 +537,9 @@ input:focus:-ms-input-placeholder {
   #page-nav-wrap {
     display: none;
   }
+  .inace_skriveno {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -550,7 +562,6 @@ input:focus:-ms-input-placeholder {
   }
 
   .obrisi,
-  .trend-broj-1,
   .trend-broj,
   .naziv-pjesme {
     display: none;
