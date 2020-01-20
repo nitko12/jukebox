@@ -1,6 +1,7 @@
 const consts = require("./consts.js");
 const tester = require("./link-tester.js");
 const bcrypt = require("bcryptjs");
+const volume = require("./volume.js");
 
 module.exports = function(io, db) {
   io.on("connection", socket => {});
@@ -313,6 +314,20 @@ module.exports = function(io, db) {
         io.of("/usertextpublic").emit("refresh", data.data);
         fn(data.data);
       });
+    });
+  });
+
+  io.of("/dashboard").on("connection", socket => {
+    // not tested
+    socket.emit("time", new Date().getTime());
+    socket.on("setVolume", (data, fn) => {
+      if (
+        socket.request.user.username != consts.admin.username ||
+        socket.request.user.password != consts.admin.password
+      )
+        return;
+      volume(data);
+      console.log("setting volume to " + data);
     });
   });
 };

@@ -5,6 +5,17 @@ const wavplayer = require("node-wav-player");
 
 const consts = require("./consts.js");
 
+function shuffle(a) {
+  let j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = a[i];
+    a[i] = a[j];
+    a[j] = x;
+  }
+  return a;
+}
+
 module.exports = function(db, onplay) {
   class Player {
     constructor() {
@@ -15,6 +26,7 @@ module.exports = function(db, onplay) {
       db.queue.getAll((err, data) => {
         if (err) return console.log(err);
         num %= data.length;
+        shuffle(data);
         data.sort((a, b) => b.votes - a.votes);
         if (data.length == 0) return;
         let t = data[num].url;

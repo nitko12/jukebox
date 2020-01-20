@@ -17,6 +17,7 @@ module.exports = function(io, passportSocketIo, sessionStore) {
   io.of("/schedule").use(passportSocketIo.authorize(options));
   io.of("/recs").use(passportSocketIo.authorize(options));
   io.of("/user").use(passportSocketIo.authorize(options));
+  io.of("/dashboard").use(passportSocketIo.authorize(options));
 };
 
 function onAuthorizeSuccess(data, accept) {
