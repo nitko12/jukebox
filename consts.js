@@ -19,5 +19,7 @@ module.exports = {
   sessionSecret: "yep8hLJP2Z",
   maxYtVideoSize: 50 * 1024 * 1024, // bytes
   recCooldown: 1000 * 10, // ms
-  voteCooldown: 1000 * 10 // ms
+  voteCooldown: 1000 * 10, // ms
+  prePlayWait: 1000 * 20, // ms
+  afterPlayWait: 1000 * 20 // ms
 };

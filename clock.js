@@ -42,8 +42,8 @@ module.exports = function(db, onplay) {
 
         plays.forEach(el => {
           if (
-            el[0].getTime() < now.getTime() &&
-            now.getTime() < el[1].getTime()
+            el[0].getTime() + consts.prePlayWait < now.getTime() &&
+            now.getTime() + consts.afterPlayWait < el[1].getTime()
           )
             shouldPlay = true;
         });
