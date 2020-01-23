@@ -134,11 +134,13 @@ function refreshAll() {
         <option value="f">f</option>
         <option value="g">g</option></select>|
         <button onclick='select()'>Automatski ispuni</button>|
-        <button onclick='unselect()'>Odoznači sve</button>
+        <button onclick='unselect()'>Poništi odabir</button>
         <button onclick='submitDel()' style='background-color: red;'>Obriši</button><hr>`;
   for (let i in data) {
     str +=
-      "<div style='width:30%'>Koriničko ime: " + data[i].username + "</div> | ";
+      "<div style='width:30%'>Korisničko ime: " +
+      data[i].username +
+      "</div> | ";
     str += "<div style='width:30%'>Razred: " + data[i].class + "</div> | ";
     str += `Obriši: <input type="checkbox" id="ch${i}">`;
     str += `<hr>`;
