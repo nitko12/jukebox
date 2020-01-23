@@ -420,6 +420,29 @@ input:focus:-ms-input-placeholder {
   background-color: rgba(0, 0, 0, 0.6);
   /* Black w/ opacity */
 }
+.modal_text {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  text-align: center;
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Black w/ opacity */
+}
 
 .modal-content {
   background-color: #fefefe;
@@ -430,8 +453,23 @@ input:focus:-ms-input-placeholder {
   width: 60%;
   display: inline-block;
 }
+.modal-content_text {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 20px;
+  width: 60%;
+  display: inline-block;
+}
 
 .close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close_text {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
@@ -475,6 +513,62 @@ input:focus:-ms-input-placeholder {
   opacity: 1;
 }
 
+/*novi prikaz pjesme*/
+.column_naslov {
+  display: inline-block;
+  text-align: center;
+}
+
+.column_naslov#caption_naslov {
+  position: relative;
+}
+
+.column_naslov#caption_naslov .text_naslov {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  transform: translate(-5%, -5%);
+  z-index: 10;
+  opacity: 1;
+  transition: all 0.7s ease;
+}
+
+.column_naslov#caption_naslov .text_naslov h1 {
+  margin: 0;
+  color: white;
+  font-size: 30px;
+  font-family: "YouTube Noto", Roboto, Arial, Helvetica, sans-serif;
+}
+
+.column_naslov#caption_naslov:hover .text_naslov {
+  opacity: 0;
+}
+
+.text_naslov {
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 18px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  direction: ltr;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  justify-content: flex-end;
+  left: 12px;
+  right: 12px;
+  top: 0;
+  z-index: 59;
+  padding-top: 21px;
+  padding-left: 50px;
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.4)
+  );
+}
+
 .glasaj-icon {
   color: black;
   font-size: 70px;
@@ -510,7 +604,7 @@ input:focus:-ms-input-placeholder {
 #w50_7 {
   width: 50.7%;
 }
-#w50 {
+.w50 {
   width: 50%;
 }
 
@@ -529,6 +623,131 @@ input:focus:-ms-input-placeholder {
 #link {
   width: 80%;
 }
+.polje_za_komande {
+  width: 85%;
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 70%;
+  height: 18px;
+  border-radius: 9px;
+  background: #0099e5;
+  outline: none;
+  opacity: 0.5;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 23px;
+  height: 24px;
+  border: 0;
+  background: url("../slike/range.png");
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 23px;
+  height: 24px;
+  border: 0;
+  background: url("../slike/range.png");
+  cursor: pointer;
+}
+.postavke {
+  color: #007bff;
+}
+
+.odabir_postavke {
+  width: 100%;
+  padding: 60px;
+}
+.postavka {
+  width: 250px;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 30px;
+  border: solid black 2px;
+  color: black;
+}
+
+.stanje_icon {
+  color: red;
+}
+.stanje_icon:hover {
+  color: yellow;
+}
+.svira_ne_svira {
+  color: red;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.zaustavi_ga {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 18px 34px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: bold;
+}
+.logo_slika {
+  background-image: url("../../izbori/s Desktopa/Ptsp_logo.ico");
+  background-repeat: no-repeat;
+  position: absolute;
+  vertical-align: middle;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.prostor_za_korisnike,
+.popis_korisnika {
+  width: 100%;
+  color: white;
+  font-size: 22px;
+  padding: 5px 15px 25px 25px;
+}
+
+.popis_korisnika {
+  border-top: 15px solid #df6d46;
+  background-color: #0099e5;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.popis_korisnika_podkategorija {
+  border-radius: 10px 0px 0px 10px;
+  color: white;
+  font-size: 22px;
+  padding: 5px 15px 25px 25px;
+  width: 95%;
+  background-color: #0099e5;
+  margin-left: 5%;
+  border-top: 15px solid #eeeaab;
+}
+.Pppis_korisnici {
+  width: 92%;
+  margin-left: 8%;
+  color: black;
+  border-left: 2px dotted black;
+  padding: 5px 15px 25px 25px;
+}
 
 @media screen and (min-width: 1000px) {
   #social_networks {
@@ -540,12 +759,21 @@ input:focus:-ms-input-placeholder {
   .inace_skriveno {
     display: none;
   }
+  .skriveni_dragulj {
+    display: none;
+  }
+  .sakrij_na_racunalu {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1000px) {
   div {
     display: block;
     width: 100%;
+  }
+  #vlasnik {
+    font-size: 30px;
   }
   .icon-bar,
   .space {
@@ -563,7 +791,8 @@ input:focus:-ms-input-placeholder {
 
   .obrisi,
   .trend-broj,
-  .naziv-pjesme {
+  .naziv-pjesme,
+  .polje_za_komande {
     display: none;
   }
 
@@ -585,8 +814,10 @@ input:focus:-ms-input-placeholder {
     width: 99%;
   }
   #w20,
-  #w50_7,
-  #w50 {
+  #w50_7 {
+    width: 100%;
+  }
+  .w50 {
     width: 100%;
   }
   .w80 {

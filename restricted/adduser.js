@@ -193,3 +193,15 @@ function stepAll() {
     });
   }
 }
+
+function show(className) {
+  let st = ["none", "block"][
+    Array.from(document.getElementsByClassName(className))[0].style.display ==
+    "none"
+      ? 1
+      : 0
+  ];
+  Array.from(document.getElementsByClassName(className)).forEach(el => {
+    el.style.display = st;
+  });
+}

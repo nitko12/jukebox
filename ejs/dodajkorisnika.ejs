@@ -159,7 +159,7 @@
                     <div id="table" style="width:100%"></div> <!-- dinamicki stvoreno-->
                     <center><button
                             style="margin-left: auto;margin-right: auto;width:80%;display: inline-block; overflow: hidden; border: 2px solid #0083c4;"
-                            onclick="adduser()">Dodaj korisnika</button></center>
+                            onclick="adduser()">+</button></center>
                 </div>
                 <br><br>
                 <hr>
@@ -167,7 +167,7 @@
                 <div style="width: 100%;">
                     <div id="w45">SAMOISPUNA:</div>
                     <div id="w45">
-                        <div id="w20"><br>| Lozinka:</div>&nbsp;<input type='text' name='password' id="w50"
+                        <div id="w20"><br>| Lozinka:</div>&nbsp;<input type='text' name='password' class="w50"
                             id="passwordauto">&nbsp;<button onclick="fill(0)">POPUNI</button>
                         <br>
                         <div id="w20">| Razred:</div>&nbsp;<div id="w50_7">
@@ -201,6 +201,79 @@
                 <hr>
                 <br><br>
                 <div id="users" style="width:100%"></div> <!-- dinamicki stvoreno-->
+
+                <div class="prostor_za_korisnike">
+                	<h3>Popis svih korisnika</h3>
+                	<p>klikni na kategoriju za prikaz korisnika</p>
+                	
+                	<br>
+
+                	<div class="popis_korisnika" onclick="show('4')"><!--prostor za + ili - ikonu --><p class="opis_kategorije">Četvrti razredi</p></div>
+                		<div class="popis_korisnika_podkategorija 4" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">4.a</p></div>
+                			<div class="Pppis_korisnici 4a" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 4" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">4.b</p></div>
+                			<div class="Pppis_korisnici 4b" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 4" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">4.c</p></div>
+                			<div class="Pppis_korisnici 4c" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 4" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">4.d</p></div>
+                			<div class="Pppis_korisnici 4d" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 4" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">4.e</p></div>
+                			<div class="Pppis_korisnici 4e" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 4" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">4.f</p></div>
+                			<div class="Pppis_korisnici 4f" style="display: none;"><!--ispis korisnika-->u ovom razredu nema korisnika</div>
+                		<div class="popis_korisnika_podkategorija 4" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">4.g</p></div>
+                			<div class="Pppis_korisnici 4g" style="display: none;"><!--ispis korisnika--></div>
+                	<div class="popis_korisnika" onclick="show('3')"><!--prostor za + ili - ikonu --><p class="opis_kategorije">Treći razredi</p></div>
+                		<div class="popis_korisnika_podkategorija 3" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">3.a</p></div>
+                			<div class="Pppis_korisnici 3a" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 3" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">3.b</p></div>
+                			<div class="Pppis_korisnici 3b" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 3" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">3.c</p></div>
+                			<div class="Pppis_korisnici 3c" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 3" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">3.d</p></div>
+                			<div class="Pppis_korisnici 3d" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 3" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">3.e</p></div>
+                			<div class="Pppis_korisnici 3e" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 3" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">3.f</p></div>
+                			<div class="Pppis_korisnici 3f" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 3" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">3.g</p></div>
+                			<div class="Pppis_korisnici 3g" style="display: none;"><!--ispis korisnika--></div>
+                	<div class="popis_korisnika" onclick="show('2')"><!--prostor za + ili - ikonu --><p class="opis_kategorije">Drugi razredi</p></div>
+                		<div class="popis_korisnika_podkategorija 2" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">2.a</p></div>
+                			<div class="Pppis_korisnici 2a" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 2" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">2.b</p></div>
+                			<div class="Pppis_korisnici 2b" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 2" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">2.c</p></div>
+                			<div class="Pppis_korisnici 2c" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 2" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">2.d</p></div>
+                			<div class="Pppis_korisnici 2d" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 2" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">2.e</p></div>
+                			<div class="Pppis_korisnici 2e" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 2" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">2.f</p></div>
+                			<div class="Pppis_korisnici 2f" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 2" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">2.g</p></div>
+                			<div class="Pppis_korisnici 2g" style="display: none;"><!--ispis korisnika--></div>
+                	<div class="popis_korisnika" onclick="show('1')"><!--prostor za + ili - ikonu --><p class="opis_kategorije">Prvi razredi</p></div>
+                		<div class="popis_korisnika_podkategorija 1" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">1.a</p></div>
+                			<div class="Pppis_korisnici 1a" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 1" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">1.b</p></div>
+                			<div class="Pppis_korisnici 1b" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 1" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">1.c</p></div>
+                			<div class="Pppis_korisnici 1c" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 1" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">1.d</p></div>
+                			<div class="Pppis_korisnici 1d" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 1" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">1.e</p></div>
+                			<div class="Pppis_korisnici 1e" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 1" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">1.f</p></div>
+                			<div class="Pppis_korisnici 1f" style="display: none;"><!--ispis korisnika--></div>
+                		<div class="popis_korisnika_podkategorija 1" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">1.g</p></div>
+                			<div class="Pppis_korisnici 1g" style="display: none;"><!--ispis korisnika--></div>
+                	<div class="popis_korisnika" onclick="show('0')"><!--prostor za + ili - ikonu --><p class="opis_kategorije">Ostali korisnici</p></div>
+                		<div class="popis_korisnika_podkategorija 0" style="display: none;"><!--prostor za + ili - ikonu --><p class="opis_kategorije">Osoblje</p></div>
+                			<div class="Pppis_korisnici 0a" style="display: none;"><!--ispis korisnika--></div>
+
+                </div>
+
                 <br><br>
                 <div style="width:100%;">
                     <button onclick="stepAll()"
