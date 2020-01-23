@@ -136,16 +136,22 @@ function refreshAll() {
         <button onclick='select()'>Automatski ispuni</button>|
         <button onclick='unselect()'>Poništi odabir</button>
         <button onclick='submitDel()' style='background-color: red;'>Obriši</button><hr>`;
+  let t = "";
+  document.getElementById("users").innerHTML = str;
   for (let i in data) {
-    str +=
+    t =
       "<div style='width:30%'>Korisničko ime: " +
       data[i].username +
       "</div> | ";
-    str += "<div style='width:30%'>Razred: " + data[i].class + "</div> | ";
-    str += `Obriši: <input type="checkbox" id="ch${i}">`;
-    str += `<hr>`;
+    t += "<div style='width:30%'>Razred: " + data[i].class + "</div> | ";
+    t += `Obriši: <input type="checkbox" id="ch${i}">`;
+    t += `<hr>`;
+    console.log(data[i].class);
+    console.log(document.getElementsByClassName(data[i].class));
+    Array.from(
+      document.getElementsByClassName(data[i].class)
+    )[0].innerHTML += t;
   }
-  document.getElementById("users").innerHTML = str;
 }
 
 function submitDel() {

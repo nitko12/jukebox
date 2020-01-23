@@ -9,7 +9,7 @@ function changePass() {
     },
     data => {
       if (data.accepted) alert("Uspješno promjenjena šifra!");
-      else alert("Neštp je pošlo po zlu");
+      else alert("Nešto je pošlo po zlu");
     }
   );
 }

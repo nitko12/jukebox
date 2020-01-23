@@ -16,7 +16,7 @@ function shuffle(a) {
   return a;
 }
 
-module.exports = function (db, onplay) {
+module.exports = function(db, onplay) {
   class Player {
     constructor() {
       this.command = null;
@@ -48,16 +48,16 @@ module.exports = function (db, onplay) {
                   sync: true
                 })
                 .then(
-                () => {
-                  console.log("The wav file played successfully.");
-                  fs.unlink("./temp/temp.wav", err => {
-                    if (err) console.log(err);
-                  });
-                  this.play(num + 1);
-                },
-                err => {
-                  console.log(err);
-                }
+                  () => {
+                    console.log("The wav file played successfully.");
+                    fs.unlink("./temp/temp.wav", err => {
+                      if (err) console.log(err);
+                    });
+                    this.play(num + 1, data);
+                  },
+                  err => {
+                    console.log(err);
+                  }
                 )
                 .catch(error => {
                   console.error(error);
@@ -90,16 +90,16 @@ module.exports = function (db, onplay) {
                 sync: true
               })
               .then(
-              () => {
-                console.log("The wav file played successfully.");
-                fs.unlink("./temp/temp.wav", err => {
-                  if (err) console.log(err);
-                });
-                this.play(num + 1);
-              },
-              err => {
-                console.log(err);
-              }
+                () => {
+                  console.log("The wav file played successfully.");
+                  fs.unlink("./temp/temp.wav", err => {
+                    if (err) console.log(err);
+                  });
+                  this.play(num + 1, data);
+                },
+                err => {
+                  console.log(err);
+                }
               )
               .catch(error => {
                 console.error(error);

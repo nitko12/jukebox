@@ -4,16 +4,36 @@ document.getElementById("red").innerHTML = "Učitavanje...";
 const recs = io("/recs");
 
 function refreshRecs(data) {
-  let str = "";
   data.sort((a, b) => parseInt(a.date) - parseInt(b.date));
-  for (let i of data) {
-    str += `<iframe src="https://www.youtube-nocookie.com/embed/${i.url}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="trend1"></iframe>`;
-    str += ` <div> poslano od: ${i.username} u ${moment(
-      new Date(parseInt(i.date))
-    ).format("MM/DD/YYYY h:mm a")}`;
-    str += `</div><button onclick="approveRec('${i.id}')">Odobri</button><button onclick="deleteRec('${i.id}')">Obriši</button><hr>`;
-  }
-  document.getElementById("preporuke").innerHTML = str;
+  document.getElementById("preporuke").innerHTML = "";
+  Promise.all(
+    data.map(u =>
+      fetch(
+        "https://noembed.com/embed?url=https://www.youtube.com/watch?v=" + u.url
+      )
+    )
+  )
+    .then(responses => Promise.all(responses.map(res => res.json())))
+    .then(texts => {
+      console.log(texts, data);
+      for (let i = 0; i < texts.length; ++i) {
+        let str = `    
+        <span style="cursor:default;">
+          <a class="new_iframe_thumbnail" id="thumbnail_space" href="#">
+            <span class="thumbnail_naslov">
+              <h1 class="naslov_video" id="naslov_videozapisa">${texts[i]["title"]}</h1>
+              <div class="play_button"></div>
+            </span>
+            <img src="${texts[i]["thumbnail_url"]}" class="thumbnail_slika">
+          </a>
+        </span>`;
+        str += ` <div> poslano od: ${data[i].username} u ${moment(
+          new Date(parseInt(data[i].date))
+        ).format("MM/DD/YYYY h:mm a")}`;
+        str += `</div><button onclick="approveRec('${data[i].id}')">Odobri</button><button onclick="deleteRec('${i.id}')">Obriši</button><hr>`;
+        document.getElementById("preporuke").innerHTML = str;
+      }
+    });
 }
 
 function approveRec(id) {
@@ -36,14 +56,34 @@ recs.on("connect", function(socket) {
 const queue = io("/queue");
 
 function refreshQueue(data) {
-  let str = "";
   data.sort((a, b) => parseInt(b.votes) - parseInt(a.votes));
-  for (let i of data) {
-    str += `<iframe src="https://www.youtube-nocookie.com/embed/${i.url}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="trend1"></iframe>`;
-    str += ` <div> poslano od: ${i.submittedBy}`;
-    str += ` i ima ${i.votes} votes </div><button onclick="deleteQueue('${i.id}')">Obriši</button><hr>`;
-  }
-  document.getElementById("red").innerHTML = str;
+  document.getElementById("red").innerHTML = "";
+  Promise.all(
+    data.map(u =>
+      fetch(
+        "https://noembed.com/embed?url=https://www.youtube.com/watch?v=" + u.url
+      )
+    )
+  )
+    .then(responses => Promise.all(responses.map(res => res.json())))
+    .then(texts => {
+      console.log(texts, data);
+      for (let i = 0; i < texts.length; ++i) {
+        let str = `    
+          <span style="cursor:default;">
+          <a class="new_iframe_thumbnail" id="thumbnail_space" href="#">
+            <span class="thumbnail_naslov">
+              <h1 class="naslov_video" id="naslov_videozapisa">${texts[i]["title"]}</h1>
+              <div class="play_button"></div>
+            </span>
+            <img src="${texts[i]["thumbnail_url"]}" class="thumbnail_slika">
+          </a>
+        </span>`;
+        str += ` <div> poslano od: ${data[i].submittedBy}`;
+        str += ` i ima ${data[i].votes} votes </div><button onclick="deleteQueue('${data[i].id}')">Obriši</button><hr>`;
+        document.getElementById("red").innerHTML += str;
+      }
+    });
 }
 
 function deleteQueue(id) {
