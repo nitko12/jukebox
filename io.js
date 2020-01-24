@@ -55,8 +55,10 @@ module.exports = function(io, db) {
     });
     socket.on("set", (data, fn) => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        (socket.request.user.username != consts.admin.username ||
+          socket.request.user.password != consts.admin.password) &&
+        (socket.request.user.username != consts.superuser.username ||
+          socket.request.user.password != consts.superuser.password)
       )
         return fn("lol no");
       db.user.batch(data, err => {
@@ -317,6 +319,27 @@ module.exports = function(io, db) {
     });
   });
 
+  io.of("/usertext2").on("connection", socket => {
+    socket.on("get", fn => {
+      db.usertext2.get((err, data) => {
+        if (err) return console.log(err);
+        fn(data.data);
+        socket.emit("refresh", data.data);
+      });
+    });
+    socket.on("set", (data, fn) => {
+      if (
+        socket.request.user.username != consts.admin.username ||
+        socket.request.user.password != consts.admin.password
+      )
+        return fn("lol no");
+      db.usertext2.set(data, err => {
+        if (err) return console.log(err);
+        io.of("/usertext2").emit("refresh", data);
+      });
+    });
+  });
+
   io.of("/dashboard").on("connection", socket => {
     // not tested
     socket.emit("time", new Date().getTime());
@@ -328,6 +351,14 @@ module.exports = function(io, db) {
         return;
       volume(data);
       console.log("setting volume to " + data);
+    });
+    socket.on("getVolume", fn => {
+      if (
+        socket.request.user.username != consts.admin.username ||
+        socket.request.user.password != consts.admin.password
+      )
+        return;
+      volume(undefined, fn);
     });
   });
 };

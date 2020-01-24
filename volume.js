@@ -1,5 +1,10 @@
 const { audio } = require("system-control");
-// not tested
-module.exports = function(loudness) {
-  audio.volume(loudness);
+let last = 0;
+module.exports = function(loudness, fn) {
+  if (loudness) {
+    audio.volume(loudness);
+    last = loudness;
+  }
+
+  if (fn) fn(last);
 };

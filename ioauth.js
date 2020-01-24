@@ -12,6 +12,7 @@ module.exports = function(io, passportSocketIo, sessionStore) {
   };
 
   io.of("/usertext").use(passportSocketIo.authorize(options));
+  io.of("/usertext2").use(passportSocketIo.authorize(options));
   io.of("/changepass").use(passportSocketIo.authorize(options));
   io.of("/queue").use(passportSocketIo.authorize(options));
   io.of("/schedule").use(passportSocketIo.authorize(options));

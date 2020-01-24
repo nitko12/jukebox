@@ -403,7 +403,7 @@ input:focus:-ms-input-placeholder {
   position: fixed;
   /* Stay in place */
   text-align: center;
-  z-index: 1;
+  z-index: 100;
   /* Sit on top */
   padding-top: 100px;
   /* Location of the box */
@@ -426,7 +426,7 @@ input:focus:-ms-input-placeholder {
   position: fixed;
   /* Stay in place */
   text-align: center;
-  z-index: 1;
+  z-index: 50;
   /* Sit on top */
   padding-top: 100px;
   /* Location of the box */
@@ -497,7 +497,7 @@ input:focus:-ms-input-placeholder {
   top: 63%;
   left: 90%;
   transform: translate(-90%, -63%);
-  z-index: 10;
+  z-index: 1;
   opacity: 0;
   transition: all 0.7s ease;
 }
@@ -520,18 +520,18 @@ input:focus:-ms-input-placeholder {
   text-align: center;
 }
 
-.new_iframe_thumbnail#thumbnail_space {
+.new_iframe_thumbnail {
   position: relative;
   width: 304px;
   height: 154px;
 }
 
-.new_iframe_thumbnail#thumbnail_space .thumbnail_naslov {
+.new_iframe_thumbnail .thumbnail_naslov {
   position: absolute;
   top: 0%;
   left: 0%;
   transform: translate(0%, 0%);
-  z-index: 10;
+  z-index: 1;
   opacity: 1;
   transition: all 0.7s ease;
 }
@@ -546,7 +546,7 @@ input:focus:-ms-input-placeholder {
   opacity: 0.8;
 }
 
-.new_iframe_thumbnail#thumbnail_space .thumbnail_naslov h1 {
+.new_iframe_thumbnail .thumbnail_naslov h1 {
   padding: 4% 0px 5px 20%;
   margin: 0;
   color: white;
@@ -559,7 +559,7 @@ input:focus:-ms-input-placeholder {
   text-overflow: ellipsis;
 }
 
-.new_iframe_thumbnail#thumbnail_space:hover .thumbnail_naslov {
+.new_iframe_thumbnail:hover .thumbnail_naslov {
   opacity: 1;
 }
 

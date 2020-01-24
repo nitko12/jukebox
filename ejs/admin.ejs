@@ -151,7 +151,7 @@
 
                     <i id="myBtn_volume">
                         <div class="postavka">
-            	           <i class="material-icons user postavke" style="font-size:70px;" title="Prilagodi glasnoću">volume_up</i><p class="sat">Glasnoća: <span id="demo_home"></span>%</p>
+            	           <i class="material-icons user postavke" style="font-size:70px;" title="Prilagodi glasnoću">volume_up</i><p class="sat">Glasnoća: <span id="glasnocaValueM"></span>%</p>
                         </div>
                     </i>
 
@@ -176,8 +176,8 @@
                 			<br><br><br>
 
                 			<h2>Poruka administratora prijavljenim korisnicima</h2>
-                			<input type="text" style="" id="usertext" placeholder="Ovdje utipkaj tekst koji će vidjeti samo prijavljeni korisnici"><br>
-                			<center><button onclick="updateText()" id="gumb-admin">Pošalji</button></center>
+                			<input type="text" style="" id="usertext2" placeholder="Ovdje utipkaj tekst koji će vidjeti samo prijavljeni korisnici"><br>
+                			<center><button onclick="updateText2()" id="gumb-admin">Pošalji</button></center>
             				
             		</div>
     			</div>
@@ -190,23 +190,12 @@
             				<h2>Podešavanje glasnoće sviranja</h2><br><br>
             				<div class="slidecontainer">
   							<i class="material-icons user" style="font-size:18px; color: black" title="Prilagodi glasnoću" id="myBtn_volume">volume_off</i>
-  							<input type="range" min="0" max="100" class="slider" id="myRange">
+  							<input type="range" min="0" max="100" class="slider" id="glasnoca">
   							<i class="material-icons user" style="font-size:18px; color: black" title="Prilagodi glasnoću" id="myBtn_volume">volume_up</i>
-  								<br><br><p>Glasnoća: <span id="demo"></span>%</p>
-                                <br><input type="submit" value="Spremi promjene">
+  								<br><br><p>Glasnoća: <span id="glasnocaValue"></span>%</p>
+                                <br><input type="submit" value="Spremi promjene" onclick="sliderChange()">
 							</div>
-							<script>
-								var slider = document.getElementById("myRange");
-								var output = document.getElementById("demo");
-                                var output_home = document.getElementById("demo_home");
-								output.innerHTML = slider.value;
-                                output_home.innerHTML = slider.value;
-								
-								slider.oninput = function() {
-								  output.innerHTML = this.value;
-                                  output_home.innerHTML = this.value;
-								}
-							</script>
+							
             				
             		</div>
     			</div>
@@ -216,8 +205,8 @@
                         <span class="close">&times;</span>
 
                             <!-- MODAL CONTENT -->
-                            <h2>Trenutno vrijeme na serveru je:</h2><br><br>
-                            <p class="sat" id="server_vrijeme">učitavanje...</p>
+                            <h2>Trenutno vrijeme na serveru je:</h2>
+                            <p class="sat" id="server_vrijeme2">učitavanje...</p>
                             
                     </div>
                 </div>

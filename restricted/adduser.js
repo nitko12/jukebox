@@ -148,9 +148,10 @@ function refreshAll() {
     t += `<hr>`;
     console.log(data[i].class);
     console.log(document.getElementsByClassName(data[i].class));
-    Array.from(
-      document.getElementsByClassName(data[i].class)
-    )[0].innerHTML += t;
+    if (Array.from(document.getElementsByClassName(data[i].class)).length != 0)
+      Array.from(
+        document.getElementsByClassName(data[i].class)
+      )[0].innerHTML += t;
   }
 }
 

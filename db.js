@@ -406,6 +406,18 @@ class Usertext {
   }
 }
 
+class Usertext2 {
+  constructor(db) {
+    this.db = db;
+  }
+  set(data, fn) {
+    this.db.run(`UPDATE "usertext2" SET data = ? WHERE id = "1"`, data, fn);
+  }
+  get(fn) {
+    this.db.get(`SELECT * FROM "usertext2"`, fn);
+  }
+}
+
 class Db {
   constructor() {
     this.db = new sqlite3.Database("./db.sqlite3");
@@ -440,6 +452,12 @@ class Db {
           if (err) return console.log(err);
         }
       );
+      this.db.run(
+        `CREATE TABLE IF NOT EXISTS "usertext2" (id TEXT, data TEXT)`,
+        err => {
+          if (err) return console.log(err);
+        }
+      );
       this.db.get(`SELECT 1 FROM "schedule"`, (err, row) => {
         if (err) return console.log(err);
         if (!row)
@@ -463,12 +481,24 @@ class Db {
             }
           );
       });
+      this.db.get(`SELECT 1 FROM "usertext2"`, (err, row) => {
+        if (err) return console.log(err);
+        if (!row)
+          this.db.run(
+            `INSERT INTO "usertext2" VALUES ("1", ?)`,
+            "Default text",
+            err => {
+              if (err) return console.log(err);
+            }
+          );
+      });
     });
     this.user = new User(this.db);
     this.recs = new Recs(this.db, this.user.findById);
     this.schedule = new Schedule(this.db);
     this.queue = new Queue(this.db);
     this.usertext = new Usertext(this.db);
+    this.usertext2 = new Usertext2(this.db);
   }
 }
 

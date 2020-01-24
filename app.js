@@ -10,9 +10,12 @@ module.exports = function(express, app, passport) {
 
   app.get("/", (req, res) => {
     if (
-      req.isAuthenticated() &&
-      safeCompare(req.user.username, consts.admin.username) &&
-      safeCompare(req.user.password, consts.admin.password)
+      (req.isAuthenticated() &&
+        safeCompare(req.user.username, consts.admin.username) &&
+        safeCompare(req.user.password, consts.admin.password)) ||
+      (req.isAuthenticated() &&
+        safeCompare(req.user.username, consts.superuser.username) &&
+        safeCompare(req.user.password, consts.superuser.password))
     ) {
       let data = [],
         options = [];
@@ -82,9 +85,12 @@ module.exports = function(express, app, passport) {
 
   app.get("/dodajkorisnika", (req, res) => {
     if (
-      req.isAuthenticated() &&
-      safeCompare(req.user.username, consts.admin.username) &&
-      safeCompare(req.user.password, consts.admin.password)
+      (req.isAuthenticated() &&
+        safeCompare(req.user.username, consts.admin.username) &&
+        safeCompare(req.user.password, consts.admin.password)) ||
+      (req.isAuthenticated() &&
+        safeCompare(req.user.username, consts.superuser.username) &&
+        safeCompare(req.user.password, consts.superuser.password))
     ) {
       let data = [],
         options = [];
@@ -126,9 +132,12 @@ module.exports = function(express, app, passport) {
   // restricted js
   app.get("/restricted/admin.js", (req, res) => {
     if (
-      req.isAuthenticated() &&
-      safeCompare(req.user.username, consts.admin.username) &&
-      safeCompare(req.user.password, consts.admin.password)
+      (req.isAuthenticated() &&
+        safeCompare(req.user.username, consts.admin.username) &&
+        safeCompare(req.user.password, consts.admin.password)) ||
+      (req.isAuthenticated() &&
+        safeCompare(req.user.username, consts.superuser.username) &&
+        safeCompare(req.user.password, consts.superuser.password))
     ) {
       res.sendFile(__dirname + "/restricted/admin.js");
     } else {
@@ -150,9 +159,12 @@ module.exports = function(express, app, passport) {
 
   app.get("/restricted/adduser.js", (req, res) => {
     if (
-      req.isAuthenticated() &&
-      safeCompare(req.user.username, consts.admin.username) &&
-      safeCompare(req.user.password, consts.admin.password)
+      (req.isAuthenticated() &&
+        safeCompare(req.user.username, consts.admin.username) &&
+        safeCompare(req.user.password, consts.admin.password)) ||
+      (req.isAuthenticated() &&
+        safeCompare(req.user.username, consts.superuser.username) &&
+        safeCompare(req.user.password, consts.superuser.password))
     ) {
       res.sendFile(__dirname + "/restricted/adduser.js");
     } else {

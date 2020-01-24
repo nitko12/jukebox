@@ -15,6 +15,12 @@ module.exports = {
     password: "admin",
     lastrecommend: "never"
   },
+  superuser: {
+    id: "341djhi",
+    username: "superuser",
+    password: "krava",
+    lastrecommend: "never"
+  },
   sessionKey: "nDG3c7gcnl",
   sessionSecret: "yep8hLJP2Z",
   maxYtVideoSize: 50 * 1024 * 1024, // bytes
