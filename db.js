@@ -386,7 +386,7 @@ class Queue {
   }
 
   half(id, fn) {
-    this.db.run(`UPDATE "queue" SET votes = votes / 2 WHERE id = ?`, id, fn);
+    this.db.run(`UPDATE "queue" SET votes = 0 WHERE id = ?`, id, fn);
   }
 
   remove(id, fn) {
