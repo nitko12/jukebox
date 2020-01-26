@@ -324,9 +324,8 @@ module.exports = function(io, player, db) {
         socket.request.user.password != consts.admin.password
       )
         return fn("lol no");
-
-      db.usertext.set(data, (err, data) => {
-        if (err) return console.log(err);
+      console.log(data);
+      db.usertext.set(data, err => {
         db.usertext.get((err, data) => {
           if (err) return console.log(err);
           io.of("/usertext").emit("refresh", data.data);

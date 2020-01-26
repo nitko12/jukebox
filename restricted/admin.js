@@ -107,7 +107,6 @@ function refreshUserText(data) {
 
 function updateText() {
   let v = document.getElementById("usertext").value;
-  document.getElementById("usertextM").value = data;
   usertext.emit("set", v, data => {
     document.getElementById("usertext").value = data;
     document.getElementById("usertextM").value = data;
@@ -154,8 +153,8 @@ dashboard.on("connect", function(socket) {
 
   let refreshQueue = data => {
     if (data.index == -1) {
-      document.getElementById("svira_ne_svira").innerHTML = "Ništa ne svira";
-      document.getElementById("svira_ne_sviraM").innerHTML = "Ništa ne svira";
+      document.getElementById("svira_ne_svira").innerHTML = "ne svira";
+      document.getElementById("svira_ne_sviraM").innerHTML = "ne svira";
       document.getElementById("queue").innerHTML = "";
       return;
     }
@@ -203,8 +202,10 @@ usertext2.on("connect", function(socket) {
 
 function updateText2() {
   let v = document.getElementById("usertext2").value;
-  document.getElementById("usertext2M").value = data;
-  usertext2.emit("set", v);
+  usertext2.emit("set", v, data => {
+    document.getElementById("usertext").value = data;
+    document.getElementById("usertextM").value = data;
+  });
 }
 
 function sliderChange() {
