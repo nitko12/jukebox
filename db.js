@@ -258,7 +258,7 @@ class Recs {
       rows.forEach(el => {
         if (el.userid == consts.dj.id)
           return data.push({
-            id: consts.dj.id,
+            id: el.id,
             username: consts.dj.username,
             date: el.date,
             url: el.url

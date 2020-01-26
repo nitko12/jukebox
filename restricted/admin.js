@@ -29,8 +29,9 @@ function refreshRecs(data) {
         str += ` <div> poslano od: ${data[i].username} u ${moment(
           new Date(parseInt(data[i].date))
         ).format("MM/DD/YYYY h:mm a")}`;
-        str += `</div> <br> <button onclick="approveRec('${data[i].id}')">Odobri</button><button onclick="deleteRec('${i.id}')">Obriši</button><hr>`;
+        str += `</div> <br> <button onclick="approveRec('${data[i].id}')">Odobri</button><button onclick="deleteRec('${data[i].id}')">Obriši</button><hr>`;
         document.getElementById("preporuke").innerHTML += str;
+        console.log(data[i]);
       }
     });
 }
@@ -40,6 +41,7 @@ function approveRec(id) {
 }
 
 function deleteRec(id) {
+  console.log(id);
   recs.emit("delete", id);
 }
 
