@@ -21,6 +21,7 @@ module.exports = function(db, onplay) {
     constructor() {
       this.command = null;
       this.yt = null;
+      this.queue = { index: -1, data: [] };
     }
     async play(num, arr) {
       if (!arr) {
@@ -29,6 +30,7 @@ module.exports = function(db, onplay) {
           num %= data.length;
           shuffle(data);
           data.sort((a, b) => b.votes - a.votes);
+          this.queue = { index: num, data: data };
           if (data.length == 0) return;
           let t = data[num].url;
           console.log("Downloading: ", t);
@@ -69,8 +71,9 @@ module.exports = function(db, onplay) {
       } else {
         let data = arr;
         num %= data.length;
-        shuffle(data);
-        data.sort((a, b) => b.votes - a.votes);
+
+        this.queue = { index: num, data: arr };
+
         if (data.length == 0) return;
         let t = data[num].url;
         console.log("Downloading: ", t);
@@ -117,6 +120,11 @@ module.exports = function(db, onplay) {
       fs.unlink("./temp/temp.wav", err => {
         if (err) console.log(err);
       });
+      this.queue = { index: -1, data: [] };
+    }
+
+    getQueue() {
+      return this.queue;
     }
   }
 

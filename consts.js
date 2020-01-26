@@ -21,11 +21,17 @@ module.exports = {
     password: "krava",
     lastrecommend: "never"
   },
+  dj: {
+    id: "40dfso42",
+    username: "dj",
+    password: "nitko",
+    lastrecommend: "never"
+  },
   sessionKey: "nDG3c7gcnl",
   sessionSecret: "yep8hLJP2Z",
   maxYtVideoSize: 50 * 1024 * 1024, // bytes
-  recCooldown: 1000 * 10, // ms
-  voteCooldown: 1000 * 10, // ms
+  recCooldown: 1000 * 10 * 1000, // ms
+  voteCooldown: 1000 * 10 * 1000, // ms
   prePlayWait: 1000 * 20, // ms
   afterPlayWait: 1000 * 20 // ms
 };

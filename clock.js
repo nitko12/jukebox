@@ -1,9 +1,8 @@
 const consts = require("./consts.js");
 
-module.exports = function(db, onplay) {
+module.exports = function(db, player, io, onplay) {
   let playing = false;
   // passing over db
-  const player = require("./player.js")(db, onplay);
 
   function tick() {
     db.schedule.get((err, data) => {
@@ -56,6 +55,7 @@ module.exports = function(db, onplay) {
         if (playing && !shouldPlay) {
           playing = false;
           player.stop();
+          io.of("/dashboard").emit("started", {});
         }
       } catch (err) {
         return console.log("parsing failed:", err);

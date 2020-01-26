@@ -158,7 +158,7 @@
 
                     <i id="myBtn_zaustavi">
                         <div class="postavka">
-                           <i class="material-icons user postavke stanje_icon" style="font-size:70px;" title="Zaustavi sviranje">highlight_off</i><p class="sat">Trenutno: <span class="svira_ne_svira"><!--svira/ne svira-->učitavanje...</span></p>
+                           <i class="material-icons user postavke stanje_icon" style="font-size:70px;" title="Zaustavi sviranje">highlight_off</i><p class="sat">Trenutno: <span class="svira_ne_svira" id="svira_ne_svira"><!--svira/ne svira-->učitavanje...</span></p>
                         </div>
                     </i>
                </div>
@@ -217,8 +217,8 @@
 
                             <!-- MODAL CONTENT -->
                             <h2>Trenutno:</h2><br><br>
-                            <span class="svira_ne_svira" style="font-size: 40px;"><!--svira/ne svira-->učitavanje...</span><br><br><br>
-                            <input type="button" value="ZAUSTAVI SVIRANJE" class="zaustavi_ga">
+                            <span class="svira_ne_svira" id="queue" style="font-size: 40px;"><!--svira/ne svira-->učitavanje...</span><br><br><br>
+                            <input type="button" value="ISKLJUČI ZVUK" class="zaustavi_ga" onclick="zaustavi()">
                             
                     </div>
                 </div>
@@ -310,24 +310,24 @@
             <div class="skriveni_dragulj">
 
                 <h2>Trenutno vrijeme na serveru je:</h2><br><br>
-                <p class="sat" id="server_vrijeme">učitavanje...</p>
+                <p class="sat" id="server_vrijemeM">učitavanje...</p>
 
                 <br><br><br>
 
                 <h2>Trenutno:</h2><br><br>
-                <span class="svira_ne_svira" style="font-size: 40px;"><!--svira/ne svira-->učitavanje...</span><br><br><br>
-                <input type="button" value="ZAUSTAVI SVIRANJE" class="zaustavi_ga">
+                <span class="svira_ne_svira" style="font-size: 40px;" id="svira_ne_sviraM"><!--svira/ne svira-->učitavanje...</span><br><br><br>
+                <input type="button" value="ISKLJUČI ZVUK" class="zaustavi_ga">
 
                 <br><br><br>
 
                 <h2>Poruka administratora na naslovnici</h2>
-                <input type="text" style="" id="usertext" placeholder="Ovdje utipkaj tekst koji će se prikazati na naslovnici"><br>
+                <input type="text" style="" id="usertextM" placeholder="Ovdje utipkaj tekst koji će se prikazati na naslovnici"><br>
                 <center><button onclick="updateText()" id="gumb-admin">Pošalji</button></center>
 
                 <br><br><br>
 
                 <h2>Poruka administratora prijavljenim korisnicima</h2>
-                <input type="text" style="" id="usertext" placeholder="Ovdje utipkaj tekst koji će vidjeti samo prijavljeni korisnici"><br>
+                <input type="text" style="" id="usertext2M" placeholder="Ovdje utipkaj tekst koji će vidjeti samo prijavljeni korisnici"><br>
                 <center><button onclick="updateText()" id="gumb-admin">Pošalji</button></center>
 
                 <br><br><br>
@@ -338,7 +338,7 @@
                 <input type="range" min="0" max="100" class="slider slider_mob" id="myRange_mob">
                 <i class="material-icons user" style="font-size:18px; color: black" title="Prilagodi glasnoću" id="myBtn_volume">volume_up</i>
                     <br><br><p>Glasnoća: <span id="demo_mob"></span>%</p>
-                    <br><input type="submit" value="Spremi promjene">
+                    <br><input type="submit" value="Spremi promjene" onclick="sliderChangeM()">
                 </div>
 
                 <script>

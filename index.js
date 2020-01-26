@@ -27,9 +27,6 @@ const passport = require("passport");
 require("./appauth.js")(app, passport, session, sessionStore, db);
 require("./app.js")(express, app, passport);
 
-require("./ioauth.js")(io, passportSocketIo, sessionStore);
-require("./io.js")(io, db);
-
 let onplay = id => {
   db.queue.half(id, err => {
     if (err) return console.log(err);
@@ -37,8 +34,13 @@ let onplay = id => {
       if (err) return console.log(err);
       io.of("/queue").emit("refresh", data);
       io.of("/publicqueue").emit("refresh", data);
+      io.of("/dashboard").emit("started", {});
     });
   });
 };
+const player = require("./player.js")(db, onplay);
 
-const clock = require("./clock.js")(db, onplay);
+require("./ioauth.js")(io, passportSocketIo, sessionStore);
+require("./io.js")(io, player, db);
+
+const clock = require("./clock.js")(db, player, io, onplay);

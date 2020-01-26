@@ -26,6 +26,9 @@ function draw() {
                 <option value="4" ${
                   data[i].god == "4" ? "selected" : ""
                 }>4.</option>
+                <option value="osoblje" ${
+                  data[i].god == "osoblje" ? "selected" : ""
+                }>osoblje</option>
                </select>
                <select id='raz${i}' value='${data[i].raz}' 
                 oninput="refresh(${i})">
@@ -123,6 +126,7 @@ function refreshAll() {
         <option value="2">2.</option>
         <option value="3">3.</option>
         <option value="4">4.</option>
+        <option value="osoblje">osoblje</option>
        </select>
        <select id='razDel'>
        <option value=" "> </option>
@@ -146,8 +150,7 @@ function refreshAll() {
     t += "<div style='width:30%'>Razred: " + data[i].class + "</div> | ";
     t += `Obriši: <input type="checkbox" id="ch${i}">`;
     t += `<hr>`;
-    console.log(data[i].class);
-    console.log(document.getElementsByClassName(data[i].class));
+
     if (Array.from(document.getElementsByClassName(data[i].class)).length != 0)
       Array.from(
         document.getElementsByClassName(data[i].class)

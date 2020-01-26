@@ -19,6 +19,12 @@ module.exports = function(app, passport, session, sessionStore, db) {
       ) {
         return done(null, consts.superuser);
       }
+      if (
+        safeCompare(username, consts.dj.username) &&
+        safeCompare(password, consts.dj.password)
+      ) {
+        return done(null, consts.dj);
+      }
       db.user.findByArgs(
         { username: username, password: password },
         (err, row) => {
@@ -40,6 +46,7 @@ module.exports = function(app, passport, session, sessionStore, db) {
   passport.deserializeUser((id, done) => {
     if (id === consts.admin.id) return done(null, consts.admin);
     if (id === consts.superuser.id) return done(null, consts.superuser);
+    if (id === consts.dj.id) return done(null, consts.dj);
     db.user.findById(id, (err, row) => {
       done(null, row);
     });

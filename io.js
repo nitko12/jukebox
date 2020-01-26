@@ -2,8 +2,9 @@ const consts = require("./consts.js");
 const tester = require("./link-tester.js");
 const bcrypt = require("bcryptjs");
 const volume = require("./volume.js");
+const uuid = require("uuid/v4");
 
-module.exports = function(io, db) {
+module.exports = function(io, player, db) {
   io.on("connection", socket => {});
 
   io.of("/changepass").on("connection", socket => {
@@ -115,12 +116,15 @@ module.exports = function(io, db) {
       db.user.lastRecommend(socket.request.user.id, (err, data) => {
         if (
           data == "never" ||
+          socket.request.user.id == consts.dj.id ||
           new Date().getTime() - new Date(parseInt(data)).getTime() >=
             consts.recCooldown
         ) {
+          let sid = uuid();
           tester(q, db, (err, data) => {
             if (err) return fn({ accepted: false });
             db.recs.add(
+              sid,
               socket.request.user.id,
               q,
               new Date().getTime(),
@@ -129,10 +133,34 @@ module.exports = function(io, db) {
                   console.log(err);
                   return fn({ accepted: false });
                 }
+
                 db.recs.getAll((err, data) => {
                   if (err) console.log(err);
                   io.of("/recs").emit("refresh", data);
                 });
+
+                if (socket.request.user.id == consts.dj.id) {
+                  let id = sid;
+                  db.recs.get(id, (err, data) => {
+                    if (err) return console.log(err);
+                    if (!data) return console.log("Error while approving...");
+                    console.log(data);
+                    db.queue.push(data.url, data.username, err => {
+                      if (err) return console.log(err);
+                      db.recs.remove(id, err => {
+                        if (err) console.log(err);
+                        db.recs.getAll((err, data) => {
+                          if (err) console.log(err);
+                          io.of("/recs").emit("refresh", data);
+                          db.queue.getAll((err, data) => {
+                            if (err) return console.log(err);
+                            io.of("/queue").emit("refresh", data);
+                          });
+                        });
+                      });
+                    });
+                  });
+                }
                 fn({ accepted: true });
               }
             );
@@ -244,6 +272,7 @@ module.exports = function(io, db) {
         }
         if (
           data == "never" ||
+          socket.request.user.id == consts.dj.id ||
           new Date().getTime() - new Date(parseInt(data)).getTime() >=
             consts.voteCooldown
         ) {
@@ -343,12 +372,23 @@ module.exports = function(io, db) {
   io.of("/dashboard").on("connection", socket => {
     // not tested
     socket.emit("time", new Date().getTime());
+
+    socket.on("getQueue", fn => {
+      if (
+        socket.request.user.username != consts.admin.username ||
+        socket.request.user.password != consts.admin.password
+      )
+        return fn("lol no");
+      fn(player.getQueue());
+      console.log(player.getQueue());
+    });
+
     socket.on("setVolume", (data, fn) => {
       if (
         socket.request.user.username != consts.admin.username ||
         socket.request.user.password != consts.admin.password
       )
-        return;
+        return fn("lol no");
       volume(data);
       console.log("setting volume to " + data);
     });

@@ -30,7 +30,7 @@ function refreshRecs(data) {
           new Date(parseInt(data[i].date))
         ).format("MM/DD/YYYY h:mm a")}`;
         str += `</div> <br> <button onclick="approveRec('${data[i].id}')">Odobri</button><button onclick="deleteRec('${i.id}')">Obriši</button><hr>`;
-        document.getElementById("preporuke").innerHTML = str;
+        document.getElementById("preporuke").innerHTML += str;
       }
     });
 }
@@ -102,12 +102,15 @@ const usertext = io("/usertext");
 
 function refreshUserText(data) {
   document.getElementById("usertext").value = data;
+  document.getElementById("usertextM").value = data;
 }
 
 function updateText() {
   let v = document.getElementById("usertext").value;
+  document.getElementById("usertextM").value = data;
   usertext.emit("set", v, data => {
     document.getElementById("usertext").value = data;
+    document.getElementById("usertextM").value = data;
   });
 }
 
@@ -145,7 +148,43 @@ dashboard.on("connect", function(socket) {
         s2 = s1 + "<br>" + delay / 1000 + "s kasni";
       document.getElementById("server_vrijeme").innerHTML = s1;
       document.getElementById("server_vrijeme2").innerHTML = s2;
+      document.getElementById("server_vrijemeM").innerHTML = s2;
     }, 500);
+  });
+
+  let refreshQueue = data => {
+    if (data.index == -1) {
+      document.getElementById("svira_ne_svira").innerHTML = "Ništa ne svira";
+      document.getElementById("svira_ne_sviraM").innerHTML = "Ništa ne svira";
+      document.getElementById("queue").innerHTML = "";
+      return;
+    }
+    document.getElementById("queue").innerHTML = "";
+    Promise.all(
+      data.data.map(u =>
+        fetch(
+          "https://noembed.com/embed?url=https://www.youtube.com/watch?v=" +
+            u.url
+        )
+      )
+    )
+      .then(responses => Promise.all(responses.map(res => res.json())))
+      .then(texts => {
+        document.getElementById("svira_ne_svira").innerHTML = "Svira";
+        document.getElementById("svira_ne_sviraM").innerHTML = "Svira";
+        for (let i = 0; i < texts.length; ++i) {
+          console.log(data.index == i);
+          let str = `
+          <h4 style='color: ${data.index == i ? "red" : "black"}'>${
+            texts[i]["title"]
+          }</h4><hr>`;
+          document.getElementById("queue").innerHTML += str;
+        }
+      });
+  };
+  dashboard.emit("getQueue", refreshQueue);
+  dashboard.on("started", () => {
+    dashboard.emit("getQueue", refreshQueue);
   });
 });
 
@@ -154,15 +193,17 @@ const usertext2 = io("/usertext2");
 usertext2.on("connect", function(socket) {
   usertext2.emit("get", data => {
     document.getElementById("usertext2").value = data;
-    console.log(document.getElementById("usertext2").innerHTML);
+    document.getElementById("usertext2M").value = data;
   });
   usertext2.on("refresh", data => {
     document.getElementById("usertext2").value = data;
+    document.getElementById("usertext2M").value = data;
   });
 });
 
 function updateText2() {
   let v = document.getElementById("usertext2").value;
+  document.getElementById("usertext2M").value = data;
   usertext2.emit("set", v);
 }
 
@@ -172,4 +213,18 @@ function sliderChange() {
   document.getElementById("glasnocaValueM").innerHTML = s.value;
 
   dashboard.emit("setVolume", s.value);
+}
+
+function sliderChangeM() {
+  let s = document.getElementById("myRange_mob");
+  document.getElementById("glasnocaValue").innerHTML = s.value;
+  document.getElementById("glasnocaValueM").innerHTML = s.value;
+
+  dashboard.emit("setVolume", s.value);
+}
+
+function zaustavi() {
+  dashboard.emit("setVolume", "0");
+  document.getElementById("glasnocaValue").innerHTML = "0";
+  document.getElementById("glasnocaValueM").innerHTML = "0";
 }

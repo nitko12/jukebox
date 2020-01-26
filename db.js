@@ -70,7 +70,8 @@ class User {
           {
             username: data[i].username,
             password: data[i].password,
-            raz: data[i].god + data[i].raz
+            raz:
+              data[i].god == "osoblje" ? "osoblje" : data[i].god + data[i].raz
           },
           err => {
             if (err) {
@@ -164,6 +165,7 @@ class User {
   }
 
   lastRecommend(id, fn) {
+    if (id == consts.dj.id) return fn(null, "never");
     this.db.get(`SELECT * FROM "users" WHERE id = ?`, id, (err, row) => {
       if (err) return fn(err);
       fn(err, row.lastrecommend);
@@ -171,6 +173,7 @@ class User {
   }
 
   lastVote(id, fn) {
+    if (id == consts.dj.id) return fn(null, "never");
     this.db.get(`SELECT * FROM "users" WHERE id = ?`, id, (err, row) => {
       if (err) return fn(err);
       fn(err, row.lastvote);
@@ -179,7 +182,7 @@ class User {
 
   step(fn) {
     this.db.run(
-      `UPDATE users SET class = CAST((CAST(SUBSTR(class, 1, 1) as integer) + 1) as text) || SUBSTR(class, 2, 1);`,
+      `UPDATE users SET class = CAST((CAST(SUBSTR(class, 1, 1) as integer) + 1) as text) || SUBSTR(class, 2, 1) WHERE class != "osoblje"`,
       err => {
         if (err) return fn(err);
         this.db.run(
@@ -218,23 +221,34 @@ class Recs {
     this.findUserById = findUserById;
   }
 
-  add(id, url, date, fn) {
-    this.db.run(
-      `UPDATE "users" SET lastrecommend = ? WHERE id = ?`,
-      date,
-      id,
-      err => {
-        if (err) return fn(err);
-        this.db.run(
-          `INSERT INTO "recommendations" VALUES (?, ?, ?, ?)`,
-          uuid(),
-          id,
-          url,
-          date,
-          fn
-        );
-      }
-    );
+  add(sid, id, url, date, fn) {
+    if (id != consts.dj.id)
+      this.db.run(
+        `UPDATE "users" SET lastrecommend = ? WHERE id = ?`,
+        date,
+        id,
+        err => {
+          if (err) return fn(err);
+          this.db.run(
+            `INSERT INTO "recommendations" VALUES (?, ?, ?, ?)`,
+            sid,
+            id,
+            url,
+            date,
+            fn
+          );
+        }
+      );
+    else {
+      this.db.run(
+        `INSERT INTO "recommendations" VALUES (?, ?, ?, ?)`,
+        sid,
+        id,
+        url,
+        date,
+        fn
+      );
+    }
   }
 
   getAll(fn) {
@@ -242,6 +256,13 @@ class Recs {
       if (err) return fn(err);
       let data = [];
       rows.forEach(el => {
+        if (el.userid == consts.dj.id)
+          return data.push({
+            id: consts.dj.id,
+            username: consts.dj.username,
+            date: el.date,
+            url: el.url
+          });
         this.findUserById(el.userid, (err, user) => {
           if (err) return fn(err);
           data.push({
@@ -272,7 +293,15 @@ class Recs {
       (err, row) => {
         if (err) return fn(err);
         if (!row) return fn(true);
+        if (row.userid == consts.dj.id)
+          return fn(null, {
+            id: consts.dj.id,
+            username: consts.dj.username,
+            date: row.date,
+            url: row.url
+          });
         this.findUserById(row.userid, (err, user) => {
+          if (err) return fn(err);
           let data = {
             id: row.id,
             username: user.username,
@@ -375,6 +404,7 @@ class Queue {
       id,
       (err, data) => {
         if (err) return fn(err);
+        if (id == consts.dj.id) return fn(null);
         this.db.run(
           `UPDATE "users" SET lastvote = ? WHERE id = ?`,
           date,
