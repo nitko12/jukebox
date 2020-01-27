@@ -4,7 +4,8 @@ document.getElementById("red").innerHTML = "Učitavanje...";
 const recs = io("/recs");
 
 function refreshRecs(data) {
-  data.sort((a, b) => parseInt(a.date) - parseInt(b.date));
+  data.reverse();
+  data.sort((a, b) => parseInt(b.date) - parseInt(a.date));
   document.getElementById("preporuke").innerHTML = "";
   Promise.all(
     data.map(u =>
@@ -57,6 +58,7 @@ recs.on("connect", function(socket) {
 const queue = io("/queue");
 
 function refreshQueue(data) {
+  data.reverse();
   data.sort((a, b) => parseInt(b.votes) - parseInt(a.votes));
   document.getElementById("red").innerHTML = "";
   Promise.all(
@@ -115,6 +117,14 @@ function updateText() {
   });
 }
 
+function updateText2() {
+  let v = document.getElementById("usertext2").value;
+  usertext2.emit("set", v, data => {
+    document.getElementById("usertext2").value = data;
+    document.getElementById("usertext2M").value = data;
+  });
+}
+
 usertext.on("connect", function(socket) {
   usertext.emit("get", null, data => {
     refreshUserText(data);
@@ -138,6 +148,7 @@ dashboard.on("connect", function(socket) {
     document.getElementById("glasnoca").value = data;
     document.getElementById("glasnocaValue").innerHTML = data;
     document.getElementById("glasnocaValueM").innerHTML = data;
+    document.getElementById("demo_mob").innerHTML = data;
   });
   dashboard.on("time", data => {
     delay = new Date().getTime() - data;
@@ -146,7 +157,8 @@ dashboard.on("connect", function(socket) {
       let d = new Date(new Date().getTime() - delay);
       let s1 =
           f(d.getHours()) + ":" + f(d.getMinutes()) + ":" + f(d.getSeconds()),
-        s2 = s1 + "<br>" + delay / 1000 + "s kasni";
+        s2 =
+          s1 + "<br>" + abs(delay) / 1000 + (delay > 0 ? "s kasni" : "s žuri");
       document.getElementById("server_vrijeme").innerHTML = s1;
       document.getElementById("server_vrijeme2").innerHTML = s2;
       document.getElementById("server_vrijemeM").innerHTML = s2;
@@ -202,11 +214,19 @@ usertext2.on("connect", function(socket) {
   });
 });
 
-function updateText2() {
-  let v = document.getElementById("usertext2").value;
-  usertext2.emit("set", v, data => {
+function updateTextM() {
+  let v = document.getElementById("usertextM").value;
+  usertext.emit("set", v, data => {
     document.getElementById("usertext").value = data;
     document.getElementById("usertextM").value = data;
+  });
+}
+
+function updateText2M() {
+  let v = document.getElementById("usertext2M").value;
+  usertext2.emit("set", v, data => {
+    document.getElementById("usertext2").value = data;
+    document.getElementById("usertext2M").value = data;
   });
 }
 
@@ -230,4 +250,25 @@ function zaustavi() {
   dashboard.emit("setVolume", "0");
   document.getElementById("glasnocaValue").innerHTML = "0";
   document.getElementById("glasnocaValueM").innerHTML = "0";
+}
+
+function onkey(event) {
+  if (event.keyCode == 13) {
+    updateText();
+  }
+}
+function onkey2(event) {
+  if (event.keyCode == 13) {
+    updateText2();
+  }
+}
+function onkeyM(event) {
+  if (event.keyCode == 13) {
+    updateTextM();
+  }
+}
+function onkey2M(event) {
+  if (event.keyCode == 13) {
+    updateText2M();
+  }
 }

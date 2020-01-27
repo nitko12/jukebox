@@ -3,6 +3,7 @@ document.getElementById("data").innerHTML = "Učitavanje...";
 const queue = io("/queue");
 
 async function refreshQueue(data) {
+  data.reverse();
   data.sort((a, b) => parseInt(b.votes) - parseInt(a.votes));
   document.getElementById("data").innerHTML = "";
   Promise.all(

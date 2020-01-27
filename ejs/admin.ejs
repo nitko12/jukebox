@@ -170,13 +170,13 @@
 
             				<!-- MODAL CONTENT -->
             				<h2>Poruka administratora na naslovnici</h2>
-                			<input type="text" style="" id="usertext" placeholder="Ovdje utipkaj tekst koji će se prikazati na naslovnici"><br>
+                			<input type="text" style="" id="usertext" placeholder="Ovdje utipkaj tekst koji će se prikazati na naslovnici" onkeyup="onkey(event)"><br>
                 			<center><button onclick="updateText()" id="gumb-admin">Pošalji</button></center>
 
                 			<br><br><br>
 
                 			<h2>Poruka administratora prijavljenim korisnicima</h2>
-                			<input type="text" style="" id="usertext2" placeholder="Ovdje utipkaj tekst koji će vidjeti samo prijavljeni korisnici"><br>
+                			<input type="text" style="" id="usertext2" placeholder="Ovdje utipkaj tekst koji će vidjeti samo prijavljeni korisnici" onkeyup="onkey2(event)"><br>
                 			<center><button onclick="updateText2()" id="gumb-admin">Pošalji</button></center>
             				
             		</div>
@@ -321,14 +321,14 @@
                 <br><br><br>
 
                 <h2>Poruka administratora na naslovnici</h2>
-                <input type="text" style="" id="usertextM" placeholder="Ovdje utipkaj tekst koji će se prikazati na naslovnici" ><br>
-                <center><button onclick="updateText()" id="gumb-admin">Pošalji</button></center>
+                <input type="text" id="usertextM" placeholder="Ovdje utipkaj tekst koji će se prikazati na naslovnici" onkeyup='onkeyM(event)' /><br>
+                <center><button id='gumb-admin' onclick='updateTextM();'>Pošalji</button></center>
 
                 <br><br><br>
 
                 <h2>Poruka administratora prijavljenim korisnicima</h2>
-                <input type="text" style="" id="usertext2M" placeholder="Ovdje utipkaj tekst koji će vidjeti samo prijavljeni korisnici" ><br>
-                <center><button onclick="updateText()" id="gumb-admin">Pošalji</button></center>
+                <input type='text' id='usertext2M' placeholder='Ovdje utipkaj tekst koji će vidjeti samo prijavljeni korisnici' onkeyup='onkey2M(event)'><br>
+                <center><button onclick='updateText2M()' id='gumb-admin'>Pošalji</button></center>
 
                 <br><br><br>
 

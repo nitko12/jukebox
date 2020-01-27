@@ -117,8 +117,20 @@ users.on("connect", socket => {
   });
 });
 
+function clearAll() {
+  for (let i of ["1", "2", "3", "4"])
+    for (let j of ["a", "b", "c", "d", "e", "f", "g"])
+      if (Array.from(document.getElementsByClassName(i + j)).length != 0)
+        Array.from(document.getElementsByClassName(i + j))[0].innerHTML =
+          "Nema korisnika.";
+  if (Array.from(document.getElementsByClassName("osoblje")).length != 0)
+    Array.from(document.getElementsByClassName("osoblje"))[0].innerHTML =
+      "Nema korisnika.";
+}
+
 function refreshAll() {
   let data = allUsers;
+  clearAll();
   let str = "Svi korisnici<div style='width:60%'></div>";
   str += `<select id='godDel'>
         <option value=" "> </option>
@@ -147,14 +159,24 @@ function refreshAll() {
       "<div style='width:30%'>Korisničko ime: " +
       data[i].username +
       "</div> | ";
-    t += "<div style='width:30%'>Razred: " + data[i].class + "</div> | ";
     t += `Obriši: <input type="checkbox" id="ch${i}">`;
     t += `<hr>`;
 
-    if (Array.from(document.getElementsByClassName(data[i].class)).length != 0)
+    if (
+      Array.from(document.getElementsByClassName(data[i].class)).length != 0 &&
+      document.getElementsByClassName(data[i].class)[0].innerHTML ==
+        "Nema korisnika."
+    ) {
+      Array.from(
+        document.getElementsByClassName(data[i].class)
+      )[0].innerHTML = t;
+    } else if (
+      Array.from(document.getElementsByClassName(data[i].class)).length != 0
+    ) {
       Array.from(
         document.getElementsByClassName(data[i].class)
       )[0].innerHTML += t;
+    }
   }
 }
 

@@ -1,6 +1,7 @@
 const queue = io("/publicqueue");
 
 async function refreshQueue(data) {
+  data.reverse();
   data.sort((a, b) => parseInt(b.votes) - parseInt(a.votes));
   const response = await fetch(
     `https://noembed.com/embed?url=https://www.youtube.com/watch?v=${data[0].url}`
