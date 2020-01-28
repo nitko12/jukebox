@@ -158,7 +158,10 @@ dashboard.on("connect", function(socket) {
       let s1 =
           f(d.getHours()) + ":" + f(d.getMinutes()) + ":" + f(d.getSeconds()),
         s2 =
-          s1 + "<br>" + abs(delay) / 1000 + (delay > 0 ? "s kasni" : "s žuri");
+          s1 +
+          "<br>" +
+          Math.abs(delay) / 1000 +
+          (delay > 0 ? "s kasni" : "s žuri");
       document.getElementById("server_vrijeme").innerHTML = s1;
       document.getElementById("server_vrijeme2").innerHTML = s2;
       document.getElementById("server_vrijemeM").innerHTML = s2;
