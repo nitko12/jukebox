@@ -8,6 +8,8 @@ module.exports = function(express, app, passport) {
   app.use("/slike", express.static("./slike"));
   app.use(cors());
 
+  app.use("/favicon.ico", express.static("./public/favicon.ico"));
+
   app.get("/", (req, res) => {
     if (
       (req.isAuthenticated() &&
@@ -50,7 +52,7 @@ module.exports = function(express, app, passport) {
   });
 
   app.post("/login", (req, res, next) => {
-    if (req.isAuthenticated()) return res.send("Already logged in!");
+    if (req.isAuthenticated()) return res.redirect("/");
     passport.authenticate("local", (err, user, info) => {
       if (err) return console.log(err);
       if (!user) return res.redirect("/?login=0");
@@ -61,7 +63,7 @@ module.exports = function(express, app, passport) {
   });
 
   app.post("/logout", (req, res, next) => {
-    if (!req.isAuthenticated()) return res.send("Not logged in!");
+    if (!req.isAuthenticated()) return res.redirect("/");
     req.logout();
     res.redirect("/");
   });

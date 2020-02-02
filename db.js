@@ -2,6 +2,7 @@ const consts = require("./consts.js");
 var sqlite3 = require("sqlite3").verbose();
 const uuid = require("uuid/v4");
 const bcrypt = require("bcryptjs");
+const safeCompare = require("safe-compare");
 
 class User {
   constructor(db) {
@@ -165,7 +166,7 @@ class User {
   }
 
   lastRecommend(id, fn) {
-    if (id == consts.dj.id) return fn(null, "never");
+    if (safeCompare(id, consts.dj.id)) return fn(null, "never");
     this.db.get(`SELECT * FROM "users" WHERE id = ?`, id, (err, row) => {
       if (err) return fn(err);
       fn(err, row.lastrecommend);
@@ -173,7 +174,7 @@ class User {
   }
 
   lastVote(id, fn) {
-    if (id == consts.dj.id) return fn(null, "never");
+    if (safeCompare(id, consts.dj.id)) return fn(null, "never");
     this.db.get(`SELECT * FROM "users" WHERE id = ?`, id, (err, row) => {
       if (err) return fn(err);
       fn(err, row.lastvote);
@@ -256,7 +257,7 @@ class Recs {
       if (err) return fn(err);
       let data = [];
       rows.forEach(el => {
-        if (el.userid == consts.dj.id)
+        if (safeCompare(el.userid, consts.dj.id))
           return data.push({
             id: el.id,
             username: consts.dj.username,
@@ -293,7 +294,7 @@ class Recs {
       (err, row) => {
         if (err) return fn(err);
         if (!row) return fn(true);
-        if (row.userid == consts.dj.id)
+        if (safeCompare(row.userid, consts.dj.id))
           return fn(null, {
             id: consts.dj.id,
             username: consts.dj.username,
@@ -404,7 +405,7 @@ class Queue {
       id,
       (err, data) => {
         if (err) return fn(err);
-        if (id == consts.dj.id) return fn(null);
+        if (safeCompare(id, consts.dj.id)) return fn(null);
         this.db.run(
           `UPDATE "users" SET lastvote = ? WHERE id = ?`,
           date,

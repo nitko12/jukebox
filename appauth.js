@@ -44,9 +44,10 @@ module.exports = function(app, passport, session, sessionStore, db) {
   });
 
   passport.deserializeUser((id, done) => {
-    if (id === consts.admin.id) return done(null, consts.admin);
-    if (id === consts.superuser.id) return done(null, consts.superuser);
-    if (id === consts.dj.id) return done(null, consts.dj);
+    if (safeCompare(id, consts.admin.id)) return done(null, consts.admin);
+    if (safeCompare(id, consts.superuser.id))
+      return done(null, consts.superuser);
+    if (safeCompare(id, consts.dj.id)) return done(null, consts.dj);
     db.user.findById(id, (err, row) => {
       done(null, row);
     });

@@ -3,6 +3,7 @@ const tester = require("./link-tester.js");
 const bcrypt = require("bcryptjs");
 const volume = require("./volume.js");
 const uuid = require("uuid/v4");
+const safeCompare = require("safe-compare");
 
 module.exports = function(io, player, db) {
   io.on("connection", socket => {});
@@ -12,7 +13,7 @@ module.exports = function(io, player, db) {
       if (!socket.request.user) return fn("lol no");
       if (
         !socket.request.user.logged_in ||
-        socket.request.user.username == consts.admin.username
+        safeCompare(socket.request.user.username, consts.admin.username)
       )
         return fn("lol no");
       if (!data.lastpass || !data.newpass) return fn({ accepted: false });
@@ -31,8 +32,8 @@ module.exports = function(io, player, db) {
   io.of("/user").on("connection", socket => {
     socket.on("stepYear", fn => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       db.user.step((err, data) => {
@@ -45,8 +46,8 @@ module.exports = function(io, player, db) {
     });
     socket.on("reqrefresh", fn => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       db.user.getAll((err, data) => {
@@ -56,10 +57,13 @@ module.exports = function(io, player, db) {
     });
     socket.on("set", (data, fn) => {
       if (
-        (socket.request.user.username != consts.admin.username ||
-          socket.request.user.password != consts.admin.password) &&
-        (socket.request.user.username != consts.superuser.username ||
-          socket.request.user.password != consts.superuser.password)
+        (!safeCompare(socket.request.user.username, consts.admin.username) ||
+          !safeCompare(socket.request.user.password, consts.admin.password)) &&
+        (!safeCompare(
+          socket.request.user.username,
+          consts.superuser.username
+        ) ||
+          !safeCompare(socket.request.user.password, consts.superuser.password))
       )
         return fn("lol no");
       db.user.batch(data, err => {
@@ -72,8 +76,8 @@ module.exports = function(io, player, db) {
     });
     socket.on("deletefromdb", (data, fn) => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       db.user.delete(data, (err, users) => {
@@ -92,8 +96,8 @@ module.exports = function(io, player, db) {
   io.of("/recs").on("connection", function(socket) {
     socket.on("get", (msg, fn) => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       db.recs.getAll((err, data) => {
@@ -104,7 +108,7 @@ module.exports = function(io, player, db) {
     socket.on("add", (link, fn) => {
       if (
         !socket.request.user.logged_in ||
-        socket.request.user.username == consts.admin.username
+        safeCompare(socket.request.user.username, consts.admin.username)
       )
         return fn("lol no");
       let q;
@@ -116,7 +120,7 @@ module.exports = function(io, player, db) {
       db.user.lastRecommend(socket.request.user.id, (err, data) => {
         if (
           data == "never" ||
-          socket.request.user.id == consts.dj.id ||
+          safeCompare(socket.request.user.id, consts.dj.id) ||
           new Date().getTime() - new Date(parseInt(data)).getTime() >=
             consts.recCooldown
         ) {
@@ -139,7 +143,7 @@ module.exports = function(io, player, db) {
                   io.of("/recs").emit("refresh", data);
                 });
 
-                if (socket.request.user.id == consts.dj.id) {
+                if (safeCompare(socket.request.user.id, consts.dj.id)) {
                   let id = sid;
                   db.recs.get(id, (err, data) => {
                     if (err) return console.log(err);
@@ -172,8 +176,8 @@ module.exports = function(io, player, db) {
 
     socket.on("approve", id => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       db.recs.get(id, (err, data) => {
@@ -198,8 +202,8 @@ module.exports = function(io, player, db) {
 
     socket.on("delete", id => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       db.recs.remove(id, err => {
@@ -215,8 +219,8 @@ module.exports = function(io, player, db) {
   io.of("/schedule").on("connection", socket => {
     socket.on("get", (msg, fn) => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       db.schedule.get((err, data) => {
@@ -226,8 +230,8 @@ module.exports = function(io, player, db) {
     });
     socket.on("set", (data, fn) => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       db.schedule.set(data.json, err => {
@@ -271,7 +275,7 @@ module.exports = function(io, player, db) {
         }
         if (
           data == "never" ||
-          socket.request.user.id == consts.dj.id ||
+          safeCompare(socket.request.user.id, consts.dj.id) ||
           new Date().getTime() - new Date(parseInt(data)).getTime() >=
             consts.voteCooldown
         ) {
@@ -319,8 +323,8 @@ module.exports = function(io, player, db) {
 
     socket.on("set", (data, fn) => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       db.usertext.set(data, err => {
@@ -355,8 +359,8 @@ module.exports = function(io, player, db) {
     });
     socket.on("set", (data, fn) => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       db.usertext2.set(data, err => {
@@ -372,8 +376,8 @@ module.exports = function(io, player, db) {
 
     socket.on("getQueue", fn => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       fn(player.getQueue());
@@ -381,8 +385,8 @@ module.exports = function(io, player, db) {
 
     socket.on("setVolume", (data, fn) => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return fn("lol no");
       volume(data);
@@ -390,8 +394,8 @@ module.exports = function(io, player, db) {
     });
     socket.on("getVolume", fn => {
       if (
-        socket.request.user.username != consts.admin.username ||
-        socket.request.user.password != consts.admin.password
+        !safeCompare(socket.request.user.username, consts.admin.username) ||
+        !safeCompare(socket.request.user.password, consts.admin.password)
       )
         return;
       volume(undefined, fn);

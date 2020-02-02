@@ -55,6 +55,23 @@ i:active {
   width: 100%;
   background-color: #0099e5;
   overflow: auto;
+  height: 188px;
+}
+
+#navbar {
+  background-color: #0099e5;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: block;
+  transition: top 0.6s;
+  z-index: 2;
+  height: 188px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
 }
 
 input[type="text"],
@@ -190,10 +207,8 @@ input:focus:-ms-input-placeholder {
 }
 
 .korisnik {
-  width: 10%;
   text-align: center;
   font-size: 100px;
-  float: right;
 }
 
 #poruka-administratora {
@@ -494,7 +509,7 @@ input:focus:-ms-input-placeholder {
 
 .column#caption .text {
   position: absolute;
-  top: 63%;
+  top: 79%;
   left: 90%;
   transform: translate(-90%, -63%);
   z-index: 1;
@@ -628,6 +643,9 @@ input:focus:-ms-input-placeholder {
 #usertext {
   width: 50%;
 }
+#usertext2 {
+  width: 50%;
+}
 #gumb-admin {
   width: 25%;
 }
@@ -728,6 +746,19 @@ input:focus:-ms-input-placeholder {
   color: black;
 }
 
+.odabir_pjesmice {
+  width: 100%;
+  padding: 60px;
+}
+.pjesmica {
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: solid black 0px;
+}
+
 .stanje_icon {
   color: red;
 }
@@ -794,7 +825,8 @@ input:focus:-ms-input-placeholder {
 }
 
 @media screen and (min-width: 1000px) {
-  #social_networks {
+  #social_networks,
+  .praznina_za_mob {
     display: none;
   }
   #page-nav-wrap {
@@ -806,7 +838,8 @@ input:focus:-ms-input-placeholder {
   .skriveni_dragulj {
     display: none;
   }
-  .sakrij_na_racunalu {
+  .sakrij_na_racunalu,
+  #pjesmica1 {
     display: none;
   }
 }
@@ -815,6 +848,15 @@ input:focus:-ms-input-placeholder {
   div {
     display: block;
     width: 100%;
+  }
+  .pjesmica {
+    display: inline-block;
+    margin: 0px;
+    padding: 30px;
+  }
+  .praznina_za_mob {
+    display: block;
+    height: 122px;
   }
   #vlasnik {
     font-size: 30px;
@@ -829,7 +871,12 @@ input:focus:-ms-input-placeholder {
     font-family: ;
   }
 
-  .zaglavlje {
+  .zaglavlje,
+  #navbar {
+    display: none;
+  }
+
+  .trend-no1 {
     display: none;
   }
 
@@ -846,6 +893,7 @@ input:focus:-ms-input-placeholder {
   #e-posta,
   #adresa,
   #usertext,
+  #usertext2,
   #divvid,
   #w45,
   #w85,
@@ -899,6 +947,9 @@ input:focus:-ms-input-placeholder {
 /* NAVIGATION BAR */
 #page-nav-wrap {
   background: #0099e5;
+  z-index: 2;
+  position: fixed;
+  width: 100%;
 }
 #page-nav {
   display: flex;
