@@ -71,7 +71,7 @@ function refreshQueue(data) {
       for (let i = 0; i < texts.length; ++i) {
         let str = `    
           <span style="cursor:default;">
-          <a class="new_iframe_thumbnail" id="thumbnail_space" href="#">
+          <a class="new_iframe_thumbnail" id="thumbnail_space" href="https://www.youtube.com/watch?v=${data[i].url}">
             <span class="thumbnail_naslov">
               <h1 class="naslov_video" id="naslov_videozapisa">${texts[i]["title"]}</h1>
               <div class="play_button"></div>
