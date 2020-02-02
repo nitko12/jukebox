@@ -9,7 +9,6 @@ module.exports = function(express, app, passport) {
   app.use(cors());
 
   app.get("/", (req, res) => {
-    if (req.user) console.log(req.user);
     if (
       (req.isAuthenticated() &&
         safeCompare(req.user.username, consts.admin.username) &&

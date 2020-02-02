@@ -32,7 +32,6 @@ function refreshRecs(data) {
         ).format("MM/DD/YYYY h:mm a")}`;
         str += `</div> <br> <button onclick="approveRec('${data[i].id}')">Odobri</button><button onclick="deleteRec('${data[i].id}')">Obriši</button><hr>`;
         document.getElementById("preporuke").innerHTML += str;
-        console.log(data[i]);
       }
     });
 }
@@ -42,7 +41,6 @@ function approveRec(id) {
 }
 
 function deleteRec(id) {
-  console.log(id);
   recs.emit("delete", id);
 }
 
@@ -70,7 +68,6 @@ function refreshQueue(data) {
   )
     .then(responses => Promise.all(responses.map(res => res.json())))
     .then(texts => {
-      console.log(texts, data);
       for (let i = 0; i < texts.length; ++i) {
         let str = `    
           <span style="cursor:default;">
@@ -189,7 +186,6 @@ dashboard.on("connect", function(socket) {
         document.getElementById("svira_ne_svira").innerHTML = "Svira";
         document.getElementById("svira_ne_sviraM").innerHTML = "Svira";
         for (let i = 0; i < texts.length; ++i) {
-          console.log(data.index == i);
           let str = `
           <h4 style='color: ${data.index == i ? "red" : "black"}'>${
             texts[i]["title"]

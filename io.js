@@ -144,7 +144,6 @@ module.exports = function(io, player, db) {
                   db.recs.get(id, (err, data) => {
                     if (err) return console.log(err);
                     if (!data) return console.log("Error while approving...");
-                    console.log(data);
                     db.queue.push(data.url, data.username, err => {
                       if (err) return console.log(err);
                       db.recs.remove(id, err => {
@@ -324,7 +323,6 @@ module.exports = function(io, player, db) {
         socket.request.user.password != consts.admin.password
       )
         return fn("lol no");
-      console.log(data);
       db.usertext.set(data, err => {
         db.usertext.get((err, data) => {
           if (err) return console.log(err);
@@ -379,7 +377,6 @@ module.exports = function(io, player, db) {
       )
         return fn("lol no");
       fn(player.getQueue());
-      console.log(player.getQueue());
     });
 
     socket.on("setVolume", (data, fn) => {
