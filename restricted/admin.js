@@ -169,10 +169,12 @@ dashboard.on("connect", function(socket) {
     if (data.index == -1) {
       document.getElementById("svira_ne_svira").innerHTML = "ne svira";
       document.getElementById("svira_ne_sviraM").innerHTML = "ne svira";
-      document.getElementById("queue").innerHTML = "";
+      document.getElementById("queue").innerHTML = "Ništa";
+      document.getElementById("sviraSadM").innerHTML = "Ništa";
       return;
     }
     document.getElementById("queue").innerHTML = "";
+    document.getElementById("sviraSadM").innerHTML = "";
     Promise.all(
       data.data.map(u =>
         fetch(
@@ -191,6 +193,7 @@ dashboard.on("connect", function(socket) {
             texts[i]["title"]
           }</h4><hr>`;
           document.getElementById("queue").innerHTML += str;
+          document.getElementById("sviraSadM").innerHTML += str;
         }
       });
   };
