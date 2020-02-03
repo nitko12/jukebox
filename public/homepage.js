@@ -23,12 +23,15 @@ async function refreshQueue(data) {
         document.getElementById(
           `link_${i + 1}`
         ).href = `https://www.youtube.com/watch?v=${data[i].url}`;
-        document.getElementById(
-          `naslov_videozapisa_trend_${i + 1}_mob`
-        ).innerHTML = texts[i]["title"];
 
-        document.getElementById(`thumbnail_slika_${i + 1}_mob`).src =
-          texts[i]["thumbnail_url"];
+        if (i == 0)
+          document.getElementById(
+            `naslov_videozapisa_trend_${i + 1}_mob`
+          ).innerHTML = texts[i]["title"];
+        if (i == 0)
+          document.getElementById(`thumbnail_slika_${i + 1}_mob`).src =
+            texts[i]["thumbnail_url"];
+
         document.getElementById(`naslov_videozapisa_trend_${i + 1}`).innerHTML =
           texts[i]["title"];
         document.getElementById(`thumbnail_slika_${i + 1}`).src =
@@ -41,9 +44,10 @@ async function refreshQueue(data) {
       document.getElementById(
         `naslov_videozapisa_trend_${i}`
       ).src = `https://www.youtube-nocookie.com/embed/${data[i - 1].url}`;
-    document.getElementById(
-      `naslov_videozapisa_trend_${i}_mob`
-    ).src = `https://www.youtube-nocookie.com/embed/${data[i - 1].url}`;
+    if (data[i - 1] && i == 1)
+      document.getElementById(
+        `naslov_videozapisa_trend_${i}_mob`
+      ).src = `https://www.youtube-nocookie.com/embed/${data[i - 1].url}`;
   }
 }
 
