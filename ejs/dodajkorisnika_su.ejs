@@ -1,4 +1,4 @@
-<!-- PREDLOŽI PJESMU -->
+<!-- DODAJ KORISNIKA - SUPERUSER -->
 <!DOCTYPE html>
 <html xml:lang="hr" lang="hr">
   <head>
@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Jukebox | Predloži pjesmu</title>
+    <title>Jukebox | Dodaj korisnika</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="icon" type="image/gif" href="/favicon.ico" />
 
@@ -34,9 +34,9 @@
 
     <!-- LINK NA DRUŠTVENIM MREŽAMA -->
     <meta property="og:image" content="/slike/logo.jpg" />
-    <meta property="og:url" content="/predlozi" />
+    <meta property="og:url" content="/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Jukebox | Predloži pjesmu" />
+    <meta property="og:title" content="Jukebox" />
     <meta
       property="og:description"
       content="Prijavi se i daj svoj glas za pjesmu koja će svirati idući odmor."
@@ -54,17 +54,7 @@
       <table style="width: 100%;">
         <tr>
           <td style="width: 25%; text-align: center;">
-            <div class="korisnik">
-              <a href="/">
-                <i
-                  class="material-icons user"
-                  style="font-size:45px;"
-                  title="Glasaj"
-                  id="glasaj"
-                  >thumbs_up_down</i
-                >
-              </a>
-            </div>
+            <div class="korisnik"></div>
           </td>
           <td style="width: 50%; text-align: center;">
             <a href="/"><img src="../slike/logo.jpg" width="180px;"/></a>
@@ -105,15 +95,7 @@
       <div id="page-nav">
         <a><p>Pozdrav, <%= user %></p></a>
         <hr id="nav-crta" />
-        <a href="/">
-          Glasaj
-        </a>
-        <hr id="nav-crta" />
-        <a href="/promjenisifru">
-          Promijeni lozinku
-        </a>
-        <hr id="nav-crta" />
-        <a href="/upute">
+        <a href="/public/upute.html">
           Upute za korištenje & više
         </a>
         <a href="#" style="color: #0099e5;">
@@ -190,19 +172,7 @@
           <li>
             <i class="material-icons" style="font-size: 14px; color: #0099e5;"
               >keyboard_arrow_right</i
-            ><a href="/" style="color: #0099e5;">Glasaj</a>
-          </li>
-          <li>
-            <i class="material-icons" style="font-size: 14px; color: #0099e5;"
-              >keyboard_arrow_right</i
-            ><a href="/promjenisifru" style="color: #0099e5;"
-              >Promijeni lozinku</a
-            >
-          </li>
-          <li>
-            <i class="material-icons" style="font-size: 14px; color: #0099e5;"
-              >keyboard_arrow_right</i
-            ><a href="/upute" style="color: #0099e5;"
+            ><a href="/public/upute.html" style="color: #0099e5;"
               >Upute za korištenje & više</a
             >
           </li>
@@ -241,7 +211,6 @@
         }
       });
     </script>
-
     <div class="icon-bar">
       <a
         href="https://www.facebook.com/3gmos/"
@@ -268,40 +237,74 @@
 
     <!-- MAIN CONTENT -->
     <span id="sadrzaj" style="width: 100%;">
-      <div style="width: 100%;" id="poruka-admina" style="text-align: center;">
-        <p style="text-align: center;">
-          <span id="poruka-administratora"></span>
-        </p>
-      </div>
-      <div style="height: 50px; width: 100%;" class="obrisi"></div>
-
-      <div style="width: 100%;">
-        <div style="width: 100%;">
-          <div
-            style="display: block; margin: auto; width:100%; text-align: center;"
-          >
-            <h1>Youtube link pjesme:</h1>
-            <input
-              id="link"
-              type="text"
-              placeholder="Zalijepi link pjesme s YouTubea"
-            /><br />
-            <button onclick="submit()" class="w80">Pošalji</button>
-
-            <div style="height: 50px; width: 100%;" class="obrisi"></div>
-
+      <div style="width: 10%;" class="obrisi"></div>
+      <div id="divvid">
+        <div style="width: 5%;" class="obrisi"></div>
+        <div id="w85">
+          <div style="width: 100%;">
+            <div id="table" style="width:100%"></div>
+            <!-- dinamicki stvoreno-->
             <center>
-              <div style="border: 2px solid #0083c4; padding: 8px;" class="w78">
-                <center>
-                  <p id="status">Ništa još nije predloženo</p>
-                </center>
-              </div>
+              <button
+                style="margin-left: auto;margin-right: auto;width:40%;display: inline-block; overflow: hidden; border: 2px solid #0083c4;"
+                onclick="adduser()"
+              >
+                <i class="material-icons" style="font-size: 35px; color: white"
+                  >add_circle_outline</i
+                >
+              </button>
             </center>
-            <br />
+          </div>
+          <br /><br />
+          <hr />
+          <br /><br />
+          <div style="width: 100%;">
+            <div id="w45">SAMOISPUNA:</div>
+            <div id="w45">
+              <div id="w20"><br />| Lozinka:</div>
+              &nbsp;<input
+                type="text"
+                name="password"
+                class="w50"
+                id="passwordauto"
+                placeholder="lozinka"
+              />&nbsp;<button onclick="fill(0)">POPUNI</button>
+              <br />
+              <div id="w20">| Razred:</div>
+              &nbsp;
+              <div id="w50_7">
+                <select id="godauto">
+                  <option value="1">1.</option>
+                  <option value="2">2.</option>
+                  <option value="3">3.</option>
+                  <option value="4">4.</option>
+                  <option value="osoblje">osoblje</option>
+                </select>
+                <select id="razauto">
+                  <option value="a">a</option>
+                  <option value="b">b</option>
+                  <option value="c">c</option>
+                  <option value="d">d</option>
+                  <option value="e">e</option>
+                  <option value="f">f</option>
+                  <option value="g">g</option>
+                </select>
+              </div>
+              <button onclick="fill(1)">POPUNI</button>
+            </div>
+
+            <div style="text-align: center; width: 100%;">
+              <br /><br /><br />
+              <button
+                onclick="submit()"
+                style="width: 80%; border: 4px solid #0083c4;"
+              >
+                <b><br />UNESI KORISNIKE<br /></b></button
+              ><br /><br /><br />
+            </div>
           </div>
         </div>
       </div>
-      <div style="height: 50px; width: 100%" class="obrisi"></div>
     </span>
 
     <!-- FOOTER -->
@@ -374,6 +377,6 @@
       data-cookie="prvi-kolacic"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script src="/user/recommend.js"></script>
+    <script src="/restricted/adduser.js"></script>
   </body>
 </html>

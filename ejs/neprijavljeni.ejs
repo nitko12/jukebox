@@ -44,7 +44,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   </head>
 
-  <body>
+<body>
     <div class="zaglavlje" id="#top">
       <div class="naslov"></div>
       <div class="korisnik"></div>
@@ -95,7 +95,7 @@
           </td>
           <td style="width: 40%;"></td>
           <td style="width: 30%; text-align: right;">
-            <a href="/"><img src="../slike/logo.jpg" width="120px;"/></a>
+            <a href="/"><img src="../slike/logo.jpg" width="120px;" /></a>
           </td>
         </tr>
       </table>
@@ -151,7 +151,7 @@
         var currentScrollPos = window.pageYOffset;
         var checkbox = document.getElementById("hamburger");
 
-        if (prevScrollpos > currentScrollPos) {
+        if (prevScrollpos > currentScrollPos || currentScrollPos < 100) {
           document.getElementById("navbar").style.top = "0";
           document.getElementById("page-nav-wrap").style.top = "0";
         } else {
@@ -187,12 +187,13 @@
             name="password"
             required
           /><br /><br />
+          <a href="/problem" class="kontakt-admin"><b><u>Zaboravljena lozinka ili korisničko ime</b></u></a><br><br>
           <button id="btn-log in" type="submit">Prijavi se</button>
           <button id="btn-log out" type="button" class="cancelbtn">
             Odustani
-          </button>
-          <a href="/public/upute.html"><button>Upute za korištenje</button></a>
+          </button> 
         </form>
+        <a href="/public/upute.html"><button>Upute za korištenje</button></a>
       </div>
     </div>
 
@@ -310,17 +311,10 @@
                 <span style="cursor:default;">
                   <a class="new_iframe_thumbnail" id="link_1_mob" href="">
                     <span class="thumbnail_naslov">
-                      <h1
-                        class="naslov_video"
-                        id="naslov_videozapisa_trend_1_mob"
-                      ></h1>
+                      <h1 class="naslov_video" id="naslov_videozapisa_trend_1_mob"></h1>
                       <div class="play_button"></div>
                     </span>
-                    <img
-                      src=""
-                      id="thumbnail_slika_1_mob"
-                      class="thumbnail_slika"
-                    />
+                    <img src="" id="thumbnail_slika_1_mob" class="thumbnail_slika"/>
                   </a>
                 </span>
               </div>

@@ -69,7 +69,7 @@
         <tr>
           <td style="width: 25%; text-align: center;">
             <div class="korisnik">
-              <a href="/cookies"
+              <a href="/public/cookies.html"
                 ><i
                   class="material-icons user"
                   style="font-size:45px;"
@@ -121,7 +121,7 @@
           Naslovnica
         </a>
         <hr id="nav-crta" />
-        <a href="/cookies">
+        <a href="/public/cookies.html">
           Pravila o kolačićima
         </a>
         <a id="social">
@@ -166,7 +166,7 @@
         var currentScrollPos = window.pageYOffset;
         var checkbox = document.getElementById("hamburger");
 
-        if (prevScrollpos > currentScrollPos) {
+        if (prevScrollpos > currentScrollPos || currentScrollPos < 100) {
           document.getElementById("navbar").style.top = "0";
           document.getElementById("page-nav-wrap").style.top = "0";
         } else {

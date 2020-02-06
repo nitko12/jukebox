@@ -51,6 +51,15 @@ i:active {
   color: #ba5c3c;
 }
 
+.kontakt-admin {
+  color: green;
+}
+.kontakt-admin:visited,
+.kontakt-admin:hover,
+.kontakt-admin:active {
+  color: #0099e5;
+}
+
 .zaglavlje {
   width: 100%;
   background-color: #0099e5;

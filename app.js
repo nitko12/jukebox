@@ -12,16 +12,40 @@ module.exports = function(express, app, passport) {
 
   app.get("/", (req, res) => {
     if (
-      (req.isAuthenticated() &&
-        safeCompare(req.user.username, consts.admin.username) &&
-        safeCompare(req.user.password, consts.admin.password)) ||
-      (req.isAuthenticated() &&
-        safeCompare(req.user.username, consts.superuser.username) &&
-        safeCompare(req.user.password, consts.superuser.password))
+      req.isAuthenticated() &&
+      safeCompare(req.user.username, consts.admin.username) &&
+      safeCompare(req.user.password, consts.admin.password)
     ) {
       let data = [],
         options = [];
       ejs.renderFile("./ejs/admin.ejs", data, options, (err, str) => {
+        if (err) return console.log(err);
+        res.send(str);
+      });
+    } else if (
+      req.isAuthenticated() &&
+      safeCompare(req.user.username, consts.superuser.username) &&
+      safeCompare(req.user.password, consts.superuser.password)
+    ) {
+      let data = { user: req.user.username },
+        options = [];
+      ejs.renderFile(
+        "./ejs/dodajkorisnika_su.ejs",
+        data,
+        options,
+        (err, str) => {
+          if (err) return console.log(err);
+          res.send(str);
+        }
+      );
+    } else if (
+      req.isAuthenticated() &&
+      safeCompare(req.user.username, consts.dj.username) &&
+      safeCompare(req.user.password, consts.dj.password)
+    ) {
+      let data = { user: req.user.username },
+        options = [];
+      ejs.renderFile("./ejs/prijavljeni_dj.ejs", data, options, (err, str) => {
         if (err) return console.log(err);
         res.send(str);
       });
@@ -87,12 +111,9 @@ module.exports = function(express, app, passport) {
 
   app.get("/dodajkorisnika", (req, res) => {
     if (
-      (req.isAuthenticated() &&
-        safeCompare(req.user.username, consts.admin.username) &&
-        safeCompare(req.user.password, consts.admin.password)) ||
-      (req.isAuthenticated() &&
-        safeCompare(req.user.username, consts.superuser.username) &&
-        safeCompare(req.user.password, consts.superuser.password))
+      req.isAuthenticated() &&
+      safeCompare(req.user.username, consts.admin.username) &&
+      safeCompare(req.user.password, consts.admin.password)
     ) {
       let data = [],
         options = [];
@@ -106,7 +127,18 @@ module.exports = function(express, app, passport) {
   });
 
   app.get("/predlozi", (req, res) => {
-    if (req.isAuthenticated()) {
+    if (
+      req.isAuthenticated() &&
+      safeCompare(req.user.username, consts.dj.username) &&
+      safeCompare(req.user.password, consts.dj.password)
+    ) {
+      let data = { user: req.user.username },
+        options = [];
+      ejs.renderFile("./ejs/predlozi_dj.ejs", data, options, (err, str) => {
+        if (err) return console.log(err);
+        res.send(str);
+      });
+    } else if (req.isAuthenticated()) {
       let data = { user: req.user.username },
         options = [];
       ejs.renderFile("./ejs/predlozi.ejs", data, options, (err, str) => {
@@ -119,7 +151,12 @@ module.exports = function(express, app, passport) {
   });
 
   app.get("/promjenisifru", (req, res) => {
-    if (req.isAuthenticated()) {
+    if (
+      req.isAuthenticated() &&
+      !safeCompare(req.user.username, consts.dj.username) &&
+      !safeCompare(req.user.username, consts.superuser.username) &&
+      !safeCompare(req.user.username, consts.admin.username)
+    ) {
       let data = { user: req.user.username },
         options = [];
       ejs.renderFile("./ejs/changepass.ejs", data, options, (err, str) => {
@@ -134,12 +171,9 @@ module.exports = function(express, app, passport) {
   // restricted js
   app.get("/restricted/admin.js", (req, res) => {
     if (
-      (req.isAuthenticated() &&
-        safeCompare(req.user.username, consts.admin.username) &&
-        safeCompare(req.user.password, consts.admin.password)) ||
-      (req.isAuthenticated() &&
-        safeCompare(req.user.username, consts.superuser.username) &&
-        safeCompare(req.user.password, consts.superuser.password))
+      req.isAuthenticated() &&
+      safeCompare(req.user.username, consts.admin.username) &&
+      safeCompare(req.user.password, consts.admin.password)
     ) {
       res.sendFile(__dirname + "/restricted/admin.js");
     } else {

@@ -152,7 +152,7 @@
         var currentScrollPos = window.pageYOffset;
         var checkbox = document.getElementById("hamburger");
 
-        if (prevScrollpos > currentScrollPos) {
+        if (prevScrollpos > currentScrollPos || currentScrollPos < 100) {
           document.getElementById("navbar").style.top = "0";
           document.getElementById("page-nav-wrap").style.top = "0";
         } else {

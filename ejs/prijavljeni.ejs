@@ -163,7 +163,7 @@
         var currentScrollPos = window.pageYOffset;
         var checkbox = document.getElementById("hamburger");
 
-        if (prevScrollpos > currentScrollPos) {
+        if (prevScrollpos > currentScrollPos || currentScrollPos < 100) {
           document.getElementById("navbar").style.top = "0";
           document.getElementById("page-nav-wrap").style.top = "0";
         } else {
@@ -348,7 +348,7 @@
       data-divlinkbg="#0099e5"
       data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na"
       data-linkmsg="ovom linku."
-      data-moreinfo="/cookies"
+      data-moreinfo="/public/cookies.html"
       data-close-text="Prihvaćam"
       data-cookie="prvi-kolacic"
     ></script>

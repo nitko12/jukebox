@@ -44,7 +44,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   </head>
 
-  <body>
+
+<body>
     <div class="zaglavlje" id="#top">
       <div class="naslov"></div>
       <div class="korisnik"></div>
@@ -69,7 +70,9 @@
             <a href="/"><img src="../slike/logo.jpg" width="180px;"/></a>
           </td>
           <td style="width: 25%; text-align: center;">
-            <div class="korisnik"></div>
+            <div class="korisnik">
+
+            </div>
           </td>
         </tr>
       </table>
@@ -87,7 +90,7 @@
           </td>
           <td style="width: 40%;"></td>
           <td style="width: 30%; text-align: right;">
-            <a href="/"><img src="../slike/logo.jpg" width="120px;"/></a>
+            <a href="/"><img src="../slike/logo.jpg" width="120px;" /></a>
           </td>
         </tr>
       </table>
@@ -98,7 +101,7 @@
           Naslovnica
         </a>
         <hr id="nav-crta" />
-        <a href="/public/upute.html">
+        <a href="/upute">
           Upute za korištenje & više
         </a>
         <a id="social">
@@ -143,7 +146,7 @@
         var currentScrollPos = window.pageYOffset;
         var checkbox = document.getElementById("hamburger");
 
-        if (prevScrollpos > currentScrollPos) {
+        if (prevScrollpos > currentScrollPos || currentScrollPos < 100) {
           document.getElementById("navbar").style.top = "0";
           document.getElementById("page-nav-wrap").style.top = "0";
         } else {
@@ -164,6 +167,7 @@
         <span class="close">&times;</span>
 
         <!-- MODAL CONTENT -->
+        
       </div>
     </div>
 
@@ -190,140 +194,90 @@
     </script>
 
     <div class="icon-bar">
-      <a
-        href="https://www.facebook.com/3gmos/"
-        class="facebook"
-        title="III. gimnazija na Facebooku"
-        target="_blank"
-        ><img src="../slike/fb_bijeli.png" width="35"
-      /></a>
-      <a
-        href="https://www.instagram.com/iii.gimnazija.osijek/"
-        class="instagram"
-        title="III. gimnazija na Instagramu"
-        target="_blank"
-        ><img src="../slike/ig_bijeli.png" width="35"
-      /></a>
-      <a
-        href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1"
-        class="youtube"
-        title="III. gimnazija na YouTubeu"
-        target="_blank"
-        ><img src="../slike/yt_bijeli.png" width="35"
-      /></a>
+        <a href="https://www.facebook.com/3gmos/" class="facebook" title="III. gimnazija na Facebooku"
+            target="_blank"><img src="../slike/fb_bijeli.png" width="35"></a>
+        <a href="https://www.instagram.com/iii.gimnazija.osijek/" class="instagram" title="III. gimnazija na Instagramu"
+            target="_blank"><img src="../slike/ig_bijeli.png" width="35"></a>
+        <a href="https://www.youtube.com/channel/UCeiBC-SpHTB4pujkuFy0ctw?sub_confirmation=1" class="youtube"
+            title="III. gimnazija na YouTubeu" target="_blank"><img src="../slike/yt_bijeli.png" width="35"></a>
     </div>
+
+
 
     <!-- MAIN CONTENT -->
     <span id="sadrzaj">
-      <div style="height: 50px; width: 100%;"></div>
 
-      <div style="width: 5%;" class="space"></div>
+        <div style="height: 50px; width: 100%;">
+        </div>
 
-      <div class="trending" style="text-align: left;">
-        <center>
-          <h2>Prijavi se</h2>
-        </center>
-        <br /><br />
-        <form action="/login" method="post">
-          <center>
-            <input
-              id="login username"
-              type="text"
-              placeholder="Unesi korisničko ime"
-              name="username"
-              required
-            /><br />
-            <input
-              id="login password"
-              type="password"
-              placeholder="Unesi lozinku"
-              name="password"
-              required
-            /><br /><br />
-            <button id="btn-log in" type="submit">Prijavi se</button>
-            <button id="btn-log out" type="button" class="cancelbtn">
-              Odustani</button
-            ><br />
-            <a href="/public/upute.html"
-              ><button>Upute za korištenje</button></a
-            >
-          </center>
-        </form>
-      </div>
+        <div style="width: 5%;" class="space">
+        </div>
 
-      <div style="height: 50px; width: 100%;"></div>
+        <div class="trending" style="text-align: left;">
+
+            <center>
+                <h2>Prijavi se</h2>
+            </center><br><br>
+            <form action="/login" method="post">
+                <center>
+                    <input id="login username" type="text" placeholder="Unesi korisničko ime" name="username"
+                        required /><br>
+                    <input id="login password" type="password" placeholder="Unesi lozinku" name="password"
+                        required /><br><br>
+                        <a href="/problem" class="kontakt-admin"><b><u>Zaboravljena lozinka ili korisničko ime</b></u></a><br><br><br>
+                    <button id="btn-log in" type="submit">Prijavi se</button>
+                    <button id="btn-log out" type="button" class="cancelbtn">Odustani</button><br>
+                    <a href="/upute"><button>Upute za korištenje</button></a></center>
+            </form>
+
+        </div>
+
+        <div style="height: 50px; width: 100%;">
+        </div>
+
     </span>
     <!-- FOOTER -->
     <div class="footer">
-      <div class="vrh">
-        <a href="#top">
-          <p class="na-vrh-tekst">
-            <i class="material-icons strelica" style="float: left;"
-              >keyboard_arrow_up</i
-            >
-            Povratak na vrh
-            <i class="material-icons strelica" style="float: right;"
-              >keyboard_arrow_up</i
-            >
-          </p>
-        </a>
-      </div>
+        <div class="vrh">
+            <a href="#top">
+                <p class="na-vrh-tekst">
+                    <i class="material-icons strelica" style="float: left;">keyboard_arrow_up</i> Povratak na vrh
+                    <i class="material-icons strelica" style="float: right;">keyboard_arrow_up</i>
+                </p>
+            </a>
+        </div>
 
-      <p id="vlasnik" style="text-align: center;">
-        <br /><a href="http://www.gimnazija-treca-os.skole.hr"
-          >III. GIMNAZIJA OSIJEK</a
-        >
-      </p>
-      <br />
-      <div id="kontakt-podaci">
-        <p id="adresa"><br />Kamila Firingera 14,<br />31 000 Osijek, HR</p>
-        <p id="e-posta">
-          <a href="mailto:ured@gimnazija-treca-os.skole.hr"
-            ><br />ured@gimnazija-treca-os.skole.hr</a
-          ><br /><a href="mailto:pjesma@mail.com">pjesma@mail.com</a>
-        </p>
-      </div>
+        <p id="vlasnik" style="text-align: center;"><br><a href="http://www.gimnazija-treca-os.skole.hr">III. GIMNAZIJA
+                OSIJEK</a></p><br>
+        <div id="kontakt-podaci">
+            <p id="adresa"><br>Kamila Firingera 14,<br>31 000 Osijek, HR</p>
+            <p id="e-posta">
+                <a href="mailto:ured@gimnazija-treca-os.skole.hr"><br>ured@gimnazija-treca-os.skole.hr</a><br><a
+                    href="mailto:pjesma@mail.com">pjesma@mail.com</a></p>
+        </div>
 
-      <div style="height: 150px; width: 100%;"></div>
+        <div style="height: 150px; width: 100%;"></div>
 
-      <div class="footer-end">
-        <p id="copyright">
-          Copyright:
-          <a href="http://www.gimnazija-treca-os.skole.hr"
-            >III. gimnazija Osijek</a
-          >
-          &copy;
-          <script>
-            var d = new Date();
-            document.write(d.getFullYear() + ".");
-          </script>
-          <br />
-          Sva prava pridržana.
-        </p>
-        <p id="designer"></p>
-      </div>
+        <div class="footer-end">
+            <p id="copyright">Copyright: <a href="http://www.gimnazija-treca-os.skole.hr">III. gimnazija Osijek</a>
+                &copy;
+                <script>
+                    var d = new Date();
+                    document.write(d.getFullYear() + ".");
+                </script><br> Sva prava pridržana.
+            </p>
+            <p id="designer"></p>
+        </div>
     </div>
 
-    <script
-      type="text/javascript"
-      id="cookieinfo"
-      src="https://cookieinfoscript.com/js/cookieinfo.min.js"
-      data-font-size="18px"
-      data-font-family="sans-serif"
-      data-text-align="left"
-      data-height="auto"
-      data-fg="#FFFFFF"
-      data-bg="#222222"
-      data-link=""
-      data-divlink="#FFFFFF"
-      data-divlinkbg="#0099e5"
-      data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na"
-      data-linkmsg="ovom linku."
-      data-moreinfo="/public/cookies.html"
-      data-close-text="Prihvaćam"
-      data-cookie="prvi-kolacic"
-    ></script>
+    <script type="text/javascript" id="cookieinfo" src="https://cookieinfoscript.com/js/cookieinfo.min.js"
+        data-font-size="18px" data-font-family="sans-serif" data-text-align="left" data-height="auto" data-fg="#FFFFFF"
+        data-bg="#222222" data-link="" data-divlink="#FFFFFF" data-divlinkbg="#0099e5"
+        data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na"
+        data-linkmsg="ovom linku." data-moreinfo="/public/cookies.html" data-close-text="Prihvaćam" data-cookie="prvi-kolacic">
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="/public/homepage.js"></script>
-  </body>
+</body>
+
 </html>

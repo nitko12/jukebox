@@ -113,7 +113,7 @@
           Predloži pjesmu
         </a>
         <hr id="nav-crta" />
-        <a href="/public/upute.html">
+        <a href="/upute">
           Upute za korištenje & više
         </a>
         <a href="#" style="color: #0099e5;">
@@ -163,7 +163,7 @@
         var currentScrollPos = window.pageYOffset;
         var checkbox = document.getElementById("hamburger");
 
-        if (prevScrollpos > currentScrollPos) {
+        if (prevScrollpos > currentScrollPos || currentScrollPos < 100) {
           document.getElementById("navbar").style.top = "0";
           document.getElementById("page-nav-wrap").style.top = "0";
         } else {
@@ -200,7 +200,7 @@
           <li>
             <i class="material-icons" style="font-size: 14px; color: #0099e5;"
               >keyboard_arrow_right</i
-            ><a href="/public/upute.html" style="color: #0099e5;"
+            ><a href="/upute" style="color: #0099e5;"
               >Upute za korištenje & više</a
             >
           </li>
@@ -294,6 +294,11 @@
         </div>
         <br /><br /><br /><br />
         <button onclick="changePass()">Promijeni lozinku</button>
+        <a href="/problem"
+          ><button style="background-color: green;">
+            Kontaktiraj pomoć
+          </button></a
+        >
       </div>
       <div style="height: 50px; width: 100%:"></div>
     </span>

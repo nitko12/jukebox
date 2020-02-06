@@ -1,4 +1,4 @@
-<!-- PREDLOŽI PJESMU -->
+<!-- PRIJAVLJENI -->
 <!DOCTYPE html>
 <html xml:lang="hr" lang="hr">
   <head>
@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Jukebox | Predloži pjesmu</title>
+    <title>Jukebox</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="icon" type="image/gif" href="/favicon.ico" />
 
@@ -34,9 +34,9 @@
 
     <!-- LINK NA DRUŠTVENIM MREŽAMA -->
     <meta property="og:image" content="/slike/logo.jpg" />
-    <meta property="og:url" content="/predlozi" />
+    <meta property="og:url" content="/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Jukebox | Predloži pjesmu" />
+    <meta property="og:title" content="Jukebox" />
     <meta
       property="og:description"
       content="Prijavi se i daj svoj glas za pjesmu koja će svirati idući odmor."
@@ -55,13 +55,13 @@
         <tr>
           <td style="width: 25%; text-align: center;">
             <div class="korisnik">
-              <a href="/">
+              <a href="/predlozi">
                 <i
                   class="material-icons user"
                   style="font-size:45px;"
-                  title="Glasaj"
-                  id="glasaj"
-                  >thumbs_up_down</i
+                  title="Predloži pjesmu"
+                  id="predlozi"
+                  >file_upload</i
                 >
               </a>
             </div>
@@ -105,12 +105,8 @@
       <div id="page-nav">
         <a><p>Pozdrav, <%= user %></p></a>
         <hr id="nav-crta" />
-        <a href="/">
-          Glasaj
-        </a>
-        <hr id="nav-crta" />
-        <a href="/promjenisifru">
-          Promijeni lozinku
+        <a href="/predlozi">
+          Predloži pjesmu
         </a>
         <hr id="nav-crta" />
         <a href="/upute">
@@ -190,14 +186,7 @@
           <li>
             <i class="material-icons" style="font-size: 14px; color: #0099e5;"
               >keyboard_arrow_right</i
-            ><a href="/" style="color: #0099e5;">Glasaj</a>
-          </li>
-          <li>
-            <i class="material-icons" style="font-size: 14px; color: #0099e5;"
-              >keyboard_arrow_right</i
-            ><a href="/promjenisifru" style="color: #0099e5;"
-              >Promijeni lozinku</a
-            >
+            ><a href="/predlozi" style="color: #0099e5;">Predloži pjesmu</a>
           </li>
           <li>
             <i class="material-icons" style="font-size: 14px; color: #0099e5;"
@@ -219,7 +208,6 @@
         </ul>
       </div>
     </div>
-
     <script>
       var modal = document.getElementById("myModal");
       var btn = document.getElementById("myBtn");
@@ -241,6 +229,8 @@
         }
       });
     </script>
+
+    <h2 style="text-align: center;">GLASAJ!</h2>
 
     <div class="icon-bar">
       <a
@@ -267,41 +257,18 @@
     </div>
 
     <!-- MAIN CONTENT -->
-    <span id="sadrzaj" style="width: 100%;">
+    <span id="sadrzaj">
       <div style="width: 100%;" id="poruka-admina" style="text-align: center;">
         <p style="text-align: center;">
           <span id="poruka-administratora"></span>
         </p>
       </div>
-      <div style="height: 50px; width: 100%;" class="obrisi"></div>
 
-      <div style="width: 100%;">
-        <div style="width: 100%;">
-          <div
-            style="display: block; margin: auto; width:100%; text-align: center;"
-          >
-            <h1>Youtube link pjesme:</h1>
-            <input
-              id="link"
-              type="text"
-              placeholder="Zalijepi link pjesme s YouTubea"
-            /><br />
-            <button onclick="submit()" class="w80">Pošalji</button>
+      <br />
 
-            <div style="height: 50px; width: 100%;" class="obrisi"></div>
+      <div id="data" style="margin: auto;display: block;" class="w70"></div>
 
-            <center>
-              <div style="border: 2px solid #0083c4; padding: 8px;" class="w78">
-                <center>
-                  <p id="status">Ništa još nije predloženo</p>
-                </center>
-              </div>
-            </center>
-            <br />
-          </div>
-        </div>
-      </div>
-      <div style="height: 50px; width: 100%" class="obrisi"></div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     </span>
 
     <!-- FOOTER -->
@@ -354,6 +321,7 @@
         <p id="designer"></p>
       </div>
     </div>
+
     <script
       type="text/javascript"
       id="cookieinfo"
@@ -369,11 +337,11 @@
       data-divlinkbg="#0099e5"
       data-message="Naše web stranice koriste kolačiće (eng. cookies) kako bi Vama omogućili najbolje korisničko iskustvo, za analizu prometa i korištenje društvenih mreža. Više pročitajte na"
       data-linkmsg="ovom linku."
-      data-moreinfo="/public/cookies.html"
+      data-moreinfo="/cookies"
       data-close-text="Prihvaćam"
       data-cookie="prvi-kolacic"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script src="/user/recommend.js"></script>
+
+    <script src="/user/loggedin.js"></script>
   </body>
 </html>
